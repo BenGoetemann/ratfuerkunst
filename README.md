@@ -39,7 +39,7 @@ Die Props der Social Media Icons erwarten keinen vollständigen Link sondern led
 
 Darüber hinaus kann durch die callToAction Prop ein Button erzeugt werden. Dieser generiert ebenfalls automatisch eine Route zur jeweiligen Page. 
 
-Zuguterletzt kann über die absolute-Prop entcschieden werden, ob die Navigationsleiste im Desktop State über dem Header "floaten" soll, oder einen eigenen abgetrennten Bereich bekommt, indem man die absolute-Prop auf "true" setzt.
+Zuguterletzt kann über die absolute-Prop entcschieden werden, ob die Navigationsleiste im Desktop State über dem Header "floaten" soll, oder einen eigenen abgetrennten Bereich bekommt, indem man die absolute-Prop auf "true" setzt. **ACHTUNG: Wenn die NavBar nicht absolut ist, muss in der LegalSection das CSS angepasst werden!**
 
 
 ```js

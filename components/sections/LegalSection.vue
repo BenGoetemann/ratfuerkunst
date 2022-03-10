@@ -14,7 +14,8 @@ export default {};
 
 <style lang="postcss" scoped>
 .legalSection {
-  @apply mt-small xl:mt-huge;
+  /* @apply mt-small xl:mt-huge; */ /* Wenn NavBar absolut ist */
+  @apply mt-medium; /* Wenn NavBar NICHT absolut ist */
   @apply mb-big xl:mb-big;
 }
 </style>
