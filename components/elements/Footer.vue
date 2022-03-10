@@ -5,7 +5,7 @@
       <div class="footerWrapper">
         <div class="logoSection">
           <Logo />
-          <p>© {{ new Date().getFullYear() }} Pingr UG (haftungsbeschränkt)</p>
+          <p>© {{ new Date().getFullYear() }} Benedikt Götemann</p>
           <HideOnMobile>
             <SocialIconSelection
               :facebook="facebook"
