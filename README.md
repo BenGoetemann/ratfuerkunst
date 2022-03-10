@@ -92,6 +92,17 @@ Damit die Struktur dieser Komponente besser verstanden wird, hier ein kleines Sc
 <br>
 <br>
 
+## elements/YouTubePlayer
+
+Der YouTube Player ist immer im Aspect Ration von 16:9 und füllt die gesamte Breite einer Section. Um ein Video zu targetieren muss in der Propterty ```id``` die Video ID mitgegeben werden.
+
+```html
+<YouTubePlayer id="Xh11iUpJs4Y" />
+```
+
+<br>
+<br>
+
 ## elements/WideHeader
 
 Ein WideHeader ist ein Hero Image, das sich über die gesamte Bildschirmbreite zieht. Die Komponente erwartet eine img-Prop, der eine bg Tailwind-Klasse übergeben werden muss. Diese wird dann als Background Image eingesetzt.
