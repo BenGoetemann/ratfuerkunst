@@ -13,7 +13,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'hero': "url('~assets/images/heroes/hero.webp')",
+        'hero': "url('~assets/images/heroes/hero.jpg')",
       },
       spacing: {
         'micro': '0.5rem',
@@ -22,6 +22,7 @@ module.exports = {
         'medium': '2.25rem',
         'big': '6rem',
         'huge': '9rem',
+        'px': "1px",
         84: '21rem',
         128: '32rem',
         144: '36rem',

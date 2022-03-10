@@ -5,7 +5,7 @@
       <div class="footerWrapper">
         <div class="logoSection">
           <Logo />
-          <p>© 2022 Pingr UG (haftungsbeschränkt)</p>
+          <p>© {{ new Date().getFullYear() }} Pingr UG (haftungsbeschränkt)</p>
           <HideOnMobile>
             <SocialIconSelection
               :facebook="facebook"

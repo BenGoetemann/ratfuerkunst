@@ -42,9 +42,9 @@ Darüber hinaus kann durch die callToAction Prop ein Button erzeugt werden. Dies
 Zuguterletzt kann über die absolute-Prop entcschieden werden, ob die Navigationsleiste im Desktop State über dem Header "floaten" soll, oder einen eigenen abgetrennten Bereich bekommt, indem man die absolute-Prop auf "true" setzt. **ACHTUNG: Wenn die NavBar nicht absolut ist, muss in der LegalSection das CSS angepasst werden!**
 
 
-```js
+```html
 <NavBar
-  // absolute="true"
+  absolute="true" //optional
   :pages="['Home', 'About', 'Blog']"
   callToAction="Login"
   facebook="apple"
@@ -62,7 +62,7 @@ Zuguterletzt kann über die absolute-Prop entcschieden werden, ob die Navigation
 
 Die Navigationsleiste kann dynamisch mit Seiten und Social Media Icons gefüllt werden, wobei die Social Media Icons nur auf dem Desktop angezeigt werden. Pages werden über Slots mithilfe von LinkSelections eingefügt, die wiederum eine :pages-Prop beinhaltet, die genau wie bei der NavBar einfache Strings in Paths verwandelt. Icons können mithilfe von Props gefüllt werden:
 
-```js
+```html
 <Footer
   facebook="test"
   instagram="test"
@@ -83,7 +83,7 @@ Die Navigationsleiste kann dynamisch mit Seiten und Social Media Icons gefüllt 
 
 Damit die Struktur dieser Komponente besser verstanden wird, hier ein kleines Schaubild:
 
-```
+```html
 <Footer {{PROPS}} >
   {{ SLOTS }}
 </Footer>
@@ -96,8 +96,32 @@ Damit die Struktur dieser Komponente besser verstanden wird, hier ein kleines Sc
 
 Ein WideHeader ist ein Hero Image, das sich über die gesamte Bildschirmbreite zieht. Die Komponente erwartet eine img-Prop, der eine bg Tailwind-Klasse übergeben werden muss. Diese wird dann als Background Image eingesetzt.
 
-```js
+```html
 <WideHeader img="bg-hero"/>
+```
+
+<br>
+<br>
+
+## elements/ProfileCard
+
+Eine ProfileCard beinhaltet ein Bild, einen Namen, eine Position und ein Link bzw. Slug, mit dem der Pagebesucher auf ein weiterführendes Profil oder eine LinkedIn Seite geführt werden kann.
+
+```html
+<ProfileCard
+  :img="require('~/assets/images/heroes/benny.jpg')"
+  name="Benedikt Götemann"
+  position="Mensch-Mensch"
+  slug="/benny"
+/>
+```
+```html
+<ProfileCard
+  :img="require('~/assets/images/heroes/benny.jpg')"
+  name="Benedikt Götemann"
+  position="Mensch-Mensch"
+  link="https://www.linkedin.com/benediktgoetemann"
+/>
 ```
 
 <br>
@@ -114,11 +138,11 @@ Ein Divider ist ein Element, das eine Trennlinie über 100% der Parent Komponent
 
 Der Button kann eine Route oder einen externen Link erzeugen. Dies legt man fest, indem man entweder die link oder slug Prop beutzt:
 
-```js
+```html
 <Button slug="/registrieren" btnText="Jetzt registrieren" />
 ```
 
-```js
+```html
 <Button link="https://www.apple.com" btnText="Apple Website" />
 ```
 
@@ -136,6 +160,37 @@ Der Button kann eine Route oder einen externen Link erzeugen. Dies legt man fest
 <br>
 <br>
 
+## sections/ContentSection
+
+ContentSections trennen den Seiteninhalt voneinander. Sie bestimmt ein festgelegtes Styling in Bezug auf Paddings und Positionierung der Items. Mit der styles-Prop kann der Section eine Hintergrund-Farbe gegeben werden.
+
+```html
+<ContentSection styles="bg-subliminal">
+  {{ slots }}
+</ContentSection>
+```
+
+<br>
+<br>
+
+## sections/SmallCenteredSection
+
+Eine SmallCenteredSection positioniert sich mit einer engen maximalbreite in der Mitte des Bildschirms. Dieser Effekt ist nur auf dem Desktop sichtbar, auf dem Handy passt sie sich der Bildschirmbreite an.
+
+```html
+<SmallCenteredSection>
+  <h1>Unser Team</h1>
+  <h3>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla odit
+    voluptatem ex quae blanditiis!
+  </h3>
+  <Button btnText="Kontakt" slug="/kontakt" />
+</SmallCenteredSection>
+```
+
+<br>
+<br>
+
 ## sections/LegalSection
 
 Die LegalSection ist dazu da, um Fließtexte wie Datenschutzerklärungen und Impressum abzubilden. Die Breakpoints sind so gesetzt, dass sie sich von der absolut positionierten NavBar absetzen.
@@ -143,9 +198,17 @@ Die LegalSection ist dazu da, um Fließtexte wie Datenschutzerklärungen und Imp
 <br>
 <br>
 
+
 ## sections/utils/HideOnMobile
 
 Die HideOnMobile Section versteckt den Inhalt ab dem Moment, an dem die NavBar den Drawer zugänglich nacht.
+
+<br>
+<br>
+
+## sections/utils/WrapSection
+
+Die WrapSection ist eine Section für Items, die bei maximal erreichter Breite in eine neue "Zeile" umbrechen sollen. Dies eignet sich beispielsweise für Team Profil Bilder, da hier einfach das gesamte Team reingeworfen werden kann.
 
 <br>
 <br>
@@ -181,7 +244,7 @@ Der BorderContainer kümmert sich darum, dass Page Inhalt nicht breiter als ein 
 
 Eine LinkSelection erzeugt eine Ansammlung von Links mit einer Überschrift und werden unter anderem in einem Footer eingesetzt.
 
-```js
+```html
 <LinkSelection
   title="Legal"
   :pages="['Impressum', 'Datenschutz', 'AGB']"
@@ -192,7 +255,7 @@ Eine LinkSelection erzeugt eine Ansammlung von Links mit einer Überschrift und 
 
 Eine Social Media Selection beinhaltet alle möglichen Social Media Plattformen. Wenn die Prop einer Plattform ausgefüllt wird, erzeugt sie das jeweilige Icon dazu.
 
-```js
+```html
 <SocialIconSelection
     :facebook="facebook"
     :instagram="instagram"

@@ -26,7 +26,7 @@ export default Vue.extend({
 <style lang="postcss" scoped>
 .item {
   @apply font-semibold text-center;
-  @apply m-0 mt-4 xl:mr-4 xl:mt-0;
+  @apply m-0 mt-small xl:mr-small xl:mt-0;
   @apply hover:text-primary;
 }
 </style>

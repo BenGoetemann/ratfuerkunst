@@ -9,6 +9,7 @@
       tiktok="apple"
       youtube="test"
     />
+    <Divider />
     <Nuxt />
     <Footer
       facebook="test"
@@ -41,7 +42,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap");
 
 :root {
-  font-size: 100%;
+  font-size: 95%;
 }
 
 html {

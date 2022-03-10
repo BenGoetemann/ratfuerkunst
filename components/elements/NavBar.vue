@@ -1,6 +1,6 @@
 <template>
   <FluidContainer>
-    <nav :class="absolute ? 'lg:top-0 xl:absolute' : '' ">
+    <nav :class="absolute ? 'lg:top-0 xl:absolute' : ''">
       <BorderContainer>
         <!-- Desktop Navbar -->
         <section class="navWrapper">
@@ -68,7 +68,16 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  props: ["absolute", "pages", "callToAction", "facebook", "soundcloud", "instagram", "youtube", "tiktok"],
+  props: [
+    "absolute",
+    "pages",
+    "callToAction",
+    "facebook",
+    "soundcloud",
+    "instagram",
+    "youtube",
+    "tiktok",
+  ],
   data() {
     return {
       isOpen: false,
