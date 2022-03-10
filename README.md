@@ -198,6 +198,12 @@ Die LegalSection ist dazu da, um Fließtexte wie Datenschutzerklärungen und Imp
 <br>
 <br>
 
+## sections/TextSection
+
+Die TextSection zeigt die Items und Text linksbündig an.
+
+<br>
+<br>
 
 ## sections/utils/HideOnMobile
 
