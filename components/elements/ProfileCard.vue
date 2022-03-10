@@ -44,7 +44,7 @@ h3 {
 
 .profilePictureWrapper {
   @apply flex justify-center items-center;
-  @apply w-11/12 md:w-72;
+  @apply w-10/12 md:w-72;
   @apply rounded-full bg-primary;
   aspect-ratio: 1/1;
 }
