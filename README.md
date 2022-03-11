@@ -304,8 +304,15 @@ Eine Social Media Selection beinhaltet alle möglichen Social Media Plattformen.
 
 # Extras
 
-**Extras sind externe Tools, die nicht über API eingebunden werden, sondern über Script Tags in der nuxt.config.**
+**Extras sind externe Tools, die nicht über API eingebunden werden. Bspw. Module, Script Tags mit diversen Funktionen**
 
+<br>
+
+## GSAP
+
+Für die Benutzung innerhalb von Nuxt muss man [hier nachlesen](https://github.com/ivodolenc/nuxt-gsap-module) und für Dokumentation der generellen Funktionalität [hier nachlesen](https://greensock.com/docs/v3/GSAP)
+
+<br>
 <br>
 
 ## Heyflow
