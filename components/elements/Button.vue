@@ -18,6 +18,7 @@ import Vue from "vue";
 
 export default Vue.extend({
   props: ["btnText", "slug", "link"],
+
   methods: {
     makeNameToLink(btnText) {
       return btnText.toLowerCase().split(" ").join("-");

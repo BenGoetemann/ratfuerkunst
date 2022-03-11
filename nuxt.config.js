@@ -78,7 +78,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxt/http'],
 
   gsap: {
     /* Module Options */

@@ -308,6 +308,79 @@ Eine Social Media Selection beinhaltet alle möglichen Social Media Plattformen.
 
 <br>
 
+## HTTP
+
+Das HTTP/Nuxt Module macht es ein wenig leichter APIs anzusteuern. Dies kann man entweder innerhalb von Komponenten via Method oder Hooks machen oder auf Seitenebene mit der AsyncData-Function:
+
+Komponente
+
+```html
+<template>
+  <div>
+    <!-- Request wird mit Klick durch Methode getriggert -->
+    <div @click="fetchSomething()">Clicked: {{clicked.name}}</div>
+    <!-- Request wird in einer Hook-Methode getriggert -->
+    <div>Mounted: {{ mounted.mass }}</div>
+    <!-- Request wird beim Laden der Parent Page getriggert und via Prop in die Komponente gebracht -->
+    <div>Build Time: {{ built.eye_color }}</div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["built"],
+  data() {
+    return {
+      clicked: [],
+      mounted: [],
+    };
+  },
+  methods: {
+    async fetchSomething() {
+      this.clicked = await this.$http.$get("https://swapi.dev/api/people/1/");
+    },
+  },
+  async mounted() {
+    this.mounted = await this.$http.$get("https://swapi.dev/api/people/1/");
+  },
+};
+</script>
+
+```
+
+Page
+
+```html
+<template>
+  <FetchButton :built="built" />
+</template>
+
+<script>
+export default {
+  async asyncData({ $http }) {
+    const built = await $http.$get("https://swapi.dev/api/people/1/");
+
+    return { built };
+  },
+}
+</script>
+
+<style>
+
+</style>
+```
+
+***Wichtig:*** Wenn man die HTTP-Method innerhalb außerhalb einer AsyncData, also in einer Methode oder Hook, verwenden möchte, muss man sie mit ```this``` referenzieren.
+
+```js
+let res = await this.$http.$get("https://swapi.dev/api/people/1/");
+```
+
+Für weitere Infos zur Benutzung muss man [hier nachlesen](https://http.nuxtjs.org/getting-started/usage).
+
+<br>
+<br>
+
 ## GSAP
 
 Für die Benutzung innerhalb von Nuxt muss man [hier nachlesen](https://github.com/ivodolenc/nuxt-gsap-module) und für Dokumentation der generellen Funktionalität [hier nachlesen](https://greensock.com/docs/v3/GSAP)
