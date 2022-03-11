@@ -4,21 +4,12 @@
     <ContentSection>
       <TextSection>
         <h1>This is an Article</h1>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur nam
-          quaerat architecto deleniti, in incidunt, omnis repudiandae distinctio
-          beatae ex quibusdam nemo eveniet? Numquam ad voluptatem, pariatur
-          magnam alias eaque. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Excepturi non sit nam eligendi veniam vel ad perferendis
-          mollitia eum illum corporis nostrum hic, quod delectus labore fugiat
-          aperiam dignissimos? Adipisci. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Tempore corporis unde explicabo ea? Repudiandae,
-          esse. Veniam porro, quas harum sequi, mollitia ex nemo voluptates cum
-          earum, doloremque labore quam inventore! Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Fuga perferendis dolores est quibusdam
-          quam suscipit optio ad consequuntur, voluptatem placeat adipisci
-          provident quisquam porro aperiam commodi vitae, id asperiores modi?
-        </p>
+        <div v-for="text in texts" :key="text">
+          <p>
+            {{ text }}
+          </p>
+        </div>
+
         <YouTubePlayer id="Xh11iUpJs4Y" />
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
@@ -103,14 +94,19 @@
 </template>
 
 <script>
-
-
-
 export default {
   data() {
     return {
       title: "Beautiful Landscapes brought to you by the Universe! 🚀",
     };
+  },
+  async asyncData({ $http }) {
+    const texts = await $http.$get(
+      "https://baconipsum.com/api/?type=all-meat&paras=2&start-with-lorem=10"
+    );
+    // const text = await res.text();
+
+    return { texts };
   },
   head() {
     return {
