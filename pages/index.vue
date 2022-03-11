@@ -9,7 +9,7 @@
             {{ text }}
           </p>
         </div>
-
+        <p>{{ netlify }}</p>
         <YouTubePlayer id="Xh11iUpJs4Y" />
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
@@ -104,9 +104,13 @@ export default {
     const texts = await $http.$get(
       "https://baconipsum.com/api/?type=all-meat&paras=2&start-with-lorem=10"
     );
-    // const text = await res.text();
+    const netlify = await $http.$get(
+      '/.netlify/functions/example'
+    );
 
-    return { texts };
+    console.log(netlify)
+
+    return { texts, netlify };
   },
   head() {
     return {

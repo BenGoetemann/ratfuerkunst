@@ -414,3 +414,72 @@ Um Heyflow einzubinden bedarf es zwei Schritten. Zuerst erstellt man im Template
 </script>
 ```
 
+<br>
+<br>
+<br>
+
+# Netlify Functions
+
+**Die Netlify Functions werden genutzt um Anwendungen zu schreiben, bei denen API Key versteckt werden sollen. Innerhalb einer Function kann ein Teil einer API abstrahiert werden, um den Client nur die Information zur Verfügung zu stellen, die der Client braucht**
+
+**Wenn mit Netlify Functions entwickelt wird, muss ```yarn netlify dev``` anstelle von ```yarn dev``` verwendet werden - andererseits funktionieren die Functions nicht.**
+
+<br>
+
+## Neue Function erstellen
+
+Man erstellt eine neue Function mit diesem Command: 
+
+```bash
+yarn netlify function:create --name example
+```
+<br>
+<br>
+
+## Die Hello World Function mit Comments
+
+```js
+const handler = async (event) => {
+  try {
+    // event.queryStringParameters greift auf die Parameter im Query String zu
+    const subject = event.queryStringParameters.name || 'World' // Defaultet auf 'World'
+    return {
+      statusCode: 200,
+
+      // RESPONSE BODY, der aus dem Request generiert und dem Client gegeben werden kann
+      body: JSON.stringify({ message: `Hello ${subject}` }), 
+      
+      // // more keys you can return:
+      // headers: { "headerName": "headerValue", ... },
+      // isBase64Encoded: true,
+    }
+  } catch (error) {
+    return { statusCode: 500, body: error.toString() }
+  }
+}
+
+module.exports = { handler }
+
+```
+
+Weitere Infos dazu [hier](https://www.netlify.com/docs/functions/#the-handler-method).
+
+<br>
+<br>
+
+## Eine Netlify Function fetchen
+
+Netlify Functions erstellen einen Endpunkt auf der Domain der Page:
+
+```
+https://www.leaf.com/.netlify/functions/myFunction.js
+```
+
+So können dann die Functions aufgerufen werden:
+
+```js
+[...] = await this.$http.$get('/.netlify/functions/myFunction?parameter="value"');
+```
+
+<br>
+<br>

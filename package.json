@@ -6,12 +6,13 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "netlify": "./node_modules/.bin/netlify"
   },
   "dependencies": {
     "@nuxt/http": "^0.6.4",
+    "axios": "^0.26.1",
     "core-js": "^3.19.3",
-    "daisyui": "^2.6.3",
     "nuxt": "^2.15.8",
     "postcss-responsive-type": "^1.0.0",
     "vue": "^2.6.14",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^4.2.1",
     "autoprefixer": "^10.4.2",
+    "netlify-cli": "^9.13.0",
     "nuxt-gsap-module": "^1.6.0",
     "postcss": "^8.4.8",
     "postcss-nested": "^5.0.6",

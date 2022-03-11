@@ -82,6 +82,9 @@ export default {
 
   gsap: {
     /* Module Options */
+    extraPlugins: {
+      scrollTrigger: true
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
