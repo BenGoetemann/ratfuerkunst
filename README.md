@@ -297,3 +297,40 @@ Eine Social Media Selection beinhaltet alle möglichen Social Media Plattformen.
 # Figures
 
 **Figures sind Komponenten die ein Bild repräsentieren, wie beispielsweise das Logo und ein Icon**
+
+<br>
+<br>
+<br>
+
+# Extras
+
+**Extras sind externe Tools, die nicht über API eingebunden werden, sondern über Script Tags in der nuxt.config.**
+
+<br>
+
+## Heyflow
+
+Um Heyflow einzubinden bedarf es zwei Schritten. Zuerst erstellt man im Template Tag ein DIV und gibt ihr eine ID mit einem beliebigen Namen. Zuguterletzt ruft man die Heyflow-Methode in der Mounted-Methode im Script-Tag auf. Die Heyflow-Methode erwartet zwei Parameter: ```flowId``` und ```divId```. 
+
+```html
+<template>
+  [...]
+    <div id="heyflow"></div>
+  [...]
+</template>
+```
+
+```html
+<script>
+
+  export default Vue.extend({
+    [...]
+      mounted() {
+        heyflow('djefj23f', 'heyflow')
+      },
+    [...]
+  })
+
+</script>
+```
+
