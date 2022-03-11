@@ -3,20 +3,21 @@
     <NavBar
       :pages="['Home', 'About', 'Test']"
       callToAction="Login"
-      facebook="test"
-      instagram="test"
-      soundcloud="test"
-      tiktok="apple"
-      youtube="test"
+      facebook="leaf"
+      instagram="leaf"
+      tiktok="leaf"
+      linkedin="leaf"
+      youtube="leaf"
     />
     <Divider />
     <Nuxt />
     <Footer
-      facebook="test"
-      instagram="test"
-      soundcloud="test"
-      tiktok="apple"
-      youtube="test"
+      company="Benedikt Götemann"
+      facebook="leaf"
+      instagram="leaf"
+      tiktok="leaf"
+      linkedin="leaf"
+      youtube="leaf"
     >
       <LinkSelection
         title="Legal"

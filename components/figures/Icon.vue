@@ -38,6 +38,6 @@ export default Vue.extend({
 
 <style lang="postcss" scoped>
 .icon {
-  @apply w-5 h-5 m-3 flex flex-row items-center justify-center xl:m-0 xl:mr-3;
+  @apply w-7 h-7 m-3 flex flex-row items-center justify-center xl:m-0 xl:mr-3;
 }
 </style>

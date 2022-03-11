@@ -5,13 +5,16 @@
       <div class="footerWrapper">
         <div class="logoSection">
           <Logo />
-          <p>© {{ new Date().getFullYear() }} Benedikt Götemann</p>
+          <p>© {{ new Date().getFullYear() }} {{ company }}</p>
           <HideOnMobile>
             <SocialIconSelection
               :facebook="facebook"
               :instagram="instagram"
               :tiktok="tiktok"
-              :soundcloud="soundcloud"
+              :twitter="twitter"
+              :reddit="reddit"
+              :snapchat="snapchat"
+              :linkedin="linkedin"
               :youtube="youtube"
             />
           </HideOnMobile>
@@ -28,7 +31,18 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  props: ["facebook", "soundcloud", "instagram", "youtube", "tiktok"],
+  props: [
+    "company",
+    "facebook",
+    "soundcloud",
+    "instagram",
+    "youtube",
+    "tiktok",
+    "twitter",
+    "reddit",
+    "snapchat",
+    "linkedin",
+  ],
 });
 </script>
 

@@ -37,9 +37,9 @@ Die Navigationsleiste kann dynamisch mit Seiten und Social Media Icons gefüllt 
 
 Die Props der Social Media Icons erwarten keinen vollständigen Link sondern lediglich der Path. Der richtige Link wird in der NavBar Komponente erzeugt.
 
-Darüber hinaus kann durch die callToAction Prop ein Button erzeugt werden. Dieser generiert ebenfalls automatisch eine Route zur jeweiligen Page. 
+Darüber hinaus kann durch die Prop ```callToAction``` ein Button erzeugt werden. Dieser generiert ebenfalls automatisch eine Route zur jeweiligen Page. 
 
-Zuguterletzt kann über die absolute-Prop entcschieden werden, ob die Navigationsleiste im Desktop State über dem Header "floaten" soll, oder einen eigenen abgetrennten Bereich bekommt, indem man die absolute-Prop auf "true" setzt. **ACHTUNG: Wenn die NavBar nicht absolut ist, muss in der LegalSection das CSS angepasst werden!**
+Zuguterletzt kann über die Prop ```absolute``` entschieden werden, ob die Navigationsleiste im Desktop State über dem Header "floaten" soll, oder einen eigenen abgetrennten Bereich bekommt, indem man ```absolute``` auf ```true``` setzt. **ACHTUNG: Wenn die NavBar nicht absolut ist, muss in der LegalSection das CSS angepasst werden!**
 
 
 ```html
@@ -60,15 +60,20 @@ Zuguterletzt kann über die absolute-Prop entcschieden werden, ob die Navigation
 
 ## elements/Footer
 
-Die Navigationsleiste kann dynamisch mit Seiten und Social Media Icons gefüllt werden, wobei die Social Media Icons nur auf dem Desktop angezeigt werden. Pages werden über Slots mithilfe von LinkSelections eingefügt, die wiederum eine :pages-Prop beinhaltet, die genau wie bei der NavBar einfache Strings in Paths verwandelt. Icons können mithilfe von Props gefüllt werden:
+Die Navigationsleiste kann dynamisch mit Seiten und Social Media Icons gefüllt werden, wobei die Social Media Icons nur auf dem Desktop angezeigt werden. 
+
+Pages werden über Slots mithilfe von LinkSelections eingefügt, die wiederum eine Prop ```:pages="['page']"``` beinhaltet, die genau wie bei der NavBar einfache Strings in Paths verwandelt.
+
+Der Copyright String wird mithilfe der Property ```company``` gefüllt und aktualisiert das Jahr automatisch.
 
 ```html
 <Footer
-  facebook="test"
-  instagram="test"
-  soundcloud="test"
-  tiktok="apple"
-  youtube="test"
+  company="Leaf GmbH"
+  facebook="leaf"
+  instagram="leaf"
+  tiktok="leaf"
+  linkedin="leaf"
+  youtube="leaf"
 >
   <LinkSelection
     title="Legal"
@@ -105,7 +110,7 @@ Der YouTube Player ist immer im Aspect Ration von 16:9 und füllt die gesamte Br
 
 ## elements/WideHeader
 
-Ein WideHeader ist ein Hero Image, das sich über die gesamte Bildschirmbreite zieht. Die Komponente erwartet eine img-Prop, der eine bg Tailwind-Klasse übergeben werden muss. Diese wird dann als Background Image eingesetzt.
+Ein WideHeader ist ein Hero Image, das sich über die gesamte Bildschirmbreite zieht. Die Komponente erwartet eine Property names ```img```, der eine bg Tailwind-Klasse übergeben werden muss. Diese wird dann als Background Image eingesetzt.
 
 ```html
 <WideHeader img="bg-hero"/>
@@ -147,7 +152,7 @@ Ein Divider ist ein Element, das eine Trennlinie über 100% der Parent Komponent
 
 ## elements/Button
 
-Der Button kann eine Route oder einen externen Link erzeugen. Dies legt man fest, indem man entweder die link oder slug Prop beutzt:
+Der Button kann eine Route oder einen externen Link erzeugen. Dies legt man fest, indem man entweder die Properties ```link``` oder ```slug``` nutzt: 
 
 ```html
 <Button slug="/registrieren" btnText="Jetzt registrieren" />
@@ -173,7 +178,7 @@ Der Button kann eine Route oder einen externen Link erzeugen. Dies legt man fest
 
 ## sections/ContentSection
 
-ContentSections trennen den Seiteninhalt voneinander. Sie bestimmt ein festgelegtes Styling in Bezug auf Paddings und Positionierung der Items. Mit der styles-Prop kann der Section eine Hintergrund-Farbe gegeben werden.
+ContentSections trennen den Seiteninhalt voneinander. Sie bestimmt ein festgelegtes Styling in Bezug auf Paddings und Positionierung der Items. Mit der Property ```styles``` kann der Section eine Hintergrund-Farbe gegeben werden.
 
 ```html
 <ContentSection styles="bg-subliminal">
@@ -274,11 +279,14 @@ Eine Social Media Selection beinhaltet alle möglichen Social Media Plattformen.
 
 ```html
 <SocialIconSelection
-    :facebook="facebook"
-    :instagram="instagram"
-    :tiktok="tiktok"
-    :soundcloud="soundcloud"
-    :youtube="youtube"
+  :facebook="facebook"
+  :instagram="instagram"
+  :tiktok="tiktok"
+  :twitter="twitter"
+  :reddit="reddit"
+  :snapchat="snapchat"
+  :linkedin="linkedin"
+  :youtube="youtube"
 />
 ```
 

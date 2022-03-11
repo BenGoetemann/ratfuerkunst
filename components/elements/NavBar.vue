@@ -53,7 +53,10 @@
               :facebook="facebook"
               :instagram="instagram"
               :tiktok="tiktok"
-              :soundcloud="soundcloud"
+              :twitter="twitter"
+              :reddit="reddit"
+              :snapchat="snapchat"
+              :linkedin="linkedin"
               :youtube="youtube"
             />
           </BorderContainer>
@@ -77,6 +80,10 @@ export default Vue.extend({
     "instagram",
     "youtube",
     "tiktok",
+    "twitter",
+    "reddit",
+    "snapchat",
+    "linkedin",
   ],
   data() {
     return {
