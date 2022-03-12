@@ -3,7 +3,7 @@
     <WideHeader img="bg-hero" />
     <ContentSection>
       <TextSection>
-        <!-- <h1>Hello {{ res }}</h1> -->
+        <h1>Hello {{ res }}</h1>
         <!-- <div v-for="text in texts" :key="text">
           <p>
             {{ text }}
