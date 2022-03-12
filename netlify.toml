@@ -4,4 +4,3 @@
 
 [context.production]
   publish = "dist/"
-  command = "yarn generate"
