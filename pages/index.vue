@@ -3,13 +3,13 @@
     <WideHeader img="bg-hero" />
     <ContentSection>
       <TextSection>
-        <h1>This is an Article</h1>
-        <div v-for="text in texts" :key="text">
+        <h1>Hello {{ res }}</h1>
+        <!-- <div v-for="text in texts" :key="text">
           <p>
             {{ text }}
           </p>
-        </div>
-        <p>{{ netlify }}</p>
+        </div> -->
+
         <YouTubePlayer id="Xh11iUpJs4Y" />
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
@@ -95,23 +95,17 @@
 
 <script>
 export default {
+  async asyncData({ $axios }) {
+    const res = await $axios.$get('/.netlify/functions/hello?name="Benny"')
+    console.log(res)
+    return { res };
+  },
   data() {
     return {
       title: "Beautiful Landscapes brought to you by the Universe! 🚀",
     };
   },
-  async asyncData({ $http }) {
-    const texts = await $http.$get(
-      "https://baconipsum.com/api/?type=all-meat&paras=2&start-with-lorem=10"
-    );
-    const netlify = await $http.$get(
-      '/.netlify/functions/example'
-    );
 
-    console.log(netlify)
-
-    return { texts, netlify };
-  },
   head() {
     return {
       title: this.title,
