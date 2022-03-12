@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar
-      :pages="['Home', 'About', 'Test']"
+      :pages="['Impressum']"
       callToAction="Login"
       facebook="leaf"
       instagram="leaf"
@@ -21,19 +21,7 @@
     >
       <LinkSelection
         title="Legal"
-        :pages="['Impressum', 'Datenschutz', 'AGB']"
-      />
-      <LinkSelection
-        title="Legal"
-        :pages="['Impressum', 'Datenschutz', 'AGB']"
-      />
-      <LinkSelection
-        title="Legal"
-        :pages="['Impressum', 'Datenschutz', 'AGB']"
-      />
-      <LinkSelection
-        title="Legal"
-        :pages="['Impressum', 'Datenschutz', 'AGB']"
+        :pages="['Impressum']"
       />
     </Footer>
   </div>
