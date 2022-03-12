@@ -2,7 +2,7 @@
   <div>
     <NavBar
       :pages="['Impressum']"
-      callToAction="Login"
+      callToAction="Impressum"
       facebook="leaf"
       instagram="leaf"
       tiktok="leaf"

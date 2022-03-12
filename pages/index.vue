@@ -3,7 +3,7 @@
     <WideHeader img="bg-hero" />
     <ContentSection>
       <TextSection>
-        <h1>Hello {{ res }}</h1>
+        <!-- <h1>Hello {{ res }}</h1> -->
         <!-- <div v-for="text in texts" :key="text">
           <p>
             {{ text }}
@@ -27,7 +27,7 @@
           nesciunt aliquid enim totam amet in molestias nulla iusto tenetur
           quisquam voluptatem, obcaecati porro delectus.
         </p>
-        <Button btnText="Learn More" slug="/" />
+        <Button btnText="Impressum" slug="/impressum" />
       </TextSection>
     </ContentSection>
     <ContentSection styles="bg-subliminal">
@@ -37,14 +37,14 @@
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla odit
           voluptatem ex quae blanditiis!
         </h3>
-        <Button btnText="Contact Us" slug="/contact" />
+        <Button btnText="impressum" slug="/impressum" />
       </SmallCenteredSection>
       <WrapSection>
         <ProfileCard
           :img="require('~/assets/images/heroes/hero.jpg')"
           name="Jonas Siebner"
           position="Finanz-Mensch"
-          slug="test"
+          slug="impressum"
         />
         <ProfileCard
           :img="require('~/assets/images/heroes/hero.jpg')"
@@ -56,37 +56,37 @@
           :img="require('~/assets/images/heroes/hero.jpg')"
           name="Jonas Siebner"
           position="Finanz-Mensch"
-          slug="test"
+          slug="impressum"
         />
         <ProfileCard
           :img="require('~/assets/images/heroes/hero.jpg')"
           name="Jonas Siebner"
           position="Finanz-Mensch"
-          slug="test"
+          slug="impressum"
         />
         <ProfileCard
           :img="require('~/assets/images/heroes/hero.jpg')"
           name="Jonas Siebner"
           position="Finanz-Mensch"
-          slug="test"
+          slug="impressum"
         />
         <ProfileCard
           :img="require('~/assets/images/heroes/hero.jpg')"
           name="Jonas Siebner"
           position="Finanz-Mensch"
-          slug="test"
+          slug="impressum"
         />
         <ProfileCard
           :img="require('~/assets/images/heroes/hero.jpg')"
           name="Jonas Siebner"
           position="Finanz-Mensch"
-          slug="test"
+          slug="impressum"
         />
         <ProfileCard
           :img="require('~/assets/images/heroes/hero.jpg')"
           name="Jonas Siebner"
           position="Finanz-Mensch"
-          slug="test"
+          slug="impressum"
         />
       </WrapSection>
     </ContentSection>

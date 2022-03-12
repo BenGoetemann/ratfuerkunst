@@ -1,3 +1,5 @@
+let development = process.env.NODE_ENV !== 'production'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -84,26 +86,12 @@ export default {
     }
   },
 
+  axios: {
+    baseURL: development ? 'http://localhost:8888' : 'https://bg-template.netlify.app', // Used as fallback if no runtime config is provided
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/axios'],
-
-  axios: {
-    baseURL: 'http://localhost:8888', // Used as fallback if no runtime config is provided
-  },
-
-  publicRuntimeConfig: {
-    axios: {
-      browserBaseURL: process.env.BROWSER_BASE_URL
-    }
-  },
-
-  privateRuntimeConfig: {
-    axios: {
-      baseURL: process.env.BASE_URL
-    }
-  },
-
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
