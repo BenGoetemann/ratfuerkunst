@@ -1,6 +1,11 @@
 # Einleitung
 
-Dieses Template umfasst xyz.
+Dieses Template wurde erstellt um Jamstack Anwendungen umzusetzen. Es basiert auf Nuxt, Netlify, Axios, Tailwind und Contentful. Sollte man diverse Komponenten nicht benötigen, kann man einfach dies in ein paar einfachen Schritten machen:
+
+1. Dependencies löschen mit ```yarn remove [package_name]```
+2. ```~node_modules/``` löschen
+3. Die jeweiligen Ordner löschen und ggf. die Verweise in der ```~nuxt.config```.
+4. ```yarn```ausführen.
 
 <br>
 <br>
@@ -39,8 +44,11 @@ Die Props der Social Media Icons erwarten keinen vollständigen Link sondern led
 
 Darüber hinaus kann durch die Prop ```callToAction``` ein Button erzeugt werden. Dieser generiert ebenfalls automatisch eine Route zur jeweiligen Page. 
 
-Zuguterletzt kann über die Prop ```absolute``` entschieden werden, ob die Navigationsleiste im Desktop State über dem Header "floaten" soll, oder einen eigenen abgetrennten Bereich bekommt, indem man ```absolute``` auf ```true``` setzt. **ACHTUNG: Wenn die NavBar nicht absolut ist, muss in der LegalSection das CSS angepasst werden!**
+Zuguterletzt kann über die Prop ```absolute``` entschieden werden, ob die Navigationsleiste im Desktop State über dem Header "floaten" soll, oder einen eigenen abgetrennten Bereich bekommt, indem man ```absolute``` auf ```true``` setzt. 
 
+>[!]
+>
+>Wenn die NavBar nicht absolut ist, muss in der LegalSection das CSS angepasst werden!
 
 ```html
 <NavBar
@@ -308,11 +316,27 @@ Eine Social Media Selection beinhaltet alle möglichen Social Media Plattformen.
 
 <br>
 
-## HTTP
+## AXIOS
 
-Das HTTP/Nuxt Module macht es ein wenig leichter APIs anzusteuern. Dies kann man entweder innerhalb von Komponenten via Method oder Hooks machen oder auf Seitenebene mit der AsyncData-Function:
+AXIOS macht es ein wenig leichter APIs anzusteuern. Dies kann man entweder innerhalb von Komponenten via Method oder Hooks machen oder (nur auf Seitenebene machbar) mit der AsyncData-Function. Bindet man einen Request in einer AsyncData Methode ein, so wird der Request während Build Time ausgeführt. Das heißt, dass der Request nicht bei jedem Laden der Seite durch Pagebesucher neu gemacht wird, sondern bei Build Time in die statische Seite "gebrannt" wird.
 
-Komponente
+```html
+<template>
+  <FetchButton :built="built" />
+</template>
+
+<script>
+export default {
+  async asyncData({ $axios }) {
+    const built = await $axios.$get("https://swapi.dev/api/people/1/");
+
+    return { built };
+  },
+}
+</script>
+```
+
+Auf Komponentenebene ist die AsyncData Methode nicht erreichbar. Stattdessen nutzt man ```async``` Methods, die getriggert werden müssen oder fetcht während den Hooks. Dies ermöglicht dynamisches Laden von Content:
 
 ```html
 <template>
@@ -337,53 +361,64 @@ export default {
   },
   methods: {
     async fetchSomething() {
-      this.clicked = await this.$http.$get("https://swapi.dev/api/people/1/");
+      this.clicked = await this.$axios.$get("https://swapi.dev/api/people/1/");
     },
   },
   async mounted() {
-    this.mounted = await this.$http.$get("https://swapi.dev/api/people/1/");
+    this.mounted = await this.$axios.$get("https://swapi.dev/api/people/1/");
   },
 };
 </script>
 
 ```
 
-Page
+>[!]
+>
+>Wenn man die AXIOS-Method innerhalb außerhalb einer AsyncData, in jener man einen  Parameter mitgibt (```async asyncData({ $axios })```), also innerhalb einer Methode oder Hook, verwenden möchte, muss man sie mit ```this``` referenzieren.
+>```js
+>let res = await this.$axios.$get("https://swapi.dev/api/people/1/");
+>```
 
-```html
-<template>
-  <FetchButton :built="built" />
-</template>
-
-<script>
-export default {
-  async asyncData({ $http }) {
-    const built = await $http.$get("https://swapi.dev/api/people/1/");
-
-    return { built };
-  },
-}
-</script>
-
-<style>
-
-</style>
-```
-
-***Wichtig:*** Wenn man die HTTP-Method innerhalb außerhalb einer AsyncData, also in einer Methode oder Hook, verwenden möchte, muss man sie mit ```this``` referenzieren.
+In diesem Template wird Axios auch in den Netlify-Functions genutzt. Hier bindet man den Request folgendermaßen ein:
 
 ```js
-let res = await this.$http.$get("https://swapi.dev/api/people/1/");
+const axios = require('axios')
+
+const handler = async (event) => {
+  const url = 'https://api.propstack.de/v1/units?with_meta=1&expand=1&api_key=' + process.env.API_SECRET
+  try {
+    const { data } = await axios.get(url)
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(data)
+    }
+  } catch (error) {
+    const {
+      status, statusText, headers, data } = error.response
+    return {
+      statusCode: status,
+      body: JSON.stringify({ status, statusText, headers, data })
+    }
+  }
+}
+
+module.exports = { handler }
+
 ```
 
-Für weitere Infos zur Benutzung muss man [hier nachlesen](https://http.nuxtjs.org/getting-started/usage).
+
+
+Für weitere Infos zur Benutzung in Nuxt muss man [hier nachlesen](https://axios.nuxtjs.org/).
+Für weitere Infos zur Benutzung innerhalb von Netlify Functions muss man [hier nachlesen](https://axios-http.com/docs/intro).
+
 
 <br>
 <br>
 
 ## GSAP
 
-Für die Benutzung innerhalb von Nuxt muss man [hier nachlesen](https://github.com/ivodolenc/nuxt-gsap-module) und für Dokumentation der generellen Funktionalität [hier nachlesen](https://greensock.com/docs/v3/GSAP)
+Für die Benutzung innerhalb von Nuxt muss man [hier nachlesen](https://github.com/ivodolenc/nuxt-gsap-module) und für Dokumentation der generellen Funktionalität [hier nachlesen](https://greensock.com/docs/v3/GSAP). 
 
 <br>
 <br>
@@ -480,6 +515,29 @@ So können dann die Functions aufgerufen werden:
 ```js
 [...] = await this.$http.$get('/.netlify/functions/myFunction?parameter="value"');
 ```
+>[!]
+>
+>Damit die Function aufgerufen werden kann, muss in der ```nuxt.config``` unter den Axios Options die Base URL vergeben werden. Diese Requests sind in Verbindung mit Netlify NICHT dafür gedacht, Daten aus anderen Quellen zu fetchen. Mithilfe der Axios Proxys sind jedoch weitere Konfigurationen möglich. Dazu bitte [hier nachlesen](https://axios.nuxtjs.org/options).
 
 <br>
 <br>
+
+## Netlify Functions für Production konfigurieren
+
+Damit Netlify Functions sowohl lokal, als auch in Production funktionieren, muss zuallererst in der ```nuxt.config``` ganz oben eine Zeile hinzugefügt werden, die im Node Environment überprüft, ob die gebuildete Seite sich in der Development- oder Production-Umgebung befindet:
+
+```js
+let development = process.env.NODE_ENV !== 'production'
+```
+
+Als nächstes muss der baseURL mithilfe der ```development``` Variable beibringen, je nach Umgebung eine andere BaseURL zu nutzen.
+
+```js
+axios: {
+  baseURL: development ? 'http://localhost:8888' : 'https://bg-template.netlify.app', 
+},
+```
+
+>[!]
+>
+>Wenn man neu hinzugefügte Netlify Functions innerhalb von AsyncData Methods verwendet, gibt es beim Deployment Fehler, da die Function zur Build Time noch nicht von der Production URL erreicht werden kann. Beim nächsten Deployment funktioniert alles ohne Probleme.
