@@ -96,7 +96,7 @@
 <script>
 export default {
   async asyncData({ $axios }) {
-    const res = await $axios.$get('/.netlify/functions/hello?name="Benny"')
+    const res = await $axios.$get('/.netlify/functions/apitest')
     console.log(res)
     return { res };
   },
