@@ -3,7 +3,7 @@
     <WideHeader img="bg-hero" />
     <ContentSection>
       <TextSection>
-        <h1>Hello {{ res }}</h1>
+        <h1 @click="fetchObjects()">Hello {{ objects }}</h1>
         <!-- <div v-for="text in texts" :key="text">
           <p>
             {{ text }}
@@ -95,17 +95,22 @@
 
 <script>
 export default {
-  async asyncData({ $axios }) {
-    const res = await $axios.$get('/.netlify/functions/apitest')
-    console.log(res)
-    return { res };
-  },
   data() {
     return {
       title: "Beautiful Landscapes brought to you by the Universe! 🚀",
+      objects: [],
     };
   },
-
+  // async asyncData({ $axios }) {
+  //   const res = await $axios.$get('/.netlify/functions/apitest')
+  //   console.log(res)
+  //   return { res };
+  // },
+  methods: {
+    async fetchObjects() {
+      this.objects = await this.$axios.$get("/.netlify/functions/apitest");
+    },
+  },
   head() {
     return {
       title: this.title,
