@@ -4,6 +4,7 @@
     <ContentSection>
       <TextSection>
         <h1 @click="fetchObjects()">Hello {{ objects }}</h1>
+        <h1>Hello {{ res }}</h1>
         <!-- <div v-for="text in texts" :key="text">
           <p>
             {{ text }}
@@ -101,11 +102,11 @@ export default {
       objects: [],
     };
   },
-  // async asyncData({ $axios }) {
-  //   const res = await $axios.$get('/.netlify/functions/apitest')
-  //   console.log(res)
-  //   return { res };
-  // },
+  async asyncData({ $axios }) {
+    const res = await $axios.$get('/.netlify/functions/apitest')
+    console.log(res)
+    return { res };
+  },
   methods: {
     async fetchObjects() {
       this.objects = await this.$axios.$get("/.netlify/functions/apitest");
