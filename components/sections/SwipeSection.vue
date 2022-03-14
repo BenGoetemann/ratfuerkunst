@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div>
+    <div class="test">
        <div>hello</div>
           <div>hello</div>
           <div>hello</div>
@@ -124,7 +124,7 @@ div {
   text-decoration: none;
 } */
 
-section div {
+section .test {
   display: inline-block;
   color: white;
   text-align: center;
@@ -132,7 +132,7 @@ section div {
   text-decoration: none;
 }
 
-div:hover {
+test:hover {
   background-color: #777;
 }
 </style>
