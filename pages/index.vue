@@ -1,16 +1,16 @@
 <template>
   <div>
     <WideHeader img="bg-hero" />
+    <SwipeSection />
     <ContentSection>
       <TextSection>
-        <h1 @click="fetchObjects()">Hello {{ objects }}</h1>
-        <h1>Hello {{ res }}</h1>
+        <!-- <h1 @click="fetchObjects()">Hello {{ objects }}</h1> -->
+        <!-- <h1>Hello {{ res }}</h1> -->
         <!-- <div v-for="text in texts" :key="text">
           <p>
             {{ text }}
           </p>
         </div> -->
-
         <YouTubePlayer id="Xh11iUpJs4Y" />
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
@@ -103,8 +103,8 @@ export default {
     };
   },
   async asyncData({ $axios }) {
-    const res = await $axios.$get('/.netlify/functions/apitest')
-    console.log(res)
+    const res = await $axios.$get("/.netlify/functions/apitest");
+    console.log(res);
     return { res };
   },
   methods: {
