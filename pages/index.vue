@@ -1,7 +1,44 @@
 <template>
   <div>
     <WideHeader img="bg-hero" />
-    <SwipeSection />
+    <SwipeSection>
+      <Test
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
+      <Test
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
+      <Test
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
+      <Test
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
+      <Test
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
+      <Test
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
+    </SwipeSection>
     <ContentSection>
       <TextSection>
         <!-- <h1 @click="fetchObjects()">Hello {{ objects }}</h1> -->
