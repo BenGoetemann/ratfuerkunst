@@ -1,6 +1,80 @@
-# Einleitung
+# This is LEAF
 
-Dieses Template wurde erstellt um Jamstack Anwendungen umzusetzen. Es basiert auf Nuxt, Netlify, Axios, Tailwind und Contentful. Sollte man diverse Komponenten nicht benötigen, kann man einfach dies in ein paar einfachen Schritten machen:
+Leaf (L? Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack Websites so einfach und schnell wie möglich bauen lassen. Es ist sozusagen ein weißes Blatt - und ja ich weiß "Leaf" ist nicht DAS Blatt hehe - auf dem fast alles, außer Login, umgesetzt werden kann.
+
+# Table of Contents
+- [This is LEAF](#this-is-leaf)
+- [Table of Contents](#table-of-contents)
+- [Getting Started 🚀](#getting-started-)
+  - [Projekt installieren](#projekt-installieren)
+  - [Technologien entfernen](#technologien-entfernen)
+  - [Style-Personalisierung](#style-personalisierung)
+- [Key Concepts](#key-concepts)
+  - [Components verstehen](#components-verstehen)
+  - [Slots verstehen](#slots-verstehen)
+  - [Props verstehen](#props-verstehen)
+  - [Netlify Functions verstehen](#netlify-functions-verstehen)
+- [Components](#components)
+  - [Elements](#elements)
+    - [NavBar](#navbar)
+    - [Footer](#footer)
+    - [YouTubePlayer](#youtubeplayer)
+    - [WideHeader](#wideheader)
+    - [ProfileCard](#profilecard)
+    - [Divider](#divider)
+    - [Button](#button)
+  - [Sections](#sections)
+    - [ContentSection](#contentsection)
+    - [SmallCenteredSection](#smallcenteredsection)
+    - [LegalSection](#legalsection)
+    - [TextSection](#textsection)
+    - [HideOnMobile](#hideonmobile)
+    - [WrapSection](#wrapsection)
+  - [Container](#container)
+    - [FluidContainer](#fluidcontainer)
+    - [BorderContainer](#bordercontainer)
+  - [Selections](#selections)
+    - [LinkSelection](#linkselection)
+    - [SocialMediaSelection](#socialmediaselection)
+  - [Figures](#figures)
+- [Extras](#extras)
+  - [AXIOS](#axios)
+  - [GSAP](#gsap)
+  - [Heyflow](#heyflow)
+- [Netlify Functions](#netlify-functions)
+  - [Neue Function erstellen](#neue-function-erstellen)
+  - [Die Hello World Function mit Comments](#die-hello-world-function-mit-comments)
+  - [Eine Netlify Function fetchen](#eine-netlify-function-fetchen)
+  - [Netlify Functions für Production konfigurieren](#netlify-functions-für-production-konfigurieren)
+
+<br>
+<br>
+
+# Getting Started 🚀
+
+Dieses Template wurde erstellt um Jamstack Anwendungen umzusetzen. Es basiert auf folgenden Technologien:
+
+- [Nuxt 2 (Front End Framework based on Vue)](https://nuxtjs.org/)
+- [Netlify (Hosting / Serverless Functions / CI/CD w Github)](https://www.netlify.com/)
+- [Axios (HTTP-Library)](https://axios.nuxtjs.org/)
+- [Tailwind (CSS Library)](https://tailwindcss.com/)
+- [Contentful (Headless CMS)](https://www.contentful.com/)
+
+<br>
+
+## Projekt installieren
+
+Um das Projekt zum Laufen zu bringen muss folgendes gemacht werden:
+
+1. Dependencies installieren mit ```yarn```.
+2. Ein neues Repo auf Github anlegen und mit dem Projekt verbinden.
+3. CI/CD einrichten, indem man auf Netlify das Repo verbindet.
+
+<br>
+
+## Technologien entfernen
+
+Sollte man diverse Komponenten nicht benötigen, sollte man diese in diesen Schritten entfernen:
 
 1. Dependencies löschen mit ```yarn remove [package_name]```
 2. ```~node_modules/``` löschen
@@ -8,47 +82,95 @@ Dieses Template wurde erstellt um Jamstack Anwendungen umzusetzen. Es basiert au
 4. ```yarn```ausführen.
 
 <br>
-<br>
-<br>
 
-# Corporate Identity
+## Style-Personalisierung
 
-- Logo austauschen in Component
-- Font anpassen in Root
+Um das Corporate Design eines Auftraggebers in das Template zu überführen müssen folgende Schritte erledigt werden:
 
-<br>
-<br>
-<br>
-
-# Tailwind Config
-
-- Farben anpassen in Tailwind Config
-- Default Spacing anpassen (Small, Medium, Big, Huge etc.) in Tailwind Config.
+- Logo in  ```~/assets/images/ci``` ablegen.
+- Logo in der Logo.vue Komponente unter ```~/components/figures``` austauschen.
+- Font in den Stylings unter ```~/layouts/default.vue``` importieren und in ```html``` als Font-Family setzen.
+- Farben und Spacings in der ```tailwind.config``` anpassen.
+ 
 
 <br>
 <br>
+
+# Key Concepts
+
+Nachfolgend werden wichtige Konzepte dieses Templates beschrieben, die zu einem tieferen Verständnis führen sollen, um schnell Anpassungen durchführen zu können.
+
 <br>
+
+## Components verstehen
+
+Dieses Template bietet vorgefertigte Komponenten, die genutzt werden können, um eine Website wue Lego zusammenzubauen. Diese können mithilfe von Props und Slots personalisiert werden. Komponenten bestehen aus:
+
+- Elements - Vorgefertige Website-Elemente wie Buttons, eine NavBar etc.
+- Figures - Image-Komponenten, die sich ggf. an mehreren Stellen befinden, wie bspw. Logo
+- Navigation Items - Hilfskomponenten, die speziell in Navigations-Komponenten verwendet werden.
+- Sections - Bereichs-Komponenten, die Responsivness, Positioning und Spacings zentralisieren.
+- Selections - Komponenten, die eine kontrollierte Ansammlung von anderen Komponenten bilden.
+
+<br>
+
+## Slots verstehen
+
+Vue implementiert eine API zur Verteilung von Inhalten, die sich am Entwurf der Web Components Spezifikation orientiert und das ```<slot>```-Element als Verteiler für Inhalte verwendet. Mehr dazu [hier](https://www.thisdot.co/blog/content-distribution-in-vue-js).
+
+In diesem Template werden Slots an verschiedenen Komponenten, wie Elementen, Sections, Selections oder Containern verwendet. Slots ermöglichen einfach gesagt, einen einfachen Weg Content in die gewünschte Form zu portieren, indem die Logik und Styles der portierten Komponenten in der Slot-Komponente beschrieben wird.
+
+Damit die Struktur besser verstanden wird, hier ein kleines Schaubild:
+
+```html
+<Footer>
+  <Component /> <- Slot wird gefüllt
+</Footer>
+```
+
+
+<br>
+
+## Props verstehen
+
+In Vue kann man neben Slots auch Props verwenden, um Informationen/Daten von einer übergeordneten Komponente an untergeordnete Komponenten weiterzugeben. Anders als bei Slots ist werden die Daten an festgelegte Stellen verteilt und nicht in beliebiger Reihenfolge. Mehr dazu [hier](https://www.freecodecamp.org/news/how-to-use-props-in-vuejs/).
+
+Damit die Struktur besser verstanden wird, hier ein kleines Schaubild:
+
+```html
+<Footer key="value" /> <- Property wird gefüllt
+```
+
+<br>
+
+## Netlify Functions verstehen
+
+Netlify Functions geben die Möglichkeit Backend Code auszuführen, ohne einen Server nutzen zu müssen. Dies ist vor allem extrem Hilfreich, wenn man API Keys verstecken muss.
+
+Mehr Werbung zu Netlify Functions [hier](https://www.netlify.com/products/functions/).<br>
+Mehr Dokumentation zu Netlify Functions [hier](https://docs.netlify.com/functions/overview/).<br>
+Mehr Info zum Verstecken von API Keys [hier](https://youtu.be/m2Dr4L_Ab14).
+
+<br>
+<br>
+
+
 
 # Components
 
-**Components sind vorgefertigte Website Elemente, werden durch Slots und Properties gefüllt und werden in Sections eingesetzt.**
+**Components sind vorgefertigte Website Elemente, werden durch Slots und Properties gefüllt. Sie bestehen wie vorher beschrieben aus verschiedenen Typen wie beispielsweise Elements oder Selections. Diese sind unter dem Ordner ```~/components/``` auffindbar.** 
 
 <br>
+
+## Elements
+
+Elements sind vorgefertigte UI-Elemente.
+
 <br>
 
-## elements/NavigationBar
+### NavBar
 
-Die Navigationsleiste kann dynamisch mit Seiten und Social Media Icons gefüllt werden, wobei die Social Media Icons nur im Drawer in der Mobile Funktion angezeigt werden. Pages und Icons können mithilfe von Props gefüllt werden. Die NavBar Komponente regelt im Hintergrund das Routing und ob ein Icon erscheint oder nicht. 
-
-Die Props der Social Media Icons erwarten keinen vollständigen Link sondern lediglich der Path. Der richtige Link wird in der NavBar Komponente erzeugt.
-
-Darüber hinaus kann durch die Prop ```callToAction``` ein Button erzeugt werden. Dieser generiert ebenfalls automatisch eine Route zur jeweiligen Page. 
-
-Zuguterletzt kann über die Prop ```absolute``` entschieden werden, ob die Navigationsleiste im Desktop State über dem Header "floaten" soll, oder einen eigenen abgetrennten Bereich bekommt, indem man ```absolute``` auf ```true``` setzt. 
-
->[!]
->
->Wenn die NavBar nicht absolut ist, muss in der LegalSection das CSS angepasst werden!
+Die Navbar ist eine responsive Navigationsleiste, die einen Drawer erzeugt, wenn man auf Bildschirmen in Handygröße auf die Seite zugreift. Sie beinhaltet NavBarItems und Icons, die zu Social Media Plattformen führen.
 
 ```html
 <NavBar
@@ -64,13 +186,42 @@ Zuguterletzt kann über die Prop ```absolute``` entschieden werden, ob die Navig
 ```
 
 <br>
+
+**Automatisches Erstellen von Seiten**
+
+Die Navigationsleiste kann dynamisch mit Seiten gefüllt werden, indem man die ```:pages="[...]"``` Property mit Strings füllt. Im Hintergrund werden automatisch Routes zu den jeweiligen Seiten erstellt. Diese Seiten müssen dann nur noch unter dem ```~/pages/``` angelegt werden. Aus ```:pages="['Home', 'Jetzt registrieren']"``` werden die Routes ```domain.com/home``` und ```domain.com/jetzt-registrieren``` erstellt.
+
 <br>
 
-## elements/Footer
+**Automatisches Erstellen von Social Media Icons**
 
-Die Navigationsleiste kann dynamisch mit Seiten und Social Media Icons gefüllt werden, wobei die Social Media Icons nur auf dem Desktop angezeigt werden. 
+Die Navigationsleiste kann Social Media Icons gefüllt werden, wobei die Social Media Icons nur im Drawer in der Mobile Ansicht zu sehen sind. Dieses Template unterstützt dabei Facebook, Instagram, TikTok, YouTube, Reddit, Twitter, LinkedIn, SoundCloud und Snapchat - diese können aktiviert werden, indem man die jeweilge Property erzeugt. Die Props der Social Media Icons erwarten keinen vollständigen Link sondern lediglich der Path. Der richtige Link wird in der [SocialIconSelection](#socialiconselection)-Komponente erzeugt.
 
-Pages werden über Slots mithilfe von LinkSelections eingefügt, die wiederum eine Prop ```:pages="['page']"``` beinhaltet, die genau wie bei der NavBar einfache Strings in Paths verwandelt.
+<br>
+
+**Automatisches Erstellen eines Primary Button**
+
+Darüber hinaus kann durch die Property ```callToAction``` ein Button erzeugt werden. Dieser generiert ebenfalls automatisch eine Route zur jeweiligen Page. 
+
+<br>
+
+**Absolute Mode**
+
+Zuguterletzt kann über die Prop ```absolute``` entschieden werden, ob die Navigationsleiste im Desktop State über dem Header "floaten" soll, oder einen eigenen abgetrennten Bereich bekommt, indem man ```absolute``` auf ```true``` setzt. 
+
+>[!]
+>
+>Wenn die NavBar nicht absolut ist, muss in der [LegalSection](#legalsection) das CSS angepasst werden, da die Margins nicht mehr passen.
+
+
+<br>
+<br>
+
+### Footer
+
+Der Footer kann wie die Navigationsleiste mit Seiten und Social Media Icons gefüllt werden, wobei die Social Media Icons nur auf dem Desktop angezeigt werden. 
+
+Pages werden über Slots mithilfe von [LinkSelections](#linkselections) eingefügt, die wiederum eine Prop ```:pages="['page']"``` beinhaltet, die genau wie bei der NavBar einfache Strings in Paths verwandelt.
 
 Der Copyright String wird mithilfe der Property ```company``` gefüllt und aktualisiert das Jahr automatisch.
 
@@ -94,18 +245,10 @@ Der Copyright String wird mithilfe der Property ```company``` gefüllt und aktua
 </Footer>
 ```
 
-Damit die Struktur dieser Komponente besser verstanden wird, hier ein kleines Schaubild:
-
-```html
-<Footer {{PROPS}} >
-  {{ SLOTS }}
-</Footer>
-```
-
 <br>
 <br>
 
-## elements/YouTubePlayer
+### YouTubePlayer
 
 Der YouTube Player ist immer im Aspect Ration von 16:9 und füllt die gesamte Breite einer Section. Um ein Video zu targetieren muss in der Propterty ```id``` die Video ID mitgegeben werden.
 
@@ -116,7 +259,7 @@ Der YouTube Player ist immer im Aspect Ration von 16:9 und füllt die gesamte Br
 <br>
 <br>
 
-## elements/WideHeader
+### WideHeader
 
 Ein WideHeader ist ein Hero Image, das sich über die gesamte Bildschirmbreite zieht. Die Komponente erwartet eine Property names ```img```, der eine bg Tailwind-Klasse übergeben werden muss. Diese wird dann als Background Image eingesetzt.
 
@@ -127,7 +270,7 @@ Ein WideHeader ist ein Hero Image, das sich über die gesamte Bildschirmbreite z
 <br>
 <br>
 
-## elements/ProfileCard
+### ProfileCard
 
 Eine ProfileCard beinhaltet ein Bild, einen Namen, eine Position und ein Link bzw. Slug, mit dem der Pagebesucher auf ein weiterführendes Profil oder eine LinkedIn Seite geführt werden kann.
 
@@ -151,14 +294,14 @@ Eine ProfileCard beinhaltet ein Bild, einen Namen, eine Position und ein Link bz
 <br>
 <br>
 
-## elements/Divider
+### Divider
 
 Ein Divider ist ein Element, das eine Trennlinie über 100% der Parent Komponente erzeugt.
 
 <br>
 <br>
 
-## elements/Button
+### Button
 
 Der Button kann eine Route oder einen externen Link erzeugen. Dies legt man fest, indem man entweder die Properties ```link``` oder ```slug``` nutzt: 
 
@@ -171,20 +314,19 @@ Der Button kann eine Route oder einen externen Link erzeugen. Dies legt man fest
 ```
 
 
-
 <br>
 <br>
 <br>
 
 
-# Sections
+## Sections
 
 **Alle Sections umgeben einen Slot, der Komponenten und HTML-Tags aufnehmen kann. Sections handlen die Abstände und Placements ihrer Children sinngemäß.**
 
 <br>
 <br>
 
-## sections/ContentSection
+### ContentSection
 
 ContentSections trennen den Seiteninhalt voneinander. Sie bestimmt ein festgelegtes Styling in Bezug auf Paddings und Positionierung der Items. Mit der Property ```styles``` kann der Section eine Hintergrund-Farbe gegeben werden.
 
@@ -197,7 +339,7 @@ ContentSections trennen den Seiteninhalt voneinander. Sie bestimmt ein festgeleg
 <br>
 <br>
 
-## sections/SmallCenteredSection
+### SmallCenteredSection
 
 Eine SmallCenteredSection positioniert sich mit einer engen maximalbreite in der Mitte des Bildschirms. Dieser Effekt ist nur auf dem Desktop sichtbar, auf dem Handy passt sie sich der Bildschirmbreite an.
 
@@ -215,62 +357,60 @@ Eine SmallCenteredSection positioniert sich mit einer engen maximalbreite in der
 <br>
 <br>
 
-## sections/LegalSection
+### LegalSection
 
 Die LegalSection ist dazu da, um Fließtexte wie Datenschutzerklärungen und Impressum abzubilden. Die Breakpoints sind so gesetzt, dass sie sich von der absolut positionierten NavBar absetzen.
 
 <br>
 <br>
 
-## sections/TextSection
+### TextSection
 
 Die TextSection zeigt die Items und Text linksbündig an.
 
 <br>
 <br>
 
-## sections/utils/HideOnMobile
+### HideOnMobile
 
 Die HideOnMobile Section versteckt den Inhalt ab dem Moment, an dem die NavBar den Drawer zugänglich nacht.
 
 <br>
 <br>
 
-## sections/utils/WrapSection
+### WrapSection
 
 Die WrapSection ist eine Section für Items, die bei maximal erreichter Breite in eine neue "Zeile" umbrechen sollen. Dies eignet sich beispielsweise für Team Profil Bilder, da hier einfach das gesamte Team reingeworfen werden kann.
 
 <br>
 <br>
-<br>
 
-# Container
+## Container
 
 **Container sind DIVs die spezielle Eigenschaften in Bezug auf die Positionierung auf Seiten haben. Ein Container kann beispielsweise dafür Sorgen, dass der gesamte Page Inhalt nicht den äußeren Window Rand berührt.**
 
 <br>
 
-## container/FluidContainer
+### FluidContainer
 
 Der FluidContainer ist ein Container, der sich über 100% der Window Width erstreckt, alles mittig und in einer Col verläuft.
 
 <br>
 
-## container/BorderContainer
+### BorderContainer
 
 Der BorderContainer kümmert sich darum, dass Page Inhalt nicht breiter als ein gewisser Wert wird und handlet dabei diverse Bildschirmgrößen.
 
 <br>
 <br>
-<br>
 
-# Selections
+## Selections
 
 **Selections sind Ansammlungen von Komponenten, die durch Props mit Daten gefüllt werden und festgelegte Styles haben, da sie sich an jedem Ort gleich verhalten sollen**
 
 <br>
 
-## selections/LinkSelection
+### LinkSelection
 
 Eine LinkSelection erzeugt eine Ansammlung von Links mit einer Überschrift und werden unter anderem in einem Footer eingesetzt.
 
@@ -281,7 +421,7 @@ Eine LinkSelection erzeugt eine Ansammlung von Links mit einer Überschrift und 
 />
 ```
 
-## selections/SocialMediaSelection
+### SocialMediaSelection
 
 Eine Social Media Selection beinhaltet alle möglichen Social Media Plattformen. Wenn die Prop einer Plattform ausgefüllt wird, erzeugt sie das jeweilige Icon dazu.
 
@@ -302,7 +442,7 @@ Eine Social Media Selection beinhaltet alle möglichen Social Media Plattformen.
 <br>
 <br>
 
-# Figures
+## Figures
 
 **Figures sind Komponenten die ein Bild repräsentieren, wie beispielsweise das Logo und ein Icon**
 
