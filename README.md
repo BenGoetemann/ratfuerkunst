@@ -92,7 +92,6 @@ Um das Corporate Design eines Auftraggebers in das Template zu überführen müs
 - Font in den Stylings unter ```~/layouts/default.vue``` importieren und in ```html``` als Font-Family setzen.
 - Farben und Spacings in der ```tailwind.config``` anpassen.
  
-
 <br>
 <br>
 
@@ -128,7 +127,6 @@ Damit die Struktur besser verstanden wird, hier ein kleines Schaubild:
 </Footer>
 ```
 
-
 <br>
 
 ## Props verstehen
@@ -153,8 +151,6 @@ Mehr Info zum Verstecken von API Keys [hier](https://youtu.be/m2Dr4L_Ab14).
 
 <br>
 <br>
-
-
 
 # Components
 
@@ -213,8 +209,6 @@ Zuguterletzt kann über die Prop ```absolute``` entschieden werden, ob die Navig
 >
 >Wenn die NavBar nicht absolut ist, muss in der [LegalSection](#legalsection) das CSS angepasst werden, da die Margins nicht mehr passen.
 
-
-<br>
 <br>
 
 ### Footer
@@ -246,7 +240,6 @@ Der Copyright String wird mithilfe der Property ```company``` gefüllt und aktua
 ```
 
 <br>
-<br>
 
 ### YouTubePlayer
 
@@ -257,7 +250,6 @@ Der YouTube Player ist immer im Aspect Ration von 16:9 und füllt die gesamte Br
 ```
 
 <br>
-<br>
 
 ### WideHeader
 
@@ -267,7 +259,6 @@ Ein WideHeader ist ein Hero Image, das sich über die gesamte Bildschirmbreite z
 <WideHeader img="bg-hero"/>
 ```
 
-<br>
 <br>
 
 ### ProfileCard
@@ -292,13 +283,11 @@ Eine ProfileCard beinhaltet ein Bild, einen Namen, eine Position und ein Link bz
 ```
 
 <br>
-<br>
 
 ### Divider
 
 Ein Divider ist ein Element, das eine Trennlinie über 100% der Parent Komponente erzeugt.
 
-<br>
 <br>
 
 ### Button
@@ -313,17 +302,13 @@ Der Button kann eine Route oder einen externen Link erzeugen. Dies legt man fest
 <Button link="https://www.apple.com" btnText="Apple Website" />
 ```
 
-
 <br>
 <br>
-<br>
-
 
 ## Sections
 
 **Alle Sections umgeben einen Slot, der Komponenten und HTML-Tags aufnehmen kann. Sections handlen die Abstände und Placements ihrer Children sinngemäß.**
 
-<br>
 <br>
 
 ### ContentSection
@@ -336,7 +321,6 @@ ContentSections trennen den Seiteninhalt voneinander. Sie bestimmt ein festgeleg
 </ContentSection>
 ```
 
-<br>
 <br>
 
 ### SmallCenteredSection
@@ -355,13 +339,11 @@ Eine SmallCenteredSection positioniert sich mit einer engen maximalbreite in der
 ```
 
 <br>
-<br>
 
 ### LegalSection
 
 Die LegalSection ist dazu da, um Fließtexte wie Datenschutzerklärungen und Impressum abzubilden. Die Breakpoints sind so gesetzt, dass sie sich von der absolut positionierten NavBar absetzen.
 
-<br>
 <br>
 
 ### TextSection
@@ -369,20 +351,17 @@ Die LegalSection ist dazu da, um Fließtexte wie Datenschutzerklärungen und Imp
 Die TextSection zeigt die Items und Text linksbündig an.
 
 <br>
-<br>
 
 ### HideOnMobile
 
 Die HideOnMobile Section versteckt den Inhalt ab dem Moment, an dem die NavBar den Drawer zugänglich nacht.
 
 <br>
-<br>
 
 ### WrapSection
 
 Die WrapSection ist eine Section für Items, die bei maximal erreichter Breite in eine neue "Zeile" umbrechen sollen. Dies eignet sich beispielsweise für Team Profil Bilder, da hier einfach das gesamte Team reingeworfen werden kann.
 
-<br>
 <br>
 
 ## Container
@@ -440,14 +419,11 @@ Eine Social Media Selection beinhaltet alle möglichen Social Media Plattformen.
 
 <br>
 <br>
-<br>
 
 ## Figures
 
 **Figures sind Komponenten die ein Bild repräsentieren, wie beispielsweise das Logo und ein Icon**
 
-<br>
-<br>
 <br>
 
 # Extras
@@ -554,13 +530,11 @@ Für weitere Infos zur Benutzung innerhalb von Netlify Functions muss man [hier 
 
 
 <br>
-<br>
 
 ## GSAP
 
 Für die Benutzung innerhalb von Nuxt muss man [hier nachlesen](https://github.com/ivodolenc/nuxt-gsap-module) und für Dokumentation der generellen Funktionalität [hier nachlesen](https://greensock.com/docs/v3/GSAP). 
 
-<br>
 <br>
 
 ## Heyflow
@@ -589,7 +563,6 @@ Um Heyflow einzubinden bedarf es zwei Schritten. Zuerst erstellt man im Template
 </script>
 ```
 
-<br>
 <br>
 <br>
 
