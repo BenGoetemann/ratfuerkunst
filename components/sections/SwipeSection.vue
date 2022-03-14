@@ -1,62 +1,95 @@
 <template>
   <section>
     <div>
-      <ProfileCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
-      <ProfileCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
-      <ProfileCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
-      <ProfileCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
-      <ProfileCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
-      <ProfileCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      /><ProfileCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      /><ProfileCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      /><ProfileCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      /><ProfileCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
+       <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
+          <div>hello</div>
       <!-- <slot class="swipeItem"></slot> -->
     </div>
   </section>
@@ -75,6 +108,12 @@ section {
   background-color: #333;
   overflow: auto;
   white-space: nowrap;
+}
+
+div {
+  width: 300px;
+  height: 300px;
+  background-color: red;
 }
 
 /* section .swipeItem {
