@@ -1,95 +1,62 @@
 <template>
   <section>
     <div>
-       <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
+      <ProfileCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
+      <ProfileCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
+      <ProfileCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
+      <ProfileCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
+      <ProfileCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
+      <ProfileCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      /><ProfileCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      /><ProfileCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      /><ProfileCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      /><ProfileCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        name="Jonas Siebner"
+        position="Finanz-Mensch"
+        slug="impressum"
+      />
       <!-- <slot class="swipeItem"></slot> -->
     </div>
   </section>
