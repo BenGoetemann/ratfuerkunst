@@ -1,53 +1,25 @@
 <template>
   <div>
     <WideHeader img="bg-hero" />
-    <SwipeSection>
-      <Test
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
-      <Test
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
-      <Test
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
-      <Test
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
-      <Test
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
-      <Test
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        name="Jonas Siebner"
-        position="Finanz-Mensch"
-        slug="impressum"
-      />
-    </SwipeSection>
     <ContentSection>
       <TextSection>
-        <!-- <h1 @click="fetchObjects()">Hello {{ objects }}</h1> -->
-        <!-- <h1>Hello {{ res }}</h1> -->
-        <!-- <div v-for="text in texts" :key="text">
-          <p>
-            {{ text }}
-          </p>
-        </div> -->
+        <h1>Hello</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+          corrupti culpa tempora quia placeat dignissimos modi, aliquam quaerat,
+          ullam cupiditate voluptatem blanditiis. Commodi perspiciatis ea veniam
+          ratione necessitatibus ex expedita! Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Repellat, eos fuga nisi aperiam aliquid
+          cumque dicta cupiditate, voluptates incidunt voluptatum eaque error
+          inventore assumenda magnam aspernatur consequatur porro iste quod.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet neque
+          tempore enim dolorem nihil illo nobis doloribus cupiditate sunt quas
+          iusto voluptatibus veritatis repellat natus, incidunt provident, rem
+          aliquam obcaecati! Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Repellat odit pariatur sed reprehenderit optio architecto
+          nesciunt aliquid enim totam amet in molestias nulla iusto tenetur
+          quisquam voluptatem, obcaecati porro delectus.
+        </p>
         <YouTubePlayer id="Xh11iUpJs4Y" />
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
@@ -68,7 +40,87 @@
         <Button btnText="Impressum" slug="/impressum" />
       </TextSection>
     </ContentSection>
-    <ContentSection styles="bg-subliminal">
+    <SwipeSelection styles="bg-subliminal" title="Test" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime rem inventore reiciendis ad maiores iusto culpa. ">
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+      <ProductCard
+        :img="require('~/assets/images/heroes/hero.jpg')"
+        title="Beautiful Stuff in Mannheim"
+        description="Lorem ipsum dolor sit amet."
+        slug="yolo"
+      />
+    </SwipeSelection>
+    <ContentSection>
       <SmallCenteredSection>
         <h1>Unser Team</h1>
         <h3>
@@ -132,7 +184,9 @@
 </template>
 
 <script>
+import ProductCard from "~/components/elements/ProductCard.vue";
 export default {
+  components: { ProductCard },
   data() {
     return {
       title: "Beautiful Landscapes brought to you by the Universe! 🚀",
@@ -141,7 +195,6 @@ export default {
   },
   async asyncData({ $axios }) {
     const res = await $axios.$get("/.netlify/functions/apitest");
-    console.log(res);
     return { res };
   },
   methods: {

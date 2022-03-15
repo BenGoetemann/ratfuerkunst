@@ -1,6 +1,6 @@
 module.exports = {
   purge: {
-    mode: 'layers',
+    mode: 'jit', //or layers
     content: [
       'components/**/*.{vue,js}',
       'layouts/**/*.vue',
@@ -14,6 +14,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         'hero': "url('~assets/images/heroes/hero.jpg')",
+      },
+      borderRadius: {
+        'default': "0.25rem"
       },
       spacing: {
         'micro': '0.5rem',

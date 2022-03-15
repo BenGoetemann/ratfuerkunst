@@ -30,7 +30,7 @@ export default Vue.extend({
 <style lang="postcss" scoped>
 .button {
   @apply flex justify-center items-center;
-  @apply w-44 h-10 border-2 border-black rounded font-bold;
+  @apply w-44 h-10 border-2 border-black rounded-default font-bold;
   @apply mt-4 xl:mt-0;
 
   & p {

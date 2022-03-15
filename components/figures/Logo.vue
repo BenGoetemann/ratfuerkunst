@@ -10,7 +10,7 @@
   </figure>
 </template>
 
-<style>
+<style lang="postcss" scoped>
 .logo {
   @apply w-32;
 }

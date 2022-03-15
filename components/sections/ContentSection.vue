@@ -2,7 +2,7 @@
   <div :class="styles">
     <FluidContainer>
       <BorderContainer>
-        <section>
+        <section class="contentWrapper">
           <slot></slot>
         </section>
       </BorderContainer>
@@ -12,13 +12,13 @@
 
 <script>
 export default {
-  props: ["styles"],
+  props: ['styles'],
 };
 </script>
 
 <style lang="postcss" scoped>
-section {
+.contentWrapper {
   @apply flex flex-col;
-  @apply py-medium;
+  @apply py-big;
 }
 </style>
