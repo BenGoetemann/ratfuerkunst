@@ -3,12 +3,12 @@
     <FluidContainer>
       <BorderContainer>
         <TextSection>
-          <h1> {{title}} </h1>
-          <p> {{text}} </p>
+          <h1>{{ title }}</h1>
+          <p>{{ text }}</p>
         </TextSection>
       </BorderContainer>
     </FluidContainer>
-    <section>
+    <section class="swipeWrapper">
       <slot></slot>
     </section>
   </main>
@@ -29,11 +29,11 @@ main {
   @apply py-big;
 }
 
-section {
+.swipeWrapper {
   @apply overflow-auto whitespace-nowrap;
 }
 
-section div {
+.swipeWrapper div {
   @apply inline-block;
 }
 

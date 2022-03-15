@@ -23,7 +23,7 @@ export default {
 
 .productCardWrapper {
   @apply flex flex-col items-start justify-start rounded-default;
-  @apply my-small max-w-sm;
+  @apply my-small w-80 md:w-84;
   @apply bg-white;
 }
 
