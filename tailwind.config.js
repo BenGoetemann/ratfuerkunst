@@ -1,6 +1,6 @@
 module.exports = {
   purge: {
-    mode: 'jit', //or layers
+    mode: 'layers',
     content: [
       'components/**/*.{vue,js}',
       'layouts/**/*.vue',
