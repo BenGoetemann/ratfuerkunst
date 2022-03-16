@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div class="productCardWrapper">
+    <figure class="productCardWrapper">
       <div class="productPictureWrapper">
         <img class="productPicture" :src="img" :alt="title" />
       </div>
@@ -9,8 +8,7 @@
         <p>{{ description }}</p>
         <Button btnText="test" :slug="slug" />
       </div>
-    </div>
-  </div>
+    </figure>
 </template>
 
 <script>

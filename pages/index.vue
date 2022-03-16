@@ -3,7 +3,7 @@
     <WideHeader img="bg-hero" />
     <ContentSection>
       <TextSection>
-        <h1>Hello</h1>
+        <h1 @click="fetchObjects()">Hello</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
           corrupti culpa tempora quia placeat dignissimos modi, aliquam quaerat,
@@ -40,85 +40,19 @@
         <Button btnText="Impressum" slug="/impressum" />
       </TextSection>
     </ContentSection>
-    <SwipeSelection styles="bg-subliminal" title="Test" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime rem inventore reiciendis ad maiores iusto culpa. ">
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
-      <ProductCard
-        :img="require('~/assets/images/heroes/hero.jpg')"
-        title="Beautiful Stuff in Mannheim"
-        description="Lorem ipsum dolor sit amet."
-        slug="yolo"
-      />
+    <SwipeSelection
+      styles="bg-subliminal"
+      title="Test"
+      text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime rem inventore reiciendis ad maiores iusto culpa. "
+    >
+      <div v-for="object in objects" :key="object.id">
+        <ProductCard
+          :img="require('~/assets/images/heroes/hero.jpg')"
+          :title="object.title.value"
+          description="Lorem ipsum dolor sit amet."
+          slug="yolo"
+        />
+      </div>
     </SwipeSelection>
     <ContentSection>
       <SmallCenteredSection>
@@ -200,7 +134,12 @@ export default {
   methods: {
     async fetchObjects() {
       this.objects = await this.$axios.$get("/.netlify/functions/apitest");
+      console.log(this.objects);
     },
+  },
+  async mounted() {
+    this.objects = await this.$axios.$get("/.netlify/functions/apitest");
+    console.log(this.objects);
   },
   head() {
     return {
