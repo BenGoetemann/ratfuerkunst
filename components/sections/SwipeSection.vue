@@ -46,7 +46,7 @@ div:first-child {
 }
 
 div:last-child {
-  padding-right: calc((100vw - 83.3333%) / 2);
+  margin-right: calc((100vw - 83.3333%) / 2);
 }
 
 @media (min-width: 1024px) {
@@ -55,7 +55,7 @@ div:last-child {
   }
 
   div:last-child {
-    padding-right: calc((100vw - 75%) / 2);
+    margin-right: calc((100vw - 75%) / 2);
   }
 }
 
@@ -65,7 +65,7 @@ div:last-child {
   }
 
   div:last-child {
-    padding-right: calc((100vw - 80rem) / 2);
+    margin-right: calc((100vw - 80rem) / 2);
   }
 }
 </style>

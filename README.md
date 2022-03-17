@@ -1,6 +1,6 @@
 # This is LEAF
 
-Leaf (L? Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack Websites so einfach und schnell wie möglich bauen lassen. Es ist sozusagen ein weißes Blatt - und ja ich weiß "Leaf" ist nicht DAS Blatt hehe - auf dem fast alles, außer Login, umgesetzt werden kann.
+Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack Websites so einfach und schnell wie möglich bauen lassen. Es ist sozusagen ein weißes Blatt - und ja ich weiß "Leaf" ist nicht DAS Blatt hehe - auf dem fast alles, außer Login, umgesetzt werden kann.
 
 # Table of Contents
 - [This is LEAF](#this-is-leaf)
@@ -15,32 +15,39 @@ Leaf (L? Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack Websites 
   - [Props verstehen](#props-verstehen)
   - [Netlify Functions verstehen](#netlify-functions-verstehen)
 - [Components](#components)
+  - [Container](#container)
+    - [FluidContainer](#fluidcontainer)
+    - [BorderContainer](#bordercontainer)
+  - [Sections](#sections)
+    - [ContentSection](#contentsection)
+    - [SwipeSection](#swipesection)
+    - [SmallCenteredSection](#smallcenteredsection)
+    - [LegalSection](#legalsection)
+    - [TextSection](#textsection)
+    - [HideOnMobile](#hideonmobile)
+    - [WrapSection](#wrapsection)
   - [Elements](#elements)
     - [NavBar](#navbar)
     - [Footer](#footer)
     - [YouTubePlayer](#youtubeplayer)
     - [WideHeader](#wideheader)
     - [ProfileCard](#profilecard)
+    - [ProductCard](#productcard)
     - [Divider](#divider)
     - [Button](#button)
-  - [Sections](#sections)
-    - [ContentSection](#contentsection)
-    - [SmallCenteredSection](#smallcenteredsection)
-    - [LegalSection](#legalsection)
-    - [TextSection](#textsection)
-    - [HideOnMobile](#hideonmobile)
-    - [WrapSection](#wrapsection)
-  - [Container](#container)
-    - [FluidContainer](#fluidcontainer)
-    - [BorderContainer](#bordercontainer)
   - [Selections](#selections)
     - [LinkSelection](#linkselection)
     - [SocialMediaSelection](#socialmediaselection)
+    - [PrivacyTextSelection](#privacytextselection)
   - [Figures](#figures)
 - [Extras](#extras)
   - [AXIOS](#axios)
   - [GSAP](#gsap)
   - [Heyflow](#heyflow)
+  - [Facebook Pixel](#facebook-pixel)
+  - [Meta Tags in Nuxt](#meta-tags-in-nuxt)
+  - [Cookie Control](#cookie-control)
+  - [Dark/Light Mode](#darklight-mode)
 - [Netlify Functions](#netlify-functions)
   - [Neue Function erstellen](#neue-function-erstellen)
   - [Die Hello World Function mit Comments](#die-hello-world-function-mit-comments)
@@ -56,7 +63,7 @@ Dieses Template wurde erstellt um Jamstack Anwendungen umzusetzen. Es basiert au
 
 - [Nuxt 2 (Front End Framework based on Vue)](https://nuxtjs.org/)
 - [Netlify (Hosting / Serverless Functions / CI/CD w Github)](https://www.netlify.com/)
-- [Axios (HTTP-Library)](https://axios.nuxtjs.org/)
+- [Axios (HTTP-Client)](https://axios.nuxtjs.org/)
 - [Tailwind (CSS Library)](https://tailwindcss.com/)
 - [Contentful (Headless CMS)](https://www.contentful.com/)
 
@@ -158,9 +165,106 @@ Mehr Info zum Verstecken von API Keys [hier](https://youtu.be/m2Dr4L_Ab14).
 
 <br>
 
+## Container
+
+**Container sind die tiefsten Komponenten. Container sind DIVs die spezielle Eigenschaften in Bezug auf die Positionierung auf Seiten haben. Ein Container kann beispielsweise dafür Sorgen, dass der gesamte Page Inhalt nicht den äußeren Window Rand berührt. Sie bilden oft die Root-Komponenten von [Sections](#sections).**
+
+<br>
+
+### FluidContainer
+
+Der FluidContainer ist ein Container, der sich über 100% der Window Width erstreckt, alles mittig und in einer Column verläuft.
+
+<br>
+
+### BorderContainer
+
+Der BorderContainer kümmert sich darum, dass Page Inhalt nicht breiter als ein gewisser Wert wird und handlet dabei diverse Bildschirmgrößen.
+
+<br>
+<br>
+
+## Sections
+
+**Sections sind nach den Containern die nächsthöheren Komponenten. Sections halten via Slots [Elements](#elements) und handlen die Abstände und Placements, also die Darstellung, dieser Children-Elements sinngemäß nach dem [Gesetz der Kontinuität im Webdesign](https://www.html-seminar.de/webdesign-gesetz-der-kontinuitaet.htm).**
+
+
+<br>
+
+### ContentSection
+
+ContentSections sind dafür gedacht den Seiteninhalt/Content sinngemäß voneinander zu trennen. So sollte zum Beispiel in einer ContentSection das Team vorgestellt werden und in einer anderen die Vorgehensweise des Unternehmens. 
+
+Konkret bestimmt die ContentSection ein festgelegtes Styling in Bezug auf Margins und Positionierung der Items. Mit der Property ```styles``` kann der Section eine Hintergrund-Farbe gegeben werden. Sie kümmert sich also um die räumliche Trennung von Inhalten nach dem Prinzip des [Gesetzes der Nähe](https://www.mario-vogelsteller.de/blog/gesetz-der-naehe-gestaltgesetze/2010/06/). 
+
+```html
+<ContentSection styles="bg-subliminal">
+  {{ slots }}
+</ContentSection>
+```
+
+<br>
+
+### SwipeSection
+
+Die SwipeSection nimmt durch Slots Komponenten auf. Diese können kann horizontal geswiped werden. Diese Section eignet sich hervorragend für die dynamische Erzeugung von Komponenten via API-Abfragen mit einer For-Schleife.
+
+Da eine solche Section erfahrungsgemäß eine Set an Themen-bezogenen Daten zeigt, kann man der SwipeSection durch Props ```title``` und ```text``` Überschrift und Unterüberschrift mitgeben. Da es sich hier um eine andere Form einer ContentSection handelt, sind die Margins gleich der [ContentSection](#contentsection) und die Hintergrundfarbe kann ebenfalls über die ```styles``` Property angepasst werden. Die Margins des ersten und letzen Child innerhalb der SwipeSection anhand des Stylings des [BorderContainer](#bordercontainer) berechnet.
+
+```html
+<SwipeSection
+      styles="bg-subliminal"
+      title="Nike Schuhe"
+      text="Sichere dir deine Lieblingsschuhe!"
+    >
+      <div v-for="object in objects" :key="object.id">
+        <ProductCard
+          :img="require('~/assets/images/heroes/' + object.img + '.jpg')"
+          :title="object.title"
+          description="object.description"
+          slug="object.slug"
+        />
+      </div>
+</SwipeSection>
+```
+
+<br>
+
+### SmallCenteredSection
+
+Eine SmallCenteredSection positioniert sich mit einer engen maximalbreite in der Mitte des Bildschirms. Dieser Effekt ist nur auf dem Desktop sichtbar, auf dem Handy passt sie sich der Bildschirmbreite an.
+
+<br>
+
+### LegalSection
+
+Die LegalSection ist dazu da, um Fließtexte wie Datenschutzerklärungen und Impressum abzubilden. Die Breakpoints sind so gesetzt, dass sie sich von der absolut positionierten NavBar absetzen.
+
+<br>
+
+### TextSection
+
+Die TextSection zeigt die Items und Text linksbündig an.
+
+<br>
+
+### HideOnMobile
+
+Die HideOnMobile Section versteckt den Inhalt ab dem Moment, an dem die NavBar den Drawer zugänglich nacht.
+
+<br>
+
+
+
+### WrapSection
+
+Die WrapSection ist eine Section für Items, die bei maximal erreichter Breite in eine neue "Zeile" umbrechen sollen. Dies eignet sich beispielsweise für Team Profil Bilder, da hier einfach das gesamte Team reingeworfen werden kann.
+
+<br>
+
 ## Elements
 
-Elements sind vorgefertigte UI-Elemente.
+Elements sind vorgefertigte UI-Elemente und bilden mit [Selections](#selections) die höchste Ebene von Komponenten. Elements sind Website Elemente die im User Interface zu sehen sind.
 
 <br>
 
@@ -205,9 +309,13 @@ Darüber hinaus kann durch die Property ```callToAction``` ein Button erzeugt we
 
 Zuguterletzt kann über die Prop ```absolute``` entschieden werden, ob die Navigationsleiste im Desktop State über dem Header "floaten" soll, oder einen eigenen abgetrennten Bereich bekommt, indem man ```absolute``` auf ```true``` setzt. 
 
+><br>
 >[!]
->
+><br>
+><br>
 >Wenn die NavBar nicht absolut ist, muss in der [LegalSection](#legalsection) das CSS angepasst werden, da die Margins nicht mehr passen.
+><br>
+><br>
 
 <br>
 
@@ -284,6 +392,22 @@ Eine ProfileCard beinhaltet ein Bild, einen Namen, eine Position und ein Link bz
 
 <br>
 
+### ProductCard
+
+Eine ProductCard beinhaltet in der Grundversion ein Bild, einen Titel, eine Beschreibung und Slug, mit dem der Pagebesucher auf eine weiterführendes Page geführt werden kann. Diese Komponente muss immer an den Kontext angepasst werden.
+
+
+```html
+<ProductCard
+  :img="require('~/assets/images/heroes/hero.jpg')"
+  title="object.title.value"
+  description="Lorem ipsum dolor sit amet."
+  slug="yolo"
+/>
+```
+
+<br>
+
 ### Divider
 
 Ein Divider ist ein Element, das eine Trennlinie über 100% der Parent Komponente erzeugt.
@@ -305,87 +429,9 @@ Der Button kann eine Route oder einen externen Link erzeugen. Dies legt man fest
 <br>
 <br>
 
-## Sections
-
-**Alle Sections umgeben einen Slot, der Komponenten und HTML-Tags aufnehmen kann. Sections handlen die Abstände und Placements ihrer Children sinngemäß.**
-
-<br>
-
-### ContentSection
-
-ContentSections trennen den Seiteninhalt voneinander. Sie bestimmt ein festgelegtes Styling in Bezug auf Paddings und Positionierung der Items. Mit der Property ```styles``` kann der Section eine Hintergrund-Farbe gegeben werden.
-
-```html
-<ContentSection styles="bg-subliminal">
-  {{ slots }}
-</ContentSection>
-```
-
-<br>
-
-### SmallCenteredSection
-
-Eine SmallCenteredSection positioniert sich mit einer engen maximalbreite in der Mitte des Bildschirms. Dieser Effekt ist nur auf dem Desktop sichtbar, auf dem Handy passt sie sich der Bildschirmbreite an.
-
-```html
-<SmallCenteredSection>
-  <h1>Unser Team</h1>
-  <h3>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla odit
-    voluptatem ex quae blanditiis!
-  </h3>
-  <Button btnText="Kontakt" slug="/kontakt" />
-</SmallCenteredSection>
-```
-
-<br>
-
-### LegalSection
-
-Die LegalSection ist dazu da, um Fließtexte wie Datenschutzerklärungen und Impressum abzubilden. Die Breakpoints sind so gesetzt, dass sie sich von der absolut positionierten NavBar absetzen.
-
-<br>
-
-### TextSection
-
-Die TextSection zeigt die Items und Text linksbündig an.
-
-<br>
-
-### HideOnMobile
-
-Die HideOnMobile Section versteckt den Inhalt ab dem Moment, an dem die NavBar den Drawer zugänglich nacht.
-
-<br>
-
-### WrapSection
-
-Die WrapSection ist eine Section für Items, die bei maximal erreichter Breite in eine neue "Zeile" umbrechen sollen. Dies eignet sich beispielsweise für Team Profil Bilder, da hier einfach das gesamte Team reingeworfen werden kann.
-
-<br>
-
-## Container
-
-**Container sind DIVs die spezielle Eigenschaften in Bezug auf die Positionierung auf Seiten haben. Ein Container kann beispielsweise dafür Sorgen, dass der gesamte Page Inhalt nicht den äußeren Window Rand berührt.**
-
-<br>
-
-### FluidContainer
-
-Der FluidContainer ist ein Container, der sich über 100% der Window Width erstreckt, alles mittig und in einer Col verläuft.
-
-<br>
-
-### BorderContainer
-
-Der BorderContainer kümmert sich darum, dass Page Inhalt nicht breiter als ein gewisser Wert wird und handlet dabei diverse Bildschirmgrößen.
-
-<br>
-<br>
-
 ## Selections
 
-**Selections sind Ansammlungen von Komponenten, die durch Props mit Daten gefüllt werden und festgelegte Styles haben, da sie sich an jedem Ort gleich verhalten sollen**
+**Selections sind die höchste Ebene von Komponenten. Sie bilden Ansammlungen von Komponenten, die durch Props mit Daten gefüllt werden und festgelegte Dimensionen und Behaviors haben, da sie sich an jedem Ort gleich verhalten sollen**
 
 <br>
 
@@ -418,12 +464,23 @@ Eine Social Media Selection beinhaltet alle möglichen Social Media Plattformen.
 ```
 
 <br>
+
+### PrivacyTextSelection
+
+Die PrivacyTextSelection beinhaltet alle Paragraphen, die für eine Datenschutzerklärung notwendig sind. Durch Props können die Gesetzestexte für Referenzierungspflichtige Technologien aktiviert werden und Unternehmensdaten eingesetzt werden. Hierbei setzt sich die Numerierung der Abschnitte automatisch. In dieser Auflistung sind alle möglichen Properties zu sehen: 
+
+```
+Coming soon...
+```
+
+<br>
 <br>
 
 ## Figures
 
 **Figures sind Komponenten die ein Bild repräsentieren, wie beispielsweise das Logo und ein Icon**
 
+<br>
 <br>
 
 # Extras
@@ -487,13 +544,18 @@ export default {
 </script>
 
 ```
-
+><br>
 >[!]
->
+><br>
+><br>
 >Wenn man die AXIOS-Method innerhalb außerhalb einer AsyncData, in jener man einen  Parameter mitgibt (```async asyncData({ $axios })```), also innerhalb einer Methode oder Hook, verwenden möchte, muss man sie mit ```this``` referenzieren.
 >```js
 >let res = await this.$axios.$get("https://swapi.dev/api/people/1/");
 >```
+><br>
+><br>
+
+<br>
 
 In diesem Template wird Axios auch in den Netlify-Functions genutzt. Hier bindet man den Request folgendermaßen ein:
 
@@ -522,8 +584,13 @@ const handler = async (event) => {
 module.exports = { handler }
 
 ```
-
-
+><br>
+>[!]
+><br>
+><br>
+>Man kann Nuxt/Axios in der nuxt.config eine BaseURL hinzufügen. In diesem Fall ist Axios darauf ausgelegt keinen ganzen Link, sondern lediglich die relevanten Pfade anzunehmen. Dann sollte die URL nicht ```https://swapi.dev/api/people/1/``` sondern ```/api/people/1/``` lauten.
+><br>
+><br>
 
 Für weitere Infos zur Benutzung in Nuxt muss man [hier nachlesen](https://axios.nuxtjs.org/).
 Für weitere Infos zur Benutzung innerhalb von Netlify Functions muss man [hier nachlesen](https://axios-http.com/docs/intro).
@@ -562,6 +629,30 @@ Um Heyflow einzubinden bedarf es zwei Schritten. Zuerst erstellt man im Template
 
 </script>
 ```
+
+<br>
+
+## Facebook Pixel
+
+Für die Konfiguration des Facebook Pixels bitte [hier](https://www.npmjs.com/package/nuxt-facebook-pixel-module) nachlesen. 
+
+<br>
+
+## Meta Tags in Nuxt
+
+In Nuxt ist es möglich Meta Tags zur SEO zu verwenden. Die Mechanik von Nuxt Meta Tags basiert auf dem [Vue Meta Package](https://vue-meta.nuxtjs.org/). Die Dokumentation kann als Referenz genutzt werden, wobei es dabei ein paar Unterschiede im Naming gibt. Mehr dazu in Videoform [hier](https://youtu.be/bu3HSA9zmz8).
+
+<br>
+
+## Cookie Control
+
+Diesem Template ist Nuxt-Cookie-Control eingebunden. Für die Konfiguration dieses Packages bitte [hier](https://www.npmjs.com/package/nuxt-cookie-control/v/latest) nachlesen.
+
+<br>
+
+## Dark/Light Mode
+
+Für die Konfiguration des Dark/Light Modes bitte [hier](https://tailwindcss.com/docs/dark-mode) nachlesen und/oder [dieses Beispiel](https://tailwindcss.nuxtjs.org/examples/dark-mode/) anschauen.
 
 <br>
 <br>
@@ -628,9 +719,12 @@ So können dann die Functions aufgerufen werden:
 ```js
 [...] = await this.$http.$get('/.netlify/functions/myFunction?parameter="value"');
 ```
+><br>
 >[!]
->
+><br>
+><br>
 >Damit die Function aufgerufen werden kann, muss in der ```nuxt.config``` unter den Axios Options die Base URL vergeben werden. Diese Requests sind in Verbindung mit Netlify NICHT dafür gedacht, Daten aus anderen Quellen zu fetchen. Mithilfe der Axios Proxys sind jedoch weitere Konfigurationen möglich. Dazu bitte [hier nachlesen](https://axios.nuxtjs.org/options).
+><br>
 
 <br>
 <br>
@@ -650,7 +744,10 @@ axios: {
   baseURL: development ? 'http://localhost:8888' : 'https://bg-template.netlify.app', 
 },
 ```
-
+><br>
 >[!]
->
+><br>
+><br>
 >Wenn man neu hinzugefügte Netlify Functions innerhalb von AsyncData Methods verwendet, gibt es beim Deployment Fehler, da die Function zur Build Time noch nicht von der Production URL erreicht werden kann. Beim nächsten Deployment funktioniert alles ohne Probleme.
+><br>
+><br>

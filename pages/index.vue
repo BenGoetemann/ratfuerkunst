@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <WideHeader img="bg-hero" />
     <ContentSection>
       <TextSection>
@@ -40,7 +41,7 @@
         <Button btnText="Impressum" slug="/impressum" />
       </TextSection>
     </ContentSection>
-    <SwipeSelection
+    <SwipeSection
       styles="bg-subliminal"
       title="Test"
       text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime rem inventore reiciendis ad maiores iusto culpa. "
@@ -53,7 +54,7 @@
           slug="yolo"
         />
       </div>
-    </SwipeSelection>
+    </SwipeSection>
     <ContentSection>
       <SmallCenteredSection>
         <h1>Unser Team</h1>
@@ -134,12 +135,10 @@ export default {
   methods: {
     async fetchObjects() {
       this.objects = await this.$axios.$get("/.netlify/functions/apitest");
-      console.log(this.objects);
     },
   },
   async mounted() {
     this.objects = await this.$axios.$get("/.netlify/functions/apitest");
-    console.log(this.objects);
   },
   head() {
     return {

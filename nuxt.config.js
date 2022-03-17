@@ -91,7 +91,14 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv',],
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', 'nuxt-facebook-pixel-module', 'nuxt-cookie-control'],
+
+  facebook: {
+    track: 'PageView',
+    pixelId: 'FACEBOOK_PIXEL_ID',
+    autoPageView: true,
+    disabled: false
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
