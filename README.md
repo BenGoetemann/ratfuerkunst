@@ -53,6 +53,7 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
   - [Die Hello World Function mit Comments](#die-hello-world-function-mit-comments)
   - [Eine Netlify Function fetchen](#eine-netlify-function-fetchen)
   - [Netlify Functions für Production konfigurieren](#netlify-functions-für-production-konfigurieren)
+- [Depoloyment](#depoloyment)
 
 <br>
 <br>
@@ -751,3 +752,17 @@ axios: {
 >Wenn man neu hinzugefügte Netlify Functions innerhalb von AsyncData Methods verwendet, gibt es beim Deployment Fehler, da die Function zur Build Time noch nicht von der Production URL erreicht werden kann. Beim nächsten Deployment funktioniert alles ohne Probleme.
 ><br>
 ><br>
+
+<br>
+<br>
+<br>
+
+# Depoloyment
+
+Hier ein paar Informationen zum Deployment, um den Page Speed zu erhöhen. Um den Page Speed zu testen, lohnt es sich die Website auf Google's [PageSpeed Insights](https://pagespeed.web.dev/?utm_source=psi&utm_medium=redirect) zu testen.
+
+1. Bilder im WebP Format!
+2. Bilder im richtig dimensionieren!
+3. Fonts nach Development herunterladen und einpflegen!
+
+... more to come
