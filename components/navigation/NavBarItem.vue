@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="{
-      path: makeNameToLink(name),
+      path: makeNameToLink(name) + '/',
     }"
   >
     <p @click="$emit('close')" class="item">
