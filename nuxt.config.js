@@ -1,8 +1,15 @@
+import dotenv from "dotenv";
+dotenv.config();
 let development = process.env.NODE_ENV !== 'production'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+
+  env: {
+    CONTENTFUL_SPACE: process.env.CONTENTFUL_SPACE,
+    CONTENTFUL_ACCESSTOKEN: process.env.CONTENTFUL_ACCESSTOKEN,
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -55,7 +62,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    "~/plugins/youtube"
+    "~/plugins/youtube",
+    "~/plugins/contentful"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -137,7 +137,7 @@ export default {
       this.objects = await this.$axios.$get("/.netlify/functions/apitest");
     },
   },
-  async mounted() {
+  async fetch() {
     this.objects = await this.$axios.$get("/.netlify/functions/apitest");
   },
   head() {

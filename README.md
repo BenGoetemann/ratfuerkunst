@@ -518,7 +518,7 @@ Auf Komponentenebene ist die AsyncData Methode nicht erreichbar. Stattdessen nut
     <!-- Request wird mit Klick durch Methode getriggert -->
     <div @click="fetchSomething()">Clicked: {{clicked.name}}</div>
     <!-- Request wird in einer Hook-Methode getriggert -->
-    <div>Mounted: {{ mounted.mass }}</div>
+    <div>Fetched: {{ fetched.mass }}</div>
     <!-- Request wird beim Laden der Parent Page getriggert und via Prop in die Komponente gebracht -->
     <div>Build Time: {{ built.eye_color }}</div>
   </div>
@@ -530,7 +530,7 @@ export default {
   data() {
     return {
       clicked: [],
-      mounted: [],
+      fetched: [],
     };
   },
   methods: {
@@ -538,8 +538,8 @@ export default {
       this.clicked = await this.$axios.$get("https://swapi.dev/api/people/1/");
     },
   },
-  async mounted() {
-    this.mounted = await this.$axios.$get("https://swapi.dev/api/people/1/");
+  async fetch() {
+    this.fetched = await this.$axios.$get("https://swapi.dev/api/people/1/");
   },
 };
 </script>

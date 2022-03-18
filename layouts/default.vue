@@ -1,8 +1,8 @@
 <template>
   <div>
-    <CookieControl/>
+    <CookieControl locale="de"/>
     <NavBar
-      :pages="['Impressum']"
+      :pages="['Impressum', 'Blog']"
       callToAction="Impressum"
       facebook="leaf"
       instagram="leaf"
