@@ -29,15 +29,15 @@ export default {
         "fields.slug": this.$route.params.slug, // the magic happens here
       });
       if (response.items.length > 0) {
-        this.post = response.items[0].fields;
-        //this.richText = documentToHtmlString(response.items[0].fields.text);
-        this.richText = documentToHtmlString(response.items[0].fields.text);
-        this.entries = getRichTextEntityLinks(response.items[0].fields.text);
+        this.post = response.items[0].fields; // Fields
+        this.richText = documentToHtmlString(response.items[0].fields.text); // Simple HTML Rich Text
+        this.entries = getRichTextEntityLinks(response.items[0].fields.text); // Entries? Not working yet.
         console.log(this.entries)
       }
     } catch (err) {
       console.error(err);
     }
   },
+  fetchOnServer: false
 };
 </script>
