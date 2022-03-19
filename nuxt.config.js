@@ -7,8 +7,8 @@ export default {
   target: 'static',
 
   env: {
-    CONTENTFUL_SPACE: process.env.CONTENTFUL_SPACE,
-    CONTENTFUL_ACCESSTOKEN: process.env.CONTENTFUL_ACCESSTOKEN,
+    CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
+    CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
