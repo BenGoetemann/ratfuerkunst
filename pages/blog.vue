@@ -1,11 +1,25 @@
 <template>
-  <div>
+  <ContentSection>
     <div v-for="post in posts" :key="post.fields.slug">
-      <h2 class="title">
-        <NuxtLink :to="post.fields.slug">{{ post.fields.title }}</NuxtLink>
-      </h2>
+      <NuxtLink :to="post.fields.slug">
+        <div class="postPreview">
+          <div class="previewImgWrapper">
+            <img
+              class="previewImg"
+              :src="post.fields.previewImage.fields.file.url"
+              :alt="post.fields.previewImage.fields.title"
+            />
+          </div>
+          <div class="previewTextWrapper">
+            <h2 class="title">
+              {{ post.fields.title }}
+            </h2>
+            <p>{{ post.fields.previewText }}</p>
+          </div>
+        </div>
+      </NuxtLink>
     </div>
-  </div>
+  </ContentSection>
 </template>
 
 <script>
@@ -23,7 +37,7 @@ export default {
       if (!contentfulClient) return;
       const response = await contentfulClient.getEntries({
         content_type: "blogPost",
-        include: 10
+        include: 10,
       });
       if (response.items.length > 0) {
         this.posts = response.items;
@@ -36,5 +50,27 @@ export default {
 };
 </script>
 
-<style>
+<style lang="postcss" scoped>
+.postPreview {
+  @apply flex justify-start items-start;
+  @apply rounded-default p-small my-mini bg-subliminal;
+
+  & p {
+    @apply m-0;
+  }
+}
+
+  .previewImgWrapper {
+    @apply m-micro h-44;
+    aspect-ratio: 1/1
+  }
+
+  .previewTextWrapper {
+     @apply m-micro
+  }
+
+  .previewImg {
+    @apply h-full w-full;
+    object-fit: cover;
+  }
 </style>

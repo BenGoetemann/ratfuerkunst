@@ -1,23 +1,37 @@
 
 <template>
-  <div>
-    <p>{{ post.title }}</p>
-    <div v-html="richText"></div>
-  </div>
+  <ContentSection>
+    <h1>{{ fields.title }}</h1>
+    <h3>{{ fields.previewText }}</h3>
+    <div v-for="(item, index) in body" :key="index">
+      <TextSection v-if="item.nodeType == 'paragraph'">
+        {{ item.content[0].value }}
+      </TextSection>
+      <img
+        v-if="item.nodeType == 'embedded-asset-block'"
+        :src="item.data.target.fields.file.url"
+        :alt="item.data.target.fields.title"
+      />
+      <div v-if="item.nodeType == 'embedded-entry-block'">
+        <YouTubePlayer
+          v-if="item.data.target.sys.contentType.sys.id == 'youTubeEmbed'"
+          :id="item.data.target.fields.youTubeId"
+        />
+      </div>
+    </div>
+  </ContentSection>
 </template>
 
 <script>
 import { createClient } from "../../plugins/contentful";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-import { getRichTextEntityLinks } from '@contentful/rich-text-links';
 const contentfulClient = createClient();
 
 export default {
   data() {
     return {
-      post: [],
-      richText: [],
-      entries: []
+      fields: [],
+      body: [],
     };
   },
   async fetch() {
@@ -29,10 +43,11 @@ export default {
         "fields.slug": this.$route.params.slug, // the magic happens here
       });
       if (response.items.length > 0) {
-        this.post = response.items[0].fields; // Fields
-        this.richText = documentToHtmlString(response.items[0].fields.text); // Simple HTML Rich Text
-        this.entries = getRichTextEntityLinks(response.items[0].fields.text); // Entries? Not working yet.
-        console.log(this.entries)
+        this.fields = response.items[0].fields;
+        this.body = response.items[0].fields.body.content;
+        //this.embeddedContentType = 
+        //this.post = documentToHtmlString(response.items[0].fields.text.content); // Simple HTML Rich Text
+        console.log(this.post);
       }
     } catch (err) {
       console.error(err);
