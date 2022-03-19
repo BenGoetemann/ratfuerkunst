@@ -24,7 +24,6 @@
 
 <script>
 import { createClient } from "../../plugins/contentful";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 const contentfulClient = createClient();
 
 export default {
@@ -45,8 +44,6 @@ export default {
       if (response.items.length > 0) {
         this.fields = response.items[0].fields;
         this.body = response.items[0].fields.body.content;
-        //this.embeddedContentType = 
-        //this.post = documentToHtmlString(response.items[0].fields.text.content); // Simple HTML Rich Text
         console.log(this.post);
       }
     } catch (err) {
