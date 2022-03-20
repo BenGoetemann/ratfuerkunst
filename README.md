@@ -54,8 +54,8 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
   - [Eine Netlify Function fetchen](#eine-netlify-function-fetchen)
   - [Netlify Functions für Production konfigurieren](#netlify-functions-für-production-konfigurieren)
 - [Contentful](#contentful)
-  - [Dynamic Data von Contentful](#dynamic-data-von-contentful)
-  - [Rich Text](#rich-text)
+  - [Dynamic Website Content mit Contentful](#dynamic-website-content-mit-contentful)
+  - [Rich Text Processing](#rich-text-processing)
 - [Depoloyment](#depoloyment)
 
 <br>
@@ -770,26 +770,37 @@ Contentful ist ein Headless CMS, welches dem User erlaubt, eigene Content Models
 
 <br>
 
-## Dynamic Data von Contentful
+## Dynamic Website Content mit Contentful
 
-Im Gegensatz zu allen Tutorials, zieht dieses Template die Daten nicht über die ```asyncData``` Methode sondern mit der ```fetch``` Hook, da ```asyncData``` nur auf Page-Ebene (nicht in Komponenten) möglich ist und die Daten zur Build-Time, also Server-Side, lädt, wodurch neu hinzugefügte Posts in Contentful ohne einen Rebuild auf der Seite nicht angezeigt würden. Die ```fetch``` Hook lädt by default auch nicht Client-Side. Man kann jedoch innerhalb der ```fetch``` Hook eine Zeile Code hinzufügen, die der Page erlaubt Client-Side die Daten zu laden: 
+Im Gegensatz zu allen Tutorials, zieht dieses Template die Daten nicht über die ```asyncData``` Methode sondern mit der ```fetch``` Hook, da ```asyncData``` nur auf Page-Ebene (nicht in Komponenten) möglich ist und die Daten zur Build-Time, also Server-Side, lädt, wodurch neu hinzugefügte Posts in Contentful ohne einen Rebuild auf der Seite nicht angezeigt würden. Die ```fetch``` Hook lädt by default auch nicht Client-Side. Man kann jedoch außerhalb der ```fetch``` Hook eine Zeile Code hinzufügen, die der Page oder Komponente erlaubt Client-Side die Daten zu laden: 
 
 ```js
-async fetch() {
-  try{
-    [...]
-  } catch(err) {
-    [...]
-  },
-  fetchOnServer: false,
-}
+fetchOnServer: false,
 ```
 
 <br>
 
-## Rich Text
+## Rich Text Processing
 
 Contentful erlaubt innerhalb vom eigenen Rich Text Editor Verlinkungen zu anderen Contentful Entries zu machen. Dadurch ist es möglich einen Bereich komplett dynamisch zu rendern. Nach verschiedenen Anläufen mit bestehenden Packages, habe ich jedoch beschlossen eine eigene Komponente zu schreiben, die Rich Text handlet und zwar [CFRichText](#cfrichtext). Damit das funktioniert, muss man die Einsichtstiefe in den Contentful Client konfigurieren, ansonsten klickt man sich durch zwei Ebenen der Response und sieht danach die Daten nicht mehr. Die ```include: 10``` Konfiguration erlaubt tiefere Einsicht von insgesamt 10 Ebenen und zeigt somit den kompletten Inhalt von Embeded Entries im Rich Text Field.
+
+```js
+async fetch() {
+  try {
+    if (!contentfulClient) return;
+    const response = await contentfulClient.getEntries({
+      content_type: "blogPost",
+      include: 10,
+    });
+    if (response.items.length > 0) {
+      this.posts = response.items;
+      //console.log(response);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+},
+```
 
 # Depoloyment
 
