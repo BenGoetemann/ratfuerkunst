@@ -144,20 +144,11 @@ export default {
           include: 10,
         })
         .then((response) => {
-          //console.log(response.items[0].fields.slug)
           return response.items.map((post) => {
             console.log(post.fields.slug)
             return post.fields.slug
           })
         })
-
-
-      // return axios.get('https://my-api/users')
-      //   .then((res) => {
-      //     return res.data.map((user) => {
-      //       return '/users/' + user.id
-      //     })
-      //   })
     }
   }
 }

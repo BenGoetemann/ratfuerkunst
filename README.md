@@ -58,6 +58,7 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
   - [Rich Text Processing](#rich-text-processing)
 - [Depoloyment](#depoloyment)
   - [Nuxt und Netlify Trailing Slash Problem](#nuxt-und-netlify-trailing-slash-problem)
+  - [Automatische Webhook Builds mit Contentful und Netlify](#automatische-webhook-builds-mit-contentful-und-netlify)
   - [PageSpeed Insights Optimierung](#pagespeed-insights-optimierung)
 
 <br>
@@ -774,15 +775,38 @@ Contentful ist ein Headless CMS, welches dem User erlaubt, eigene Content Models
 
 ## Dynamic Website Content mit Contentful
 
-Im Gegensatz zu allen Tutorials, sollte dieses Template die Daten nicht über die ```asyncData``` Methode sondern mit der ```fetch``` Hook laden, da ```asyncData``` nur auf Page-Ebene (nicht in Komponenten) möglich ist und die Daten zur Build-Time, also Server-Side, lädt, wodurch neu hinzugefügte Posts in Contentful ohne einen Rebuild auf der Seite nicht angezeigt würden. Leider hat dieser Ansatz beim Page-Reload zu einem 404 geführt. Der Client pusht die Seite zwar auf den Router und fetcht die Daten, aber der Server kennt die Datei nicht. 
+Im Gegensatz zu allen Tutorials, sollte dieses Template die Daten nicht über die ```asyncData``` Methode sondern mit der ```fetch``` Hook laden, da ```asyncData``` nur auf Page-Ebene (nicht in Komponenten) möglich ist und die Daten zur Build-Time, also Server-Side, lädt, wodurch neu hinzugefügte Posts in Contentful ohne einen Rebuild auf der Seite nicht angezeigt würden. 
 
-**Demnach gilt: Wer dynamische Routen für Blogposts generiert, sollte auf Rebuilding setzen.**
+Leider führt dieser Ansatz beim Page-Reload zu einem 404, da dynamische Routen behandelt werden wie eine SPA (Single Page Application). Der Client pusht die Seite zwar auf den Router und fetcht die Daten, aber der Server kennt die tatsächliche Datei nicht. 
+
+**Demnach gilt: Wer dynamische Routen für Blogposts generiert, sollte auf Rebuilding setzen. ABER! Es gibt eine coole Möglichkeit eine Kombination aus static und dynamic herzustellen**
 
  Die ```fetch``` Hook lädt by default nicht Client-Side. Man kann jedoch außerhalb der ```fetch``` Hook eine Zeile Code hinzufügen, die der Page oder Komponente erlaubt Client-Side die Daten zu laden: 
 
 ```js
 fetchOnServer: false,
 ```
+
+Wenn man das nicht macht, werden die statischen Seiten generiert. Wenn man es macht, hat man das Problem mit den fehlenden Files aufgrund der dynamischen Routen. Nuxt bietet die Möglichkeit beim builden alle Files aus den dynamischen Routen zu erstellen, indem man die aus der Contentful API generierten Routen auswertet so wie [hier](https://academind.com/tutorials/nuxtjs-static-site-generation) beschrieben. Alles was dafür nötig ist, ist dieses Skript in der nuxt.config:
+
+```js
+generate: {
+  routes: function () {
+    return contentfulClient.getEntries({
+        content_type: "blogPost",
+        include: 10,
+      })
+      .then((response) => {
+        return response.items.map((post) => {
+          console.log(post.fields.slug)
+          return post.fields.slug
+        })
+      })
+  }
+}
+```
+
+Wenn wir das machen, können wir die Daten auf den dynamisch generierten Seiten vom Client ziehen. Der Blog User hat somit das Gefühl, dass seine neuen Blog Posts sofort auf der Seite erscheinen. Im Hintergrund triggert Contentful jedoch eine Webhook, die Netlify signalisiert die Seite neu zu builden. In diesem Prozess werden dann alle neuen nötigen Pages erstellt. Wie man die Webhook einstellt, wird unter [Automatische Webhook Builds mit Contentful und Netlify](#automatische-webhook-builds-mit-contentful-und-netlify) erkärt.
 
 <br>
 
@@ -817,6 +841,14 @@ async fetch() {
 ## Nuxt und Netlify Trailing Slash Problem
 
 Wenn die Nuxt App auf Netlify deployed wurde und ein User auf einer Seite einen Page-Refresh durchführt, redirected Netlify den User zur URL mit einem angehängten Slash, also von ```leaf.io/blog``` zu ```leaf.io/blog/```. Dies führt zu Problemen. Um diesen Umstand zu fixen kann man so wie [hier](https://github.com/gatsbyjs/gatsby/issues/15317#issuecomment-530048373) beschrieben, die Einstellungen in den Deploy Settings des Netlify Projekts anpassen.
+
+<br>
+
+## Automatische Webhook Builds mit Contentful und Netlify
+
+
+
+<br>
 
 ## PageSpeed Insights Optimierung
 
