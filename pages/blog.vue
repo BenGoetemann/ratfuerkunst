@@ -47,7 +47,7 @@ export default {
       console.error(err);
     }
   },
-   fetchOnServer: false,
+  fetchOnServer: false,
 };
 </script>
 
