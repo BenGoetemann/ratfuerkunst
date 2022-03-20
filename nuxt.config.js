@@ -1,5 +1,8 @@
 import dotenv from "dotenv";
-const axios = require('axios');
+import {
+  createClient
+} from "./plugins/contentful";
+const contentfulClient = createClient();
 
 dotenv.config();
 let development = process.env.NODE_ENV !== 'production'
@@ -133,4 +136,28 @@ export default {
       }
     }
   },
+
+  generate: {
+    routes: function () {
+      return contentfulClient.getEntries({
+          content_type: "blogPost",
+          include: 10,
+        })
+        .then((response) => {
+          //console.log(response.items[0].fields.slug)
+          return response.items.map((post) => {
+            console.log(post.fields.slug)
+            return post.fields.slug
+          })
+        })
+
+
+      // return axios.get('https://my-api/users')
+      //   .then((res) => {
+      //     return res.data.map((user) => {
+      //       return '/users/' + user.id
+      //     })
+      //   })
+    }
+  }
 }
