@@ -1,4 +1,6 @@
 import dotenv from "dotenv";
+const axios = require('axios');
+
 dotenv.config();
 let development = process.env.NODE_ENV !== 'production'
 
@@ -130,5 +132,5 @@ export default {
         }
       }
     }
-  }
+  },
 }
