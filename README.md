@@ -57,6 +57,8 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
   - [Dynamic Website Content mit Contentful](#dynamic-website-content-mit-contentful)
   - [Rich Text Processing](#rich-text-processing)
 - [Depoloyment](#depoloyment)
+  - [Nuxt und Netlify Trailing Slash Problem](#nuxt-und-netlify-trailing-slash-problem)
+  - [PageSpeed Insights Optimierung](#pagespeed-insights-optimierung)
 
 <br>
 <br>
@@ -786,23 +788,33 @@ Contentful erlaubt innerhalb vom eigenen Rich Text Editor Verlinkungen zu andere
 
 ```js
 async fetch() {
-  try {
-    if (!contentfulClient) return;
-    const response = await contentfulClient.getEntries({
-      content_type: "blogPost",
-      include: 10,
-    });
-    if (response.items.length > 0) {
-      this.posts = response.items;
-      //console.log(response);
+    try {
+      if (!contentfulClient) return;
+      let response = await contentfulClient.getEntries({
+        content_type: "blogPost",
+        include: 10, // mehr tiefe in response
+        "fields.slug[in]": this.$route.params.slug, 
+      });
+      if (response.items.length > 0) {
+        this.fields = response.items[0].fields;
+        this.body = response.items[0].fields.body.content; // rich text object
+      }
+    } catch (err) {
+      console.error(err);
     }
-  } catch (err) {
-    console.error(err);
-  }
-},
+  },
 ```
 
+<br>
+
+
 # Depoloyment
+
+## Nuxt und Netlify Trailing Slash Problem
+
+Wenn die Nuxt App auf Netlify deployed wurde und ein User auf einer Seite einen Page-Refresh durchführt, redirected Netlify den User zur URL mit einem angehängten Slash, also von ```leaf.io/blog``` zu ```leaf.io/blog/```. Dies führt zu Problemen. Um diesen Umstand zu fixen kann man so wie [hier](https://github.com/gatsbyjs/gatsby/issues/15317#issuecomment-530048373) beschrieben, die Einstellungen in den Deploy Settings des Netlify Projekts anpassen.
+
+## PageSpeed Insights Optimierung
 
 Hier ein paar Informationen zum Deployment, um den Page Speed zu erhöhen. Um den Page Speed zu testen, lohnt es sich die Website auf Google's [PageSpeed Insights](https://pagespeed.web.dev/?utm_source=psi&utm_medium=redirect) zu testen.
 
