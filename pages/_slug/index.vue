@@ -3,31 +3,7 @@
   <ContentSection>
     <h1>{{ fields.title }}</h1>
     <h3>{{ fields.previewText }}</h3>
-    <div v-for="(item, index) in body" :key="index">
-      <!-- Text -->
-      <h2 v-if="item.nodeType == 'heading-2'">{{ item.content[0].value }}</h2>
-      <h3 v-if="item.nodeType == 'heading-3'">{{ item.content[0].value }}</h3>
-      <h4 v-if="item.nodeType == 'heading-4'">{{ item.content[0].value }}</h4>
-      <h5 v-if="item.nodeType == 'heading-5'">{{ item.content[0].value }}</h5>
-      <TextSection v-if="item.nodeType == 'paragraph'">
-        {{ item.content[0].value }}
-      </TextSection>
-
-      <!-- Assets -->
-      <img
-        v-if="item.nodeType == 'embedded-asset-block'"
-        :src="item.data.target.fields.file.url"
-        :alt="item.data.target.fields.title"
-      />
-
-      <!-- Entries -->
-      <div v-if="item.nodeType == 'embedded-entry-block'">
-        <YouTubePlayer
-          v-if="item.data.target.sys.contentType.sys.id == 'youTubeEmbed'"
-          :id="item.data.target.fields.youTubeId"
-        />
-      </div>
-    </div>
+    <CFRichText :body="body" />
   </ContentSection>
 </template>
 

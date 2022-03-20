@@ -60,14 +60,13 @@ export default {
     @apply m-0;
   }
 }
+  .previewTextWrapper {
+     @apply m-micro
+  }
 
   .previewImgWrapper {
     @apply m-micro h-44;
     aspect-ratio: 1/1
-  }
-
-  .previewTextWrapper {
-     @apply m-micro
   }
 
   .previewImg {

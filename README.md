@@ -812,7 +812,13 @@ Wenn wir das machen, können wir die Daten auf den dynamisch generierten Seiten 
 
 ## Rich Text Processing
 
-Contentful erlaubt innerhalb vom eigenen Rich Text Editor Verlinkungen zu anderen Contentful Entries zu machen. Dadurch ist es möglich einen Bereich komplett dynamisch zu rendern. Nach verschiedenen Anläufen mit bestehenden Packages, habe ich jedoch beschlossen eine eigene Komponente zu schreiben, die Rich Text handlet und zwar [CFRichText](#cfrichtext). Damit das funktioniert, muss man die Einsichtstiefe in den Contentful Client konfigurieren, ansonsten klickt man sich durch zwei Ebenen der Response und sieht danach die Daten nicht mehr. Die ```include: 10``` Konfiguration erlaubt tiefere Einsicht von insgesamt 10 Ebenen und zeigt somit den kompletten Inhalt von Embeded Entries im Rich Text Field.
+Contentful erlaubt innerhalb vom eigenen Rich Text Editor Verlinkungen zu anderen Contentful Entries zu machen. Dadurch ist es möglich einen Bereich komplett dynamisch zu rendern. Nach verschiedenen Anläufen mit bestehenden Packages, habe ich jedoch beschlossen eine eigene Komponente zu schreiben. Die ```CFRichText``` Komponente nimmt mit der ```body``` Property das Contentful Rich Text Objekt an und verarbeitet es dann.
+
+```html
+<CFRichText :body="body" />
+```
+
+Damit das funktioniert, muss man die Einsichtstiefe in den Contentful Client konfigurieren, ansonsten klickt man sich durch zwei Ebenen der Response und sieht danach die Daten nicht mehr. Die ```include: 10``` Konfiguration erlaubt tiefere Einsicht von insgesamt 10 Ebenen und zeigt somit den kompletten Inhalt von Embeded Entries im Rich Text Field.
 
 ```js
 async fetch() {
@@ -835,8 +841,9 @@ async fetch() {
 
 <br>
 
-
 # Depoloyment
+
+<br>
 
 ## Nuxt und Netlify Trailing Slash Problem
 
@@ -846,7 +853,7 @@ Wenn die Nuxt App auf Netlify deployed wurde und ein User auf einer Seite einen 
 
 ## Automatische Webhook Builds mit Contentful und Netlify
 
-
+Wie das automatisierte Builds funktionieren wird [hier](https://www.contentful.com/developers/docs/tutorials/general/automate-site-builds-with-webhooks/#:~:text=Configuring%20a%20Netlify%20build%20hook&text=Click%20Add%20build%20hook%2C%20give,to%20the%20Contentful%20web%20app.) erklärt.
 
 <br>
 

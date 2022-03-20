@@ -59,11 +59,6 @@ export default {
     ],
   },
 
-  // router: {
-  //   trailingSlash: false,
-  //   middleware: 'trailingSlashRedirect',
-  // },
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
 
@@ -85,7 +80,8 @@ export default {
       '~/components/sections/utils',
       '~/components/container',
       '~/components/elements',
-      '~/components/selections'
+      '~/components/selections',
+      '~/components/contentful'
     ]
   },
 
