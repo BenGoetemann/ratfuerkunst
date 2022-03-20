@@ -54,6 +54,10 @@ export default {
     ],
   },
 
+  router: {
+    trailingSlash: false,
+    middleware: 'trailingSlashRedirect',
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [

@@ -41,7 +41,7 @@ export default {
       });
       if (response.items.length > 0) {
         this.posts = response.items;
-        console.log(response);
+        //console.log(response);
       }
     } catch (err) {
       console.error(err);

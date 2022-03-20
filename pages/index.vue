@@ -140,6 +140,7 @@ export default {
   async fetch() {
     this.objects = await this.$axios.$get("/.netlify/functions/apitest");
   },
+  fetchOnServer: false,
   head() {
     return {
       title: this.title,

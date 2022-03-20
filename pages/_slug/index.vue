@@ -39,7 +39,7 @@ export default {
       let response = await contentfulClient.getEntries({
         content_type: "blogPost",
         include: 10,
-        "fields.slug": this.$route.params.slug, // the magic happens here
+        "fields.slug[in]": this.$route.params.slug, // the magic happens here
       });
       if (response.items.length > 0) {
         this.fields = response.items[0].fields;
