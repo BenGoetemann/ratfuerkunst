@@ -776,7 +776,7 @@ Contentful ist ein Headless CMS, welches dem User erlaubt, eigene Content Models
 
 Im Gegensatz zu allen Tutorials, sollte dieses Template die Daten nicht über die ```asyncData``` Methode sondern mit der ```fetch``` Hook laden, da ```asyncData``` nur auf Page-Ebene (nicht in Komponenten) möglich ist und die Daten zur Build-Time, also Server-Side, lädt, wodurch neu hinzugefügte Posts in Contentful ohne einen Rebuild auf der Seite nicht angezeigt würden. Leider hat dieser Ansatz beim Page-Reload zu einem 404 geführt. Der Client pusht die Seite zwar auf den Router und fetcht die Daten, aber der Server kennt die Datei nicht. 
 
-***Demnach gilt: Wer dynamische Routen für Blogposts generiert, sollte auf Rebuilding setzen.***
+**Demnach gilt: Wer dynamische Routen für Blogposts generiert, sollte auf Rebuilding setzen.**
 
  Die ```fetch``` Hook lädt by default nicht Client-Side. Man kann jedoch außerhalb der ```fetch``` Hook eine Zeile Code hinzufügen, die der Page oder Komponente erlaubt Client-Side die Daten zu laden: 
 
