@@ -13,7 +13,9 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
   - [Components verstehen](#components-verstehen)
   - [Slots verstehen](#slots-verstehen)
   - [Props verstehen](#props-verstehen)
+  - [Dynamic Routing verstehen](#dynamic-routing-verstehen)
   - [Netlify Functions verstehen](#netlify-functions-verstehen)
+  - [Contentful verstehen](#contentful-verstehen)
 - [Components](#components)
   - [Container](#container)
     - [FluidContainer](#fluidcontainer)
@@ -56,6 +58,7 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
 - [Contentful](#contentful)
   - [Dynamic Website Content mit Contentful](#dynamic-website-content-mit-contentful)
   - [Rich Text Processing](#rich-text-processing)
+  - [Content mit Query Parametern filter](#content-mit-query-parametern-filter)
   - [Dynamische Hauptseiten](#dynamische-hauptseiten)
 - [Depoloyment](#depoloyment)
   - [Nuxt und Netlify Trailing Slash Problem](#nuxt-und-netlify-trailing-slash-problem)
@@ -158,6 +161,40 @@ Damit die Struktur besser verstanden wird, hier ein kleines Schaubild:
 
 <br>
 
+## Dynamic Routing verstehen
+
+Nuxt kann Dynamic Routing! Das bedeutet, dass z.B. aus der Anfrage einer API dynamische Routen/Links generiert werden können. Man könnte z.B. auf einer ```/events``` Page alle Events abfragen. Wenn man auf ein Event klickt, soll der Besucher auf die jeweilige Event-Page geleitet werden. 
+
+Vorweg sei gesagt, dass es zwei Möglichkeiten gibt dynamische Routen zu erzeugen. 
+
+Möchte man dynamische Seiten auf höchster Ebene wie ```www.leaf.io/ziel-seite``` erzeugen:
+
+```
+index.vue
+_slug/
+--index.vue
+```
+
+Von der ausgehenden Seite kann nur mit ```<NuxtLink to="/ziel-seite">``` navigiert werden.
+
+Möchte man dynamische Seiten hinter Pfaden wie ```www.leaf.io/event/ziel-seite```erzeugen:
+
+```
+events.vue
+event/
+--_slug.vue
+```
+
+Von der ausgehenden Seite kann mit ```<NuxtLink to="/event/ziel-seite">``` navigiert werden.
+
+Durch das ```$route``` Objekt kann programmatisch auf den Pfad zugegriffen werden, womit dann der individuelle Call für die dynamisch zu erstellende Seite gemacht werden kann.
+
+In-Depth Informationen zu dynamischen Pages hierzu [hier](https://nuxtjs.org/docs/directory-structure/pages).
+Mehr Information zu der Erstellung dynamischer Pages anhand von API Calls [hier](https://dev.to/davidemaye/dynamic-routing-in-nuxt-5g9)
+
+
+<br>
+
 ## Netlify Functions verstehen
 
 Netlify Functions geben die Möglichkeit Backend Code auszuführen, ohne einen Server nutzen zu müssen. Dies ist vor allem extrem Hilfreich, wenn man API Keys verstecken muss.
@@ -165,6 +202,12 @@ Netlify Functions geben die Möglichkeit Backend Code auszuführen, ohne einen S
 Mehr Werbung zu Netlify Functions [hier](https://www.netlify.com/products/functions/).<br>
 Mehr Dokumentation zu Netlify Functions [hier](https://docs.netlify.com/functions/overview/).<br>
 Mehr Info zum Verstecken von API Keys [hier](https://youtu.be/m2Dr4L_Ab14).
+
+<br>
+
+## Contentful verstehen
+
+Contentful ist ein Headless CMS, welches erlaubt, eigene Content Types zu definieren. Die individuell erstellbaren Felder der jeweiligen Content Types werden dann in der API ausgeliefert. Contentful ermöglicht es sozusagen die absolute Personalisierung einer Content API. Ein weiterer Vorteil gegenüber klassischen CMS ist, dass der Content über API an mehrere Ziele ausgeliefert werden kann bzw. in verschiedenen Projekten auf die selben Daten zugegriffen werden kann. So kann man den Content nicht nur auf der Website, sondern auch den selben Content auf einer App anzeigen.
 
 <br>
 <br>
@@ -891,6 +934,22 @@ async fetch() {
     }
   },
 ```
+
+<br>
+
+## Content mit Query Parametern filter
+
+Contentful bietet die Möglichkeit Content direkt nach gewissen Parametern zu filtern. Wenn man beispielsweise nur Content mit einem gewissen Tag fetchen möchte kann man das folgendermaßen machen:
+
+```js
+const response = await contentfulClient.getEntries({
+  content_type: "event",
+  include: 10,
+  'metadata.tags.sys.id[in]': 'techno'
+});
+```
+
+Mehr Informationen zu den Query Parametern gibt es [hier](https://www.contentful.com/developers/docs/references/content-delivery-api/)
 
 <br>
 

@@ -8,7 +8,7 @@
       target="_blank"
       rel="noopener noreferrer"
       :href="link"
-      ><img :src="img" alt="Icon" />
+      ><img :src="img" :alt="alt" />
     </a>
 
     <!-- Internal Route -->
@@ -19,12 +19,12 @@
         path: slug,
       }"
     >
-      <img :src="img" alt="Icon" />
+      <img :src="img" :alt="alt" />
     </NuxtLink>
 
     <!-- Without Link or Route -->
 
-    <img v-if="!slug && !link" :src="img" alt="Icon" />
+    <img v-if="!slug && !link" :src="img" :alt="alt" />
   </div>
 </template>
 
@@ -32,7 +32,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  props: ["img", "link", "slug"],
+  props: ["img", "link", "slug", "alt"],
 });
 </script>
 

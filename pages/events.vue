@@ -31,6 +31,7 @@ export default {
       const response = await contentfulClient.getEntries({
         content_type: "event",
         include: 10,
+        'metadata.tags.sys.id[in]': 'techno'
       });
       if (response.items.length > 0) {
         this.events = response.items;
