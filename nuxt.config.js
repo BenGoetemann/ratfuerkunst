@@ -20,7 +20,7 @@ export default {
   head: {
     title: 'TEMPLATE',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'de'
     },
     script: [{
         src: '/heyflow.js',
@@ -135,14 +135,24 @@ export default {
 
   generate: {
     routes: function () {
-      return contentfulClient.getEntries({
-          content_type: "blogPost",
-          include: 10,
-        })
-        .then((response) => {
-          return response.items.map((post) => {
-            return 'posts/' + post.fields.slug
+      return Promise.all([
+          contentfulClient.getEntries({
+            content_type: "blogPost",
+            include: 10,
+          }),
+          contentfulClient.getEntries({
+            content_type: "event",
+            include: 10,
           })
+        ])
+        .then(([blogEntries, eventEntries]) => {
+          return [
+            ...blogEntries.items.map(entry => `/post/${entry.fields.slug}`),
+            ...eventEntries.items.map(entry => `/event/${entry.fields.slug}`),
+          ]
+          // return response.items.map((post) => {
+          //   return 'posts/' + post.fields.slug
+          // })
         })
     }
   }

@@ -57,7 +57,7 @@
     </SwipeSection>
     <ContentSection>
       <SmallCenteredSection>
-        <h1>Unser Team</h1>
+        <h2>Unser Team</h2>
         <h3>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla odit
           voluptatem ex quae blanditiis!

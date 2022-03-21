@@ -58,8 +58,10 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
   - [Rich Text Processing](#rich-text-processing)
 - [Depoloyment](#depoloyment)
   - [Nuxt und Netlify Trailing Slash Problem](#nuxt-und-netlify-trailing-slash-problem)
+  - [Dynamische Pages statisch machen](#dynamische-pages-statisch-machen)
   - [Automatische Webhook Builds mit Contentful und Netlify](#automatische-webhook-builds-mit-contentful-und-netlify)
   - [PageSpeed Insights Optimierung](#pagespeed-insights-optimierung)
+  - [SEO Verbesserungen:](#seo-verbesserungen)
 
 <br>
 <br>
@@ -783,7 +785,7 @@ Leider führt dieser Ansatz beim Page-Reload zu einem 404, da dynamische Routen 
 fetchOnServer: false,
 ```
 
-Wenn man das nicht macht, werden die statischen Seiten generiert. Wenn man es macht, hat man das Problem mit den fehlenden Files aufgrund der dynamischen Routen. Nuxt bietet die Möglichkeit beim builden alle Files aus den dynamischen Routen zu erstellen, indem man die aus der Contentful API generierten Routen auswertet so wie [hier](https://academind.com/tutorials/nuxtjs-static-site-generation) beschrieben. Alles was dafür nötig ist, ist dieses Skript in der nuxt.config:
+Wenn man das nicht macht, werden die statischen Seiten generiert. Wenn man es macht, hat man das Problem mit den fehlenden Files aufgrund der dynamischen Routen. Nuxt bietet die Möglichkeit beim builden alle Files aus den dynamischen Routen zu erstellen, indem man die aus der Contentful API generierten Routen auswertet. Dies ist nicht nur für Contentful wichtig, sondern für alle dynamisch generierten Routes. Deshalb ist es nochmal unter Deployment bei [Dynamische Pages statisch machen](#dynamische-pages-statisch-machen) beschrieben. Die genaue Funktion die für Contentful nötig ist in der nuxt.config:
 
 ```js
 generate: {
@@ -849,6 +851,25 @@ Wenn die Nuxt App auf Netlify deployed wurde und ein User auf einer Seite einen 
 
 <br>
 
+## Dynamische Pages statisch machen
+
+Wenn man aus API Calls Pages automatisch generiert, muss man dafür sorgen, alle Pages beim Build zu generieren. In Verbindung mit der ```fetchOnServer: false``` Konfiguration in den Abfragen auf Seiten dynamischer Routen werden Inhalte nicht statisch generiert, sondern nur die jeweiligen Datein und somit die Pfade - die Inhalte laden Client-Side. Generiert man die Seiten nicht auf diese Weise, erhält der User bei einem Page Refresh eine 404-Error (Not Found). 
+
+Mehr dazu [hier](https://academind.com/tutorials/nuxtjs-static-site-generation).
+
+```js
+generate: {
+  routes: function () {
+    return axios.get('https://my-api/users')
+      .then((res) => {
+        return res.data.map((user) => {
+          return '/users/' + user.id
+        })
+      })
+  }
+}
+```
+
 ## Automatische Webhook Builds mit Contentful und Netlify
 
 Wie das automatisierte Builds funktionieren wird [hier](https://www.contentful.com/developers/docs/tutorials/general/automate-site-builds-with-webhooks/#:~:text=Configuring%20a%20Netlify%20build%20hook&text=Click%20Add%20build%20hook%2C%20give,to%20the%20Contentful%20web%20app.) erklärt.
@@ -862,5 +883,14 @@ Hier ein paar Informationen zum Deployment, um den Page Speed zu erhöhen. Um de
 1. Bilder im WebP Format!
 2. Bilder im richtig dimensionieren!
 3. Fonts nach Development herunterladen und einpflegen!
+
+<br>
+
+## SEO Verbesserungen:
+
+Damit die Seite so SEO-optimiert wie möglich ist, müssen diese Schritte ausgeführt werden:
+
+1. [Apple Touch Icon erstellen](https://www.elmastudio.de/ein-apple-touch-icon-fur-die-eigene-webseite-erstellen/)
+2. 
 
 ... more to come

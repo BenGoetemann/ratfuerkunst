@@ -2,7 +2,7 @@
   <div>
     <CookieControl locale="de"/>
     <NavBar
-      :pages="['Impressum', 'Blog']"
+      :pages="['Impressum', 'Blog', 'Events']"
       callToAction="Impressum"
       facebook="leaf"
       instagram="leaf"
