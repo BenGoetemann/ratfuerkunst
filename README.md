@@ -1,12 +1,13 @@
 # This is LEAF
 
-Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack Websites so einfach und schnell wie möglich bauen lassen. Es ist sozusagen ein weißes Blatt - und ja ich weiß "Leaf" ist nicht DAS Blatt hehe - auf dem fast alles, außer Login, umgesetzt werden kann.
+Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack Websites so einfach und schnell wie möglich bauen lassen. Es ist sozusagen ein weißes Blatt - und ja ich weiß "Leaf" ist nicht DAS Blatt hehe - auf dem fast alles, außer (zurzeit noch) Login, umgesetzt werden kann.
 
 # Table of Contents
 - [This is LEAF](#this-is-leaf)
 - [Table of Contents](#table-of-contents)
 - [Getting Started 🚀](#getting-started-)
   - [Projekt installieren](#projekt-installieren)
+  - [Projekt starten](#projekt-starten)
   - [Technologien entfernen](#technologien-entfernen)
   - [Style-Personalisierung](#style-personalisierung)
 - [Key Concepts](#key-concepts)
@@ -16,6 +17,7 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
   - [Dynamic Routing verstehen](#dynamic-routing-verstehen)
   - [Netlify Functions verstehen](#netlify-functions-verstehen)
   - [Contentful verstehen](#contentful-verstehen)
+  - [Tailwind verstehen](#tailwind-verstehen)
 - [Components](#components)
   - [Container](#container)
     - [FluidContainer](#fluidcontainer)
@@ -53,6 +55,7 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
 - [Netlify Functions](#netlify-functions)
   - [Neue Function erstellen](#neue-function-erstellen)
   - [Die Hello World Function mit Comments](#die-hello-world-function-mit-comments)
+  - [Eine tatsächliche Function](#eine-tatsächliche-function)
   - [Eine Netlify Function fetchen](#eine-netlify-function-fetchen)
   - [Netlify Functions für Production konfigurieren](#netlify-functions-für-production-konfigurieren)
 - [Contentful](#contentful)
@@ -92,6 +95,17 @@ Um das Projekt zum Laufen zu bringen muss folgendes gemacht werden:
 
 <br>
 
+## Projekt starten
+
+Wenn man das Projekt starten möchte gibt es zwei Möglichkeiten:
+
+1. Wenn man keine Netlify Functions nutzt ```yarn dev```.
+2. Wenn man Netlify Functions nutzt ```yarn netlify dev```.
+
+Auch wenn ```yarn netlify dev``` genutzt wird um das Projekt zu starten, wird ein Localhost:3000 aufgesetzt.
+
+<br>
+
 ## Technologien entfernen
 
 Sollte man diverse Komponenten nicht benötigen, sollte man diese in diesen Schritten entfernen:
@@ -112,6 +126,8 @@ Um das Corporate Design eines Auftraggebers in das Template zu überführen müs
 - Font in den Stylings unter ```~/layouts/default.vue``` importieren und in ```html``` als Font-Family setzen.
 - Farben und Spacings in der ```tailwind.config``` anpassen.
  
+Ab dann müssen die Stylings in den jeweiligen Komponenten angepasst werden. 
+
 <br>
 <br>
 
@@ -208,6 +224,27 @@ Mehr Info zum Verstecken von API Keys [hier](https://youtu.be/m2Dr4L_Ab14).
 ## Contentful verstehen
 
 Contentful ist ein Headless CMS, welches erlaubt, eigene Content Types zu definieren. Die individuell erstellbaren Felder der jeweiligen Content Types werden dann in der API ausgeliefert. Contentful ermöglicht es sozusagen die absolute Personalisierung einer Content API. Ein weiterer Vorteil gegenüber klassischen CMS ist, dass der Content über API an mehrere Ziele ausgeliefert werden kann bzw. in verschiedenen Projekten auf die selben Daten zugegriffen werden kann. So kann man den Content nicht nur auf der Website, sondern auch den selben Content auf einer App anzeigen.
+
+<br>
+
+## Tailwind verstehen
+
+Tailwind ist ein utility-first CSS Framework, welches einfaches und schnelles setzen von Stylings ermöglicht. In diesem Template wird Tailwind "Nested" genutzt, was bedeutet, dass die Tailwind nicht in das ```class``` Atribut gepackt wird, sondern in die CSS Referenzen im ```style``` Tag. Dies ermöglicht es den HTML Tags, wie gewöhnlich, Klassen zu geben und die Eigentschaften mit Tailwind zu beschreiben:
+
+```html
+<style lang="postcss" scoped>
+.footerWrapper {
+  @apply flex flex-col-reverse items-center lg:items-start lg:flex-row;
+  @apply py-9 lg:py-16;
+}
+</style>
+```
+
+Im Root Verzeichnis liegt eine Datei namens ```tailwind.config```. Diese kann dazu genutzt werden um zusätzliche Definitionen hinzuzufügen oder verhandene zu überschreiben.
+
+Die offizielle Dokumentation findet man [hier](https://tailwindcss.com/docs/installation).
+
+Nuxt bietet in der Version des Templates eine Tailwind Vorschau an. Nachdem man das Projekt gestartet hat, kann man diese URL aufrufen, um die verschiedenen Tailwind-Klassen zu inspizieren unter ```http://localhost:3000/_tailwind/```.
 
 <br>
 <br>
@@ -747,6 +784,34 @@ const handler = async (event) => {
     }
   } catch (error) {
     return { statusCode: 500, body: error.toString() }
+  }
+}
+
+module.exports = { handler }
+
+```
+
+## Eine tatsächliche Function
+
+```js
+const axios = require('axios')
+
+const handler = async (event) => {
+  const url = 'https://api.propstack.de/v1/units?with_meta=1&expand=1&status=15503&api_key=' + process.env.API_SECRET
+  try {
+    const { data } = await axios.get(url)
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(data.data)
+    }
+  } catch (error) {
+    const {
+      status, statusText, headers, data } = error.response
+    return {
+      statusCode: status,
+      body: JSON.stringify({ status, statusText, headers, data })
+    }
   }
 }
 
