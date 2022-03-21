@@ -141,7 +141,7 @@ export default {
         })
         .then((response) => {
           return response.items.map((post) => {
-            return post.fields.slug
+            return 'posts/' + post.fields.slug
           })
         })
     }
