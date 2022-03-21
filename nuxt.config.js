@@ -150,9 +150,6 @@ export default {
             ...blogEntries.items.map(entry => `/post/${entry.fields.slug}`),
             ...eventEntries.items.map(entry => `/event/${entry.fields.slug}`),
           ]
-          // return response.items.map((post) => {
-          //   return 'posts/' + post.fields.slug
-          // })
         })
     }
   }

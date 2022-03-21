@@ -56,6 +56,7 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
 - [Contentful](#contentful)
   - [Dynamic Website Content mit Contentful](#dynamic-website-content-mit-contentful)
   - [Rich Text Processing](#rich-text-processing)
+  - [Dynamische Hauptseiten](#dynamische-hauptseiten)
 - [Depoloyment](#depoloyment)
   - [Nuxt und Netlify Trailing Slash Problem](#nuxt-und-netlify-trailing-slash-problem)
   - [Dynamische Pages statisch machen](#dynamische-pages-statisch-machen)
@@ -319,7 +320,7 @@ Darüber hinaus kann durch die Property ```callToAction``` ein Button erzeugt we
 Zuguterletzt kann über die Prop ```absolute``` entschieden werden, ob die Navigationsleiste im Desktop State über dem Header "floaten" soll, oder einen eigenen abgetrennten Bereich bekommt, indem man ```absolute``` auf ```true``` setzt. 
 
 ><br>
->[!]
+> ⚠️
 ><br>
 ><br>
 >Wenn die NavBar nicht absolut ist, muss in der [LegalSection](#legalsection) das CSS angepasst werden, da die Margins nicht mehr passen.
@@ -554,7 +555,7 @@ export default {
 
 ```
 ><br>
->[!]
+>⚠️
 ><br>
 ><br>
 >Wenn man die AXIOS-Method innerhalb außerhalb einer AsyncData, in jener man einen  Parameter mitgibt (```async asyncData({ $axios })```), also innerhalb einer Methode oder Hook, verwenden möchte, muss man sie mit ```this``` referenzieren.
@@ -594,7 +595,7 @@ module.exports = { handler }
 
 ```
 ><br>
->[!]
+>⚠️
 ><br>
 ><br>
 >Man kann Nuxt/Axios in der nuxt.config eine BaseURL hinzufügen. In diesem Fall ist Axios darauf ausgelegt keinen ganzen Link, sondern lediglich die relevanten Pfade anzunehmen. Dann sollte die URL nicht ```https://swapi.dev/api/people/1/``` sondern ```/api/people/1/``` lauten.
@@ -729,7 +730,7 @@ So können dann die Functions aufgerufen werden:
 [...] = await this.$http.$get('/.netlify/functions/myFunction?parameter="value"');
 ```
 ><br>
->[!]
+>⚠️
 ><br>
 ><br>
 >Damit die Function aufgerufen werden kann, muss in der ```nuxt.config``` unter den Axios Options die Base URL vergeben werden. Diese Requests sind in Verbindung mit Netlify NICHT dafür gedacht, Daten aus anderen Quellen zu fetchen. Mithilfe der Axios Proxys sind jedoch weitere Konfigurationen möglich. Dazu bitte [hier nachlesen](https://axios.nuxtjs.org/options).
@@ -754,7 +755,7 @@ axios: {
 },
 ```
 ><br>
->[!]
+>⚠️
 ><br>
 ><br>
 >Wenn man neu hinzugefügte Netlify Functions innerhalb von AsyncData Methods verwendet, gibt es beim Deployment Fehler, da die Function zur Build Time noch nicht von der Production URL erreicht werden kann. Beim nächsten Deployment funktioniert alles ohne Probleme.
@@ -782,8 +783,37 @@ Leider führt dieser Ansatz beim Page-Reload zu einem 404, da dynamische Routen 
  Die ```fetch``` Hook lädt by default nicht Client-Side. Man kann jedoch außerhalb der ```fetch``` Hook eine Zeile Code hinzufügen, die der Page oder Komponente erlaubt Client-Side die Daten zu laden: 
 
 ```js
+  async fetch() {
+    try {
+      if (!contentfulClient) return;
+      const e = await contentfulClient.getEntries({
+        content_type: "event",
+        include: 10,
+      });
+      const p = await contentfulClient.getEntries({
+        content_type: "blogPost",
+        include: 10,
+      });
+      if (e.items.length > 0 && p.items.length > 0) {
+        this.events = e.items;
+        this.posts = p.items;
+        //console.log(response);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  },
 fetchOnServer: false,
 ```
+> <br>
+>⚠️
+> <br>
+> <br>
+> In diesen Beispiel werden mehrere Content Types auf einer Seite geladen. Bei nur einem Type muss der Request entsprechend angepasst werden.
+> <br>
+> <br>
+
+<br>
 
 Wenn man das nicht macht, werden die statischen Seiten generiert. Wenn man es macht, hat man das Problem mit den fehlenden Files aufgrund der dynamischen Routen. Nuxt bietet die Möglichkeit beim builden alle Files aus den dynamischen Routen zu erstellen, indem man die aus der Contentful API generierten Routen auswertet. Dies ist nicht nur für Contentful wichtig, sondern für alle dynamisch generierten Routes. Deshalb ist es nochmal unter Deployment bei [Dynamische Pages statisch machen](#dynamische-pages-statisch-machen) beschrieben. Die genaue Funktion die für Contentful nötig ist in der nuxt.config:
 
@@ -804,7 +834,32 @@ generate: {
 }
 ```
 
-Wenn wir das machen, können wir die Daten auf den dynamisch generierten Seiten vom Client ziehen. Der Blog User hat somit das Gefühl, dass seine neuen Blog Posts sofort auf der Seite erscheinen. Im Hintergrund triggert Contentful jedoch eine Webhook, die Netlify signalisiert die Seite neu zu builden. In diesem Prozess werden dann alle neuen nötigen Pages erstellt. Wie man die Webhook einstellt, wird unter [Automatische Webhook Builds mit Contentful und Netlify](#automatische-webhook-builds-mit-contentful-und-netlify) erkärt.
+Möchten wir mehrere dynamische Routen von Contentful statisch machen, muss der Code folgendermaßen aussehen:
+
+```js
+generate: {
+  routes: function () {
+    return Promise.all([
+        contentfulClient.getEntries({
+          content_type: "blogPost",
+          include: 10,
+        }),
+        contentfulClient.getEntries({
+          content_type: "event",
+          include: 10,
+        })
+      ])
+      .then(([blogEntries, eventEntries]) => {
+        return [
+          ...blogEntries.items.map(entry => `/post/${entry.fields.slug}`),
+          ...eventEntries.items.map(entry => `/event/${entry.fields.slug}`),
+        ]
+      })
+  }
+}
+```
+
+Wenn wir das machen, können wir die Daten auf den dynamisch generierten Seiten vom Client fetchen. Der Blog User hat somit das Gefühl, dass seine neuen Blog Posts sofort auf der Seite erscheinen. Im Hintergrund triggert Contentful jedoch eine Webhook, die Netlify signalisiert die Seite neu zu builden. In diesem Prozess werden dann alle neuen nötigen Pages erstellt. Wie man die Webhook einstellt, wird unter [Automatische Webhook Builds mit Contentful und Netlify](#automatische-webhook-builds-mit-contentful-und-netlify) erkärt.
 
 <br>
 
@@ -836,6 +891,40 @@ async fetch() {
     }
   },
 ```
+
+<br>
+
+## Dynamische Hauptseiten
+
+Im Gegensatz zu der Variante dynamischen Routen hinter einem Pfad zu erzeugen, wie bei diesem File Baum...:
+
+```
+posts.vue
+post/
+--_slug.vue
+```
+
+... ist es auch möglich dynamische Pages auf erster Pfadebene zu erzeugen, für beispielsweise alle Hauptseiten. Dies ist durch diesen Filebaum möglich:
+
+```
+index.vue
+_slug/
+--index.vue
+```
+
+Erstellt man dynamische Routen auf diese Weise werden keine zusätzlichen Pfad-Ebenen erzeugt. Das heißt, dass die Pfade der daraus erstellten dynamischen Pages folgendermaßen aussehen...:
+
+```
+www.leaf.com/page
+```
+
+... und niemals so aussehen können: 
+
+```
+www.leaf.com/posts/page
+```
+
+Mit ein paar Konfigurationen im [Rich Text Processing](#rich-text-processing) können in Rich Text Editoren auch komplette Haupt Pages gestaltet werden.
 
 <br>
 <br>

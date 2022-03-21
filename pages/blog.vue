@@ -2,7 +2,7 @@
   <ContentSection>
     <div v-for="post in posts" :key="post.fields.slug">
       <div>{{ post.fields.slug }}</div>
-      <NuxtLink :to="'posts/' + post.fields.slug">
+      <NuxtLink :to="'post/' + post.fields.slug">
         <div class="postPreview">
           <div class="previewImgWrapper">
             <img
