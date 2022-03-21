@@ -765,10 +765,6 @@ axios: {
 
 # Contentful
 
-<br>
-<br>
-<br>
-
 Contentful ist ein Headless CMS, welches dem User erlaubt, eigene Content Models zu erstellen. Meine Lösung habe ich aus [diesen Artikeln](https://www.netlify.com/blog/2020/04/20/create-a-blog-with-contentful-and-nuxt/) und [diesem Artikel](https://medium.com/js-dojo/build-a-website-using-nuxt-contentful-a-step-by-step-guide-b75217ccdfa) zusammengesetzt, wobei mich [dieser Artikel](https://dev.to/codervtwo/creating-a-jamstack-blog-using-contentful-and-nuxt-with-fetch-2kf9) auf den richtigen Pfad gebracht hat.
 
 <br>
@@ -839,6 +835,8 @@ async fetch() {
   },
 ```
 
+<br>
+<br>
 <br>
 
 # Depoloyment

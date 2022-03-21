@@ -1,7 +1,8 @@
 <template>
   <ContentSection>
     <div v-for="post in posts" :key="post.fields.slug">
-      <NuxtLink :to="post.fields.slug">
+      <div>{{ post.fields.slug }}</div>
+      <NuxtLink :to="'posts/' + post.fields.slug">
         <div class="postPreview">
           <div class="previewImgWrapper">
             <img
@@ -48,6 +49,9 @@ export default {
     }
   },
   fetchOnServer: false,
+  mounted() {
+    console.log(this.$route.name)
+  }
 };
 </script>
 
@@ -60,17 +64,17 @@ export default {
     @apply m-0;
   }
 }
-  .previewTextWrapper {
-     @apply m-micro
-  }
+.previewTextWrapper {
+  @apply m-micro;
+}
 
-  .previewImgWrapper {
-    @apply m-micro h-44;
-    aspect-ratio: 1/1
-  }
+.previewImgWrapper {
+  @apply m-micro h-44;
+  aspect-ratio: 1/1;
+}
 
-  .previewImg {
-    @apply h-full w-full;
-    object-fit: cover;
-  }
+.previewImg {
+  @apply h-full w-full;
+  object-fit: cover;
+}
 </style>

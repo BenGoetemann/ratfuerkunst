@@ -141,7 +141,6 @@ export default {
         })
         .then((response) => {
           return response.items.map((post) => {
-            console.log(post.fields.slug)
             return post.fields.slug
           })
         })

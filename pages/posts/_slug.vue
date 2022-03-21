@@ -8,6 +8,7 @@
 </template>
 
 <script>
+
 import { createClient } from "../../plugins/contentful";
 const contentfulClient = createClient();
 
