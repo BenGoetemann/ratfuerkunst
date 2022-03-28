@@ -8,8 +8,12 @@
         </TextSection>
       </BorderContainer>
     </FluidContainer>
-    <section class="swipeWrapper">
-      <slot></slot>
+    <section class="slideContainer">
+      <button class="right" @click="right()" type="button">Next</button>
+      <section class="swipeWrapper" ref="swipeWrapper">
+        <slot></slot>
+      </section>
+      <button class="left" @click="left()" type="button">Prev</button>
     </section>
   </main>
 </template>
@@ -17,6 +21,21 @@
 <script>
 export default {
   props: ["styles", "title", "text"],
+  data() {
+    return {
+      distance: 450,
+    };
+  },
+  methods: {
+    left() {
+      let element = this.$refs["swipeWrapper"];
+      element.scrollLeft -= this.distance;
+    },
+    right() {
+      let element = this.$refs["swipeWrapper"];
+      element.scrollLeft += this.distance;
+    },
+  },
 };
 </script>
 
@@ -31,6 +50,7 @@ main {
 
 .swipeWrapper {
   @apply overflow-auto whitespace-nowrap;
+  scroll-behavior: smooth;
 }
 
 .swipeWrapper div {
@@ -67,5 +87,27 @@ div:last-child {
   div:last-child {
     margin-right: calc((100vw - 80rem) / 2);
   }
+}
+
+.slideContainer {
+  @apply relative m-0 flex items-center;
+}
+
+.left,
+.right {
+  @apply hidden h-64 w-10 bg-gray-200 opacity-50 md:inline;
+}
+
+.left {
+  @apply absolute left-0;
+}
+
+.right {
+  @apply absolute right-0;
+}
+
+.left:hover,
+.right:hover {
+  @apply opacity-100;
 }
 </style>

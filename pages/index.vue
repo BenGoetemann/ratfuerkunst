@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <WideHeader img="bg-hero" />
     <ContentSection>
       <TextSection>
@@ -21,7 +20,7 @@
           nesciunt aliquid enim totam amet in molestias nulla iusto tenetur
           quisquam voluptatem, obcaecati porro delectus.
         </p>
-        <YouTubePlayer id="Xh11iUpJs4Y" />
+        <!-- <YouTubePlayer id="Xh11iUpJs4Y" /> -->
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
           corrupti culpa tempora quia placeat dignissimos modi, aliquam quaerat,
@@ -46,14 +45,20 @@
       title="Test"
       text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime rem inventore reiciendis ad maiores iusto culpa. "
     >
-      <div v-for="object in objects" :key="object.id">
+      <div
+        class="swipeSectionElement"
+        v-for="object in objects"
+        :key="object.id"
+      >
         <ProductCard
+          ref="test"
           :img="require('~/assets/images/heroes/hero.jpg')"
-          :title="object.title.value"
+          title="Test"
           description="Lorem ipsum dolor sit amet."
           slug="yolo"
         />
       </div>
+      <!-- :title="object.title.value" -->
     </SwipeSection>
     <ContentSection>
       <SmallCenteredSection>
@@ -120,6 +125,7 @@
 
 <script>
 import ProductCard from "~/components/elements/ProductCard.vue";
+
 export default {
   components: { ProductCard },
   data() {
@@ -139,6 +145,7 @@ export default {
   },
   async fetch() {
     this.objects = await this.$axios.$get("/.netlify/functions/apitest");
+    console.log(this.objects);
   },
   fetchOnServer: false,
   head() {
