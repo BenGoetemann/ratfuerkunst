@@ -52,7 +52,7 @@
       >
         <ProductCard
           ref="test"
-          :img="require('~/assets/images/heroes/hero.jpg')"
+          :img="object.images[0].big_url"
           title="Test"
           description="Lorem ipsum dolor sit amet."
           slug="yolo"

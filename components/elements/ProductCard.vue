@@ -22,16 +22,17 @@ export default {
   @apply flex flex-col items-start justify-start rounded-default;
   @apply my-small w-80 md:w-84;
   @apply bg-white;
+  aspect-ratio: 1/1.3
 }
 
 .productPictureWrapper {
   @apply flex justify-center items-center;
-  @apply w-full;
+  @apply w-full h-3/5;
 }
 
 .descriptionWrapper {
   @apply max-w-xs flex-wrap;
-  @apply m-small;
+  @apply p-small w-full h-2/5;
 }
 
 h3 {
@@ -39,6 +40,7 @@ h3 {
 }
 
 .productPicture {
+  @apply h-full w-full;
   object-fit: cover;
   overflow: hidden;
 }
