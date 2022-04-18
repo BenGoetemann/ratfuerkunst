@@ -28,7 +28,7 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
     - [SmallCenteredSection](#smallcenteredsection)
     - [LegalSection](#legalsection)
     - [TextSection](#textsection)
-    - [HideOnMobile](#hideonmobile)
+    - [HideOn](#hideon)
     - [WrapSection](#wrapsection)
   - [Elements](#elements)
     - [YouTubePlayer](#youtubeplayer)
@@ -343,9 +343,24 @@ Die TextSection zeigt die Items und Text linksbündig an.
 
 <br>
 
-### HideOnMobile
+### HideOn
 
-Die HideOnMobile Section versteckt den Inhalt ab dem Moment, an dem die NavBar den Drawer zugänglich nacht.
+Die HideOn Section versteckt oder zeigt den Inhalt ab dem Moment, an dem die NavBar den Drawer zugänglich macht. Sie nimmt über die ```device``` Property die Werte "mobile" oder "desktop" entgegen und kann dann konditionell Elemente je nach Bildschirm Typ anzeigen/verstecken:
+
+```html
+<HideOn device="mobile">
+  <SocialIconSelection
+    :facebook="facebook"
+    :instagram="instagram"
+    :tiktok="tiktok"
+    :twitter="twitter"
+    :reddit="reddit"
+    :snapchat="snapchat"
+    :linkedin="linkedin"
+    :youtube="youtube"
+  />
+</HideOn>
+```
 
 <br>
 

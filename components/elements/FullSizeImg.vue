@@ -12,8 +12,8 @@ export default {
 
 <style lang="postcss" scoped>
 .imgWrapper {
-  @apply mb-micro w-full;
-  aspect-ratio: 16/9;
+  @apply w-full h-full;
+  /* aspect-ratio: 16/9; */
 }
 
 img {

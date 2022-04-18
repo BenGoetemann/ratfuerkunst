@@ -105,7 +105,7 @@ export default {
       this.answers.push(clickedOption.value);
       this.pageMemory.push(indexOfNextOption);
       this.currentPage = indexOfNextOption;
-      this.firePixelEvent(clickedOption.event);
+      if(clickedOption.event) this.firePixelEvent(clickedOption.event);
     },
     loadPreviousPageAndDeleteLastAnswer() {
       const previousPage = this.pageMemory.length - 2;
@@ -118,8 +118,9 @@ export default {
       this.currentPage = this.options.length - 1;
       window.scrollTo(0, 0);
       this.loading = true;
+      // FIRE PIXEL EVENT
+      // this.firePixelEvent("formSubmit");
       // SEND REQUEST
-      this.firePixelEvent("formSubmit");
       console.log(this.answers);
       this.loading = false;
     },

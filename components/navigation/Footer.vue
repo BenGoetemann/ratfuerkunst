@@ -6,7 +6,7 @@
         <div class="logoSection">
           <Logo />
           <p>© {{ new Date().getFullYear() }} {{ company }}</p>
-          <HideOnMobile>
+          <HideOn device="mobile">
             <SocialIconSelection
               :facebook="facebook"
               :instagram="instagram"
@@ -17,7 +17,7 @@
               :linkedin="linkedin"
               :youtube="youtube"
             />
-          </HideOnMobile>
+          </HideOn>
         </div>
         <div class="linkSelectionWrapper">
           <slot></slot>

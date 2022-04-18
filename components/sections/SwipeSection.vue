@@ -9,11 +9,20 @@
       </BorderContainer>
     </FluidContainer>
     <section class="slideContainer">
-      <button class="right" @click="right()" type="button">Next</button>
-      <section class="swipeWrapper" ref="swipeWrapper">
+      <button
+        v-if="scrollPosition > 0"
+        class="left"
+        type="button"
+        @click="left()"
+      >
+        <p>&larr;</p>
+      </button>
+      <button v-if="showButton" class="right" type="button" @click="right()">
+        <p>&rarr;</p>
+      </button>
+      <section class="swipeWrapper" ref="swipeWrapper" @scroll="handleScroll()">
         <slot></slot>
       </section>
-      <button class="left" @click="left()" type="button">Prev</button>
     </section>
   </main>
 </template>
@@ -21,21 +30,29 @@
 <script>
 export default {
   props: ["styles", "title", "text"],
-  data() {
+    data () {
     return {
       distance: 450,
-    };
+      scrollPosition: 0,
+      showButton: true
+    }
   },
   methods: {
-    left() {
-      let element = this.$refs["swipeWrapper"];
-      element.scrollLeft -= this.distance;
+    handleScroll () {
+      const element = this.$refs.swipeWrapper
+      this.scrollPosition = element.scrollLeft
     },
-    right() {
-      let element = this.$refs["swipeWrapper"];
-      element.scrollLeft += this.distance;
+    left () {
+      const element = this.$refs.swipeWrapper
+      element.scrollLeft -= this.distance
+      this.scrollPosition -= this.distance
     },
-  },
+    right () {
+      const element = this.$refs.swipeWrapper
+      element.scrollLeft += this.distance
+      this.scrollPosition += this.distance
+    }
+  }
 };
 </script>
 
@@ -95,15 +112,20 @@ div:last-child {
 
 .left,
 .right {
-  @apply hidden h-64 w-10 bg-gray-200 opacity-50 md:inline;
+  @apply hidden h-14 w-14 rounded-full bg-black opacity-50 md:inline;
+  z-index: 20;
+
+  > p {
+    @apply text-yellow-500;
+  }
 }
 
 .left {
-  @apply absolute left-0;
+  @apply absolute left-10;
 }
 
 .right {
-  @apply absolute right-0;
+  @apply absolute right-10;
 }
 
 .left:hover,

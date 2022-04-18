@@ -60,7 +60,7 @@
       </div>
       <!-- :title="object.title.value" -->
     </SwipeSection>
-    <ContentSection>
+    <!-- <ContentSection>
       <SmallCenteredSection>
         <h2>Unser Team</h2>
         <h3>
@@ -119,19 +119,53 @@
           slug="impressum"
         />
       </WrapSection>
-    </ContentSection>
+    </ContentSection> -->
     <ContentSection>
-      <FlowMachine :option-data="contact" />
+      <LayoutContent dir="reversed" :ratio="[46, 46]">
+        <template v-slot:a>
+          <FullSizeImg
+            src="https://www.sueddeutsche.de/image/sz.1.5509306/1408x792?v=1642500419&format=webp"
+          />
+        </template>
+        <template v-slot:b>
+          <h2>This is a Test</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+            error repudiandae hic aut, mollitia sit qui at a!
+          </p>
+          <StringButton btnText="test" />
+          <StringButton btnText="test" />
+          <StringButton btnText="test" />
+        </template>
+      </LayoutContent>
+      <LayoutContent :ratio="[46, 46]">
+        <template v-slot:a>
+          <FullSizeImg
+            src="https://www.sueddeutsche.de/image/sz.1.5509306/1408x792?v=1642500419&format=webp"
+          />
+        </template>
+        <template v-slot:b>
+          <h2>This is a Test</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+            error repudiandae hic aut, mollitia sit qui at a!
+          </p>
+          <StringButton btnText="test" />
+          <StringButton btnText="test" />
+          <StringButton btnText="test" />
+        </template>
+      </LayoutContent>
     </ContentSection>
   </div>
 </template>
 
 <script>
+import Arguments from '~/components/sections/ArgumentSection.vue';
 import ProductCard from "~/components/elements/ProductCard.vue";
 import contact from "~/static/flows/contact.json";
 
 export default {
-  components: { ProductCard },
+  components: { ProductCard, Arguments },
   data() {
     return {
       title: "Beautiful Landscapes brought to you by the Universe! 🚀",

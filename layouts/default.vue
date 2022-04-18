@@ -1,8 +1,8 @@
 <template>
   <div>
-    <CookieControl locale="de"/>
+    <CookieControl locale="de" />
     <NavBar
-      :pages="['Impressum', 'Blog', 'Events']"
+      :pages="['Impressum', 'Blog', 'Events', 'Contact']"
       callToAction="Impressum"
       facebook="leaf"
       instagram="leaf"
@@ -20,10 +20,7 @@
       linkedin="leaf"
       youtube="leaf"
     >
-      <LinkSelection
-        title="Legal"
-        :pages="['Impressum']"
-      />
+      <LinkSelection title="Legal" :pages="['Impressum']" />
     </Footer>
   </div>
 </template>
