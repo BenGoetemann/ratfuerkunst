@@ -106,7 +106,7 @@ nav {
 
 .navWrapper {
   @apply flex items-center justify-between;
-  @apply xs:mb-mini sm:pb-0 mt-mini;
+  @apply xs:mb-small sm:pb-0 mt-small;
   @apply bg-transparent;
 }
 
@@ -136,7 +136,7 @@ nav {
 
 .drawerHeader {
   @apply flex flex-row justify-between;
-  @apply mt-mini;
+  @apply mt-small;
 }
 
 .socialMediaWrapper {

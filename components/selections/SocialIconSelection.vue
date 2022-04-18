@@ -67,7 +67,7 @@ export default {
 
 <style lang="postcss" scoped>
 .socialIconSelection {
-  @apply flex flex-row items-start justify-center lg:justify-start;
+  @apply flex flex-row items-start justify-center;
   @apply w-full py-small xl:w-auto xl:py-micro;
 }
 </style>

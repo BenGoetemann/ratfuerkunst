@@ -29,6 +29,7 @@
     "webpack": "^4.46.0"
   },
   "devDependencies": {
+    "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/tailwindcss": "^4.2.1",
     "autoprefixer": "^10.4.2",
     "netlify-cli": "^9.13.0",

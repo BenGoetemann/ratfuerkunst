@@ -16,6 +16,11 @@ export default {
     CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
   },
 
+  loading: {
+    color: '#fab716',
+    height: '3px'
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'TEMPLATE',
@@ -61,7 +66,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
-  
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     "~/plugins/youtube",
@@ -88,7 +93,8 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    'nuxt-gsap-module'
+    'nuxt-gsap-module',
+    '@nuxtjs/google-analytics'
   ],
 
   gsap: {
@@ -110,6 +116,10 @@ export default {
     pixelId: 'FACEBOOK_PIXEL_ID',
     autoPageView: true,
     disabled: false
+  },
+
+  googleAnalytics: {
+    id: 'GOOGLE_ANALYTICS_ID' // https://google-analytics.nuxtjs.org/setup
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
