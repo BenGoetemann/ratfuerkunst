@@ -1,0 +1,71 @@
+[{
+    "key": "target-group",
+    "type": "option",
+    "subtext": "Los gehts!",
+    "title": "Zu welcher Gruppe gehören Sie?",
+    "callto": "Käufer oder Verkäufer?",
+    "fields": [{
+        "type": "relationalPath",
+        "value": "relational",
+        "icon": "platforms/facebook.svg",
+        "path": "form-press",
+        "event": "relational"
+      },
+      {
+        "type": "externalPath",
+        "value": "external",
+        "icon": "platforms/facebook.svg",
+        "path": "form-press",
+        "event": "external"
+      },
+      {
+        "type": "internalPath",
+        "value": "internal",
+        "icon": "platforms/facebook.svg",
+        "path": "form-press",
+        "event": "internal"
+      }
+    ]
+  },
+  {
+    "key": "form-press",
+    "type": "form",
+    "subtext": "Los gehts!",
+    "title": "Zu welcher Gruppe gehören Sie?",
+    "callto": "Käufer oder Verkäufer?",
+    "fields": [{
+        "type": "text",
+        "name": "Name",
+        "required": true
+      },
+      {
+        "type": "text",
+        "name": "Firma",
+        "required": true
+      },
+      {
+        "type": "email",
+        "name": "E-Mail",
+        "required": true
+      },
+      {
+        "type": "text",
+        "name": "Telefon",
+        "required": false
+      },
+      {
+        "type": "textarea",
+        "name": "Vorhaben",
+        "required": true
+      }
+    ]
+  },
+  {
+    "key": "success-page",
+    "type": "success",
+    "subtext": "Los gehts!",
+    "title": "Formular erfolgreich versendet!",
+    "callto": "Formular erfolgreich versendet!",
+    "img": "images/heroes/hero.webp"
+  }
+]

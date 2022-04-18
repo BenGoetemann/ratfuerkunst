@@ -31,19 +31,24 @@ Leaf (Literally Easy As Fuck) ist eine Art "Framework", mit der sich Jamstack We
     - [HideOnMobile](#hideonmobile)
     - [WrapSection](#wrapsection)
   - [Elements](#elements)
-    - [NavBar](#navbar)
-    - [Footer](#footer)
     - [YouTubePlayer](#youtubeplayer)
     - [WideHeader](#wideheader)
     - [ProfileCard](#profilecard)
     - [ProductCard](#productcard)
     - [Divider](#divider)
     - [Button](#button)
+  - [Navigation](#navigation)
+    - [NavBar](#navbar)
+    - [Footer](#footer)
   - [Selections](#selections)
     - [LinkSelection](#linkselection)
     - [SocialMediaSelection](#socialmediaselection)
     - [PrivacyTextSelection](#privacytextselection)
   - [Figures](#figures)
+  - [Flow](#flow)
+    - [Implementierung](#implementierung)
+    - [Flow-Design](#flow-design)
+    - [Validation](#validation)
 - [Extras](#extras)
   - [AXIOS](#axios)
   - [GSAP](#gsap)
@@ -358,6 +363,90 @@ Elements sind vorgefertigte UI-Elemente und bilden mit [Selections](#selections)
 
 <br>
 
+### YouTubePlayer
+
+Der YouTube Player ist immer im Aspect Ration von 16:9 und füllt die gesamte Breite einer Section. Um ein Video zu targetieren muss in der Propterty ```id``` die Video ID mitgegeben werden.
+
+```html
+<YouTubePlayer id="Xh11iUpJs4Y" />
+```
+
+<br>
+
+### WideHeader
+
+Ein WideHeader ist ein Hero Image, das sich über die gesamte Bildschirmbreite zieht. Die Komponente erwartet eine Property names ```img```, der eine bg Tailwind-Klasse übergeben werden muss. Diese wird dann als Background Image eingesetzt.
+
+```html
+<WideHeader img="bg-hero"/>
+```
+
+<br>
+
+### ProfileCard
+
+Eine ProfileCard beinhaltet ein Bild, einen Namen, eine Position und ein Link bzw. Slug, mit dem der Pagebesucher auf ein weiterführendes Profil oder eine LinkedIn Seite geführt werden kann.
+
+```html
+<ProfileCard
+  :img="require('~/assets/images/heroes/benny.jpg')"
+  name="Benedikt Götemann"
+  position="Mensch-Mensch"
+  slug="/benny"
+/>
+```
+```html
+<ProfileCard
+  :img="require('~/assets/images/heroes/benny.jpg')"
+  name="Benedikt Götemann"
+  position="Mensch-Mensch"
+  link="https://www.linkedin.com/benediktgoetemann"
+/>
+```
+
+<br>
+
+### ProductCard
+
+Eine ProductCard beinhaltet in der Grundversion ein Bild, einen Titel, eine Beschreibung und Slug, mit dem der Pagebesucher auf eine weiterführendes Page geführt werden kann. Diese Komponente muss immer an den Kontext angepasst werden.
+
+
+```html
+<ProductCard
+  :img="require('~/assets/images/heroes/hero.jpg')"
+  title="object.title.value"
+  description="Lorem ipsum dolor sit amet."
+  slug="yolo"
+/>
+```
+
+<br>
+
+### Divider
+
+Ein Divider ist ein Element, das eine Trennlinie über 100% der Parent Komponente erzeugt.
+
+<br>
+
+### Button
+
+Der Button kann eine Route oder einen externen Link erzeugen. Dies legt man fest, indem man entweder die Properties ```link``` oder ```slug``` nutzt: 
+
+```html
+<Button slug="/registrieren" btnText="Jetzt registrieren" />
+```
+
+```html
+<Button link="https://www.apple.com" btnText="Apple Website" />
+```
+
+<br>
+<br>
+
+## Navigation
+
+<br>
+
 ### NavBar
 
 Die Navbar ist eine responsive Navigationsleiste, die einen Drawer erzeugt, wenn man auf Bildschirmen in Handygröße auf die Seite zugreift. Sie beinhaltet NavBarItems und Icons, die zu Social Media Plattformen führen.
@@ -439,85 +528,9 @@ Der Copyright String wird mithilfe der Property ```company``` gefüllt und aktua
 
 <br>
 
-### YouTubePlayer
-
-Der YouTube Player ist immer im Aspect Ration von 16:9 und füllt die gesamte Breite einer Section. Um ein Video zu targetieren muss in der Propterty ```id``` die Video ID mitgegeben werden.
-
-```html
-<YouTubePlayer id="Xh11iUpJs4Y" />
-```
-
-<br>
-
-### WideHeader
-
-Ein WideHeader ist ein Hero Image, das sich über die gesamte Bildschirmbreite zieht. Die Komponente erwartet eine Property names ```img```, der eine bg Tailwind-Klasse übergeben werden muss. Diese wird dann als Background Image eingesetzt.
-
-```html
-<WideHeader img="bg-hero"/>
-```
-
-<br>
-
-### ProfileCard
-
-Eine ProfileCard beinhaltet ein Bild, einen Namen, eine Position und ein Link bzw. Slug, mit dem der Pagebesucher auf ein weiterführendes Profil oder eine LinkedIn Seite geführt werden kann.
-
-```html
-<ProfileCard
-  :img="require('~/assets/images/heroes/benny.jpg')"
-  name="Benedikt Götemann"
-  position="Mensch-Mensch"
-  slug="/benny"
-/>
-```
-```html
-<ProfileCard
-  :img="require('~/assets/images/heroes/benny.jpg')"
-  name="Benedikt Götemann"
-  position="Mensch-Mensch"
-  link="https://www.linkedin.com/benediktgoetemann"
-/>
-```
-
-<br>
-
-### ProductCard
-
-Eine ProductCard beinhaltet in der Grundversion ein Bild, einen Titel, eine Beschreibung und Slug, mit dem der Pagebesucher auf eine weiterführendes Page geführt werden kann. Diese Komponente muss immer an den Kontext angepasst werden.
-
-
-```html
-<ProductCard
-  :img="require('~/assets/images/heroes/hero.jpg')"
-  title="object.title.value"
-  description="Lorem ipsum dolor sit amet."
-  slug="yolo"
-/>
-```
-
-<br>
-
-### Divider
-
-Ein Divider ist ein Element, das eine Trennlinie über 100% der Parent Komponente erzeugt.
-
-<br>
-
-### Button
-
-Der Button kann eine Route oder einen externen Link erzeugen. Dies legt man fest, indem man entweder die Properties ```link``` oder ```slug``` nutzt: 
-
-```html
-<Button slug="/registrieren" btnText="Jetzt registrieren" />
-```
-
-```html
-<Button link="https://www.apple.com" btnText="Apple Website" />
-```
-
 <br>
 <br>
+
 
 ## Selections
 
@@ -572,6 +585,131 @@ Coming soon...
 
 <br>
 <br>
+
+## Flow
+
+**Flows sind dynamische Wizards/Kontaktformulare, welche durch ein externes JSON Dokument beschrieben werden können. Sie bestehen aus 4 Komponenten und einer Section, die den Flow in der Mitte des Screens platziert.**
+
+<br>
+
+### Implementierung
+
+Ein Flow wird durch eine FlowMachine erzeugt. Sie nimmt das JSON Dokument mit der ```optionData``` Property entgegen, welches durch die ```asyncData``` Hook aus dem Static Ordner gezogen wird. Je nach Inhalt des JSON Dokuments, kann die FlowMachine entweder Option- oder Formular-Komponenten erzeugen. Wenn der Flow den gesamten Page Inhalt darstellen soll, kann er in eine FullScreenFlowSection gepackt werden.
+
+```html
+  <FullScreenFlowSection>
+      <FlowMachine :optionData="contact"/>
+  </FullScreenFlowSection>
+```
+
+```html
+<script>
+import contact from "~/static/flows/contact.json";
+
+export default {
+  async asyncData() {
+    return { contact };
+  },
+}
+</script>
+```
+
+<br>
+
+### Flow-Design
+
+Die FlowMachine kann Options und Formulare kreieren. Im JSON Dokument muss lediglich ein bestimmtes Schema beachtet werden.
+
+Zu allererst müssen Typ, Title, Key des jeweiligen Schritts im Flow definiert werden. 
+
+```js
+[{
+        "key": "target-group", // Key ermöglicht Navigation zu dieser Frage. Benennung frei.
+        "type": "option", // oder "form". Erzeugt entweder Option oder Form.
+        "subtext": "Los gehts!", // Dynamischer Sub-Titel
+        "title": "Zu welcher Gruppe gehören Sie?", // Dynamischer Titel
+        "callto": "Käufer oder Verkäufer?",  // Dynamischer Titel für alternatives Design
+        "fields": [ // Fields sind die Options oder Inputs die je nach type gerendert werden sollen.
+            {
+               ...
+            },
+            ...
+        ]
+    },
+    ...
+]
+```
+
+Danach müssen je nach Type (Form oder Option) die Inputs oder Options definiert werden. 
+
+```js
+[{
+        ...
+        "type": "option", // Bei Option-Type.
+        ...
+        "fields": [{
+            {
+              "type": "relationalPath", // Einstellung für Navigation zu einer anderen Option.
+              "value": "Antwort 1", // Text der gezeigt wird
+              "icon": "platforms/gp.svg", // Pfad zum Icon ab dem assets-Ordner.
+              "path": "reason-organizer", // Key der Option die bei Klick angezeigt werden soll.
+              "event": "isOrganizer" // Ermöglicht Facebook Pixel Events zu feuern.
+            },
+            {
+              "type": "internalPath", // Navigiert zu einer anderen Seite der Website
+              "value": "Mobile-Privacy", 
+              "icon": "privacy/mobile-button-solid.svg",
+              "path": "/mobile-privacy" // Slug der Seite die nach Klick angezeigt werden soll.
+              "event": "isOrganizer"
+            },
+            {
+              "type": "externalPath", // Navigiert zu einer externen URL
+              "value": "Antwort 3",
+              "icon": "platforms/gp.svg",
+              "path": "https://www.google.com", // URL die nach Klick geladen werden soll..
+              "event": "isOrganizer"
+            }
+        ]
+    },
+    ...
+]
+```
+
+```js
+[{
+        ...
+        "type": "form", // Bei Option-Type.
+        ...
+         "fields": [{
+            {
+                "type": "text", // oder "email", "datetime-local", "date", "textarea"
+                "name": "Label", // Label / Name
+                "required": true // oder false
+            },
+        ]
+    },
+    ...
+]
+```
+
+Mit jedem Formular wird ein Submit-Button erzeugt. Wenn das Formular abgeschickt wurde, wird der User zu einer Success Page Navigiert, die folgendermaßen konfiguriert werden kann:
+
+```js
+    {
+        "key": "success-page",
+        "type": "success",
+        "subtext": "Los gehts!",
+        "title": "Formular erfolgreich versendet!",
+        "callto": "Formular erfolgreich versendet!",
+        "img": "images/heroes/hero.webp" // Pfad zum Image ab dem assets-Ordner.
+    }
+```
+
+<br>
+
+### Validation
+
+Das Forumular validiert sich automatisch und stellt ein Objekt bereit, welches dann via API verschickt werden kann.
 
 # Extras
 

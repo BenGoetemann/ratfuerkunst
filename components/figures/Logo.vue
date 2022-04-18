@@ -12,6 +12,6 @@
 
 <style lang="postcss" scoped>
 .logo {
-  @apply w-32;
+  @apply h-9;
 }
 </style>

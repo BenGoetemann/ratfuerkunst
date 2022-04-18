@@ -10,6 +10,9 @@
         <p>{{ btnText }}</p>
       </div>
     </NuxtLink>
+      <div v-if="!slug && !link" class="button">
+        <p>{{ btnText }}</p>
+      </div>
   </div>
 </template>
 

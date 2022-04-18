@@ -120,11 +120,15 @@
         />
       </WrapSection>
     </ContentSection>
+    <ContentSection>
+      <FlowMachine :option-data="contact" />
+    </ContentSection>
   </div>
 </template>
 
 <script>
 import ProductCard from "~/components/elements/ProductCard.vue";
+import contact from "~/static/flows/contact.json";
 
 export default {
   components: { ProductCard },
@@ -136,7 +140,7 @@ export default {
   },
   async asyncData({ $axios }) {
     const res = await $axios.$get("/.netlify/functions/apitest");
-    return { res };
+    return { res, contact };
   },
   methods: {
     async fetchObjects() {
@@ -146,6 +150,7 @@ export default {
   async fetch() {
     this.objects = await this.$axios.$get("/.netlify/functions/apitest");
     console.log(this.objects);
+    console.log(contact);
   },
   fetchOnServer: false,
   head() {
