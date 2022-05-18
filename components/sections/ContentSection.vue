@@ -18,7 +18,7 @@ export default {
 
 <style lang="postcss" scoped>
 .contentWrapper {
-  @apply flex flex-col;
-  @apply py-big;
+  /* @apply flex flex-col; */
+  @apply py-small;
 }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <CookieControl locale="de" />
-    <NavBar
+    <!-- <NavBar
       :pages="['Impressum', 'Blog', 'Events', 'Contact']"
       callToAction="Impressum"
       facebook="leaf"
@@ -9,10 +8,10 @@
       tiktok="leaf"
       linkedin="leaf"
       youtube="leaf"
-    />
-    <Divider />
+    /> -->
+    <!-- <Divider /> -->
     <Nuxt />
-    <Footer
+    <!-- <Footer
       company="Benedikt Götemann"
       facebook="leaf"
       instagram="leaf"
@@ -21,7 +20,7 @@
       youtube="leaf"
     >
       <LinkSelection title="Legal" :pages="['Impressum']" />
-    </Footer>
+    </Footer> -->
   </div>
 </template>
 
@@ -35,22 +34,11 @@
 html {
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
-}
-
-.background {
-  @apply flex flex-col justify-center	items-center;
-}
-
-.borderContainer {
-  @apply w-10/12 lg:w-9/12 2xl:w-3/5;
-}
-
-.fluidContainer {
-  @apply w-screen flex justify-center items-center flex-col;
+  @apply bg-primary
 }
 
 h1 {
-  @apply text-3xl;
+  @apply text-3xl font-bold;
   @apply mb-small;
 }
 
@@ -71,7 +59,15 @@ h4 {
 
 p,
 li {
-  @apply text-base;
+  @apply text-base font-medium leading-7;
   @apply mb-small;
+}
+
+li {
+  @apply list-decimal
+}
+
+a {
+  @apply font-bold
 }
 </style>

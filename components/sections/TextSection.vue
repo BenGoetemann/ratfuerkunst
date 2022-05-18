@@ -12,5 +12,6 @@ export default {};
 article {
   @apply w-full;
   @apply text-left;
+  @apply py-small
 }
 </style>

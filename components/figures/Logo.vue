@@ -3,7 +3,7 @@
     <NuxtLink to="/">
       <img
         class="logo"
-        src="~assets/images/ci/logo.png"
+        src="~assets/images/ci/logo.svg"
         alt="Pingr Schriftlogo transparent"
       >
     </NuxtLink>
@@ -12,6 +12,6 @@
 
 <style lang="postcss" scoped>
 .logo {
-  @apply h-9;
+  @apply mt-medium w-full md:w-7/12;
 }
 </style>

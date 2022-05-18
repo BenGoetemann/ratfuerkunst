@@ -1,168 +1,78 @@
 <template>
   <div>
-    <WideHeader img="bg-hero" />
-    <ContentSection>
+    <ContentSection> <Logo /></ContentSection>
+    <ContentSection class="mt-medium">
+      <Headline value="Über uns" />
       <TextSection>
-        <h1 @click="fetchObjects()">Hello</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-          corrupti culpa tempora quia placeat dignissimos modi, aliquam quaerat,
-          ullam cupiditate voluptatem blanditiis. Commodi perspiciatis ea veniam
-          ratione necessitatibus ex expedita! Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Repellat, eos fuga nisi aperiam aliquid
-          cumque dicta cupiditate, voluptates incidunt voluptatum eaque error
-          inventore assumenda magnam aspernatur consequatur porro iste quod.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet neque
-          tempore enim dolorem nihil illo nobis doloribus cupiditate sunt quas
-          iusto voluptatibus veritatis repellat natus, incidunt provident, rem
-          aliquam obcaecati! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Repellat odit pariatur sed reprehenderit optio architecto
-          nesciunt aliquid enim totam amet in molestias nulla iusto tenetur
-          quisquam voluptatem, obcaecati porro delectus.
+          Der 2020 gegründete RAT für Kunst und Kultur Mannheim setzt sich unter
+          anderem zum Ziel, die Interessen der Kunst- und Kulturschaffenden
+          Mannheims zu bündeln. Er strebt an, als Vernetzungs-, Informations-,
+          und Mobilisierungsorgan zu fungieren. Zusammenfassend zielt der RAT
+          auf die Verbesserung struktureller Rahmenbedingungen für die Szene
+          Mannheims, so wie den Ausbau der städtischen Kulturlandschaft ab.
         </p>
-        <!-- <YouTubePlayer id="Xh11iUpJs4Y" /> -->
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-          corrupti culpa tempora quia placeat dignissimos modi, aliquam quaerat,
-          ullam cupiditate voluptatem blanditiis. Commodi perspiciatis ea veniam
-          ratione necessitatibus ex expedita! Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Repellat, eos fuga nisi aperiam aliquid
-          cumque dicta cupiditate, voluptates incidunt voluptatum eaque error
-          inventore assumenda magnam aspernatur consequatur porro iste quod.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet neque
-          tempore enim dolorem nihil illo nobis doloribus cupiditate sunt quas
-          iusto voluptatibus veritatis repellat natus, incidunt provident, rem
-          aliquam obcaecati! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Repellat odit pariatur sed reprehenderit optio architecto
-          nesciunt aliquid enim totam amet in molestias nulla iusto tenetur
-          quisquam voluptatem, obcaecati porro delectus.
+          Neue Mitglieder der aktuell 7 Sektionen sind mehr als willkommen.
+          Meldet euch gerne bei uns:
+          <a href="mailto:info@ratfuerkunst-ma.de">info@ratfuerkunst-ma.de</a>
         </p>
-        <Button btnText="Impressum" slug="/impressum" />
+        <p>Wir freuen uns auf euch!</p>
       </TextSection>
     </ContentSection>
-    <SwipeSection
-      styles="bg-subliminal"
-      title="Test"
-      text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime rem inventore reiciendis ad maiores iusto culpa. "
-    >
-      <div
-        class="swipeSectionElement"
-        v-for="object in objects"
-        :key="object.id"
-      >
-        <ProductCard
-          ref="test"
-          :img="object.images[0].big_url"
-          title="Test"
-          description="Lorem ipsum dolor sit amet."
-          slug="yolo"
-        />
-      </div>
-      <!-- :title="object.title.value" -->
-    </SwipeSection>
-    <!-- <ContentSection>
-      <SmallCenteredSection>
-        <h2>Unser Team</h2>
-        <h3>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla odit
-          voluptatem ex quae blanditiis!
-        </h3>
-        <Button btnText="impressum" slug="/impressum" />
-      </SmallCenteredSection>
-      <WrapSection>
-        <ProfileCard
-          :img="require('~/assets/images/heroes/hero.jpg')"
-          name="Jonas Siebner"
-          position="Finanz-Mensch"
-          slug="impressum"
-        />
-        <ProfileCard
-          :img="require('~/assets/images/heroes/hero.jpg')"
-          name="Jonas Siebner"
-          position="Finanz-Mensch"
-          link="https://www.google.de"
-        />
-        <ProfileCard
-          :img="require('~/assets/images/heroes/hero.jpg')"
-          name="Jonas Siebner"
-          position="Finanz-Mensch"
-          slug="impressum"
-        />
-        <ProfileCard
-          :img="require('~/assets/images/heroes/hero.jpg')"
-          name="Jonas Siebner"
-          position="Finanz-Mensch"
-          slug="impressum"
-        />
-        <ProfileCard
-          :img="require('~/assets/images/heroes/hero.jpg')"
-          name="Jonas Siebner"
-          position="Finanz-Mensch"
-          slug="impressum"
-        />
-        <ProfileCard
-          :img="require('~/assets/images/heroes/hero.jpg')"
-          name="Jonas Siebner"
-          position="Finanz-Mensch"
-          slug="impressum"
-        />
-        <ProfileCard
-          :img="require('~/assets/images/heroes/hero.jpg')"
-          name="Jonas Siebner"
-          position="Finanz-Mensch"
-          slug="impressum"
-        />
-        <ProfileCard
-          :img="require('~/assets/images/heroes/hero.jpg')"
-          name="Jonas Siebner"
-          position="Finanz-Mensch"
-          slug="impressum"
-        />
-      </WrapSection>
-    </ContentSection> -->
     <ContentSection>
-      <LayoutContent dir="reversed" :ratio="[46, 46]">
-        <template v-slot:a>
-          <FullSizeImg
-            src="https://www.sueddeutsche.de/image/sz.1.5509306/1408x792?v=1642500419&format=webp"
-          />
-        </template>
-        <template v-slot:b>
-          <h2>This is a Test</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-            error repudiandae hic aut, mollitia sit qui at a!
-          </p>
-          <StringButton btnText="test" />
-          <StringButton btnText="test" />
-          <StringButton btnText="test" />
-        </template>
-      </LayoutContent>
-      <LayoutContent :ratio="[46, 46]">
-        <template v-slot:a>
-          <FullSizeImg
-            src="https://www.sueddeutsche.de/image/sz.1.5509306/1408x792?v=1642500419&format=webp"
-          />
-        </template>
-        <template v-slot:b>
-          <h2>This is a Test</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-            error repudiandae hic aut, mollitia sit qui at a!
-          </p>
-          <StringButton btnText="test" />
-          <StringButton btnText="test" />
-          <StringButton btnText="test" />
-        </template>
-      </LayoutContent>
+      <Headline value="Die 7 Sektionen" />
+      <TextSection>
+        <li>
+          Musik<br />
+          <a class="ml-mini" href="mailto:musik@ratfuerkunst-ma.de"
+            >musik@ratfuerkunst-ma.de</a
+          >
+        </li>
+        <li>
+          Darstellende Kunst, Tanz<br />
+          <a class="ml-mini" href="mailto:darstellendekunst@ratfuerkunst-ma.de"
+            >darstellendekunst@ratfuerkunst-ma.de</a
+          >
+        </li>
+        <li>
+          Bildende Kunst<br />
+          <a class="ml-mini" href="mailto:bildendekunst@ratfuerkunst-ma.de"
+            >bildendekunst@ratfuerkunst-ma.de</a
+          >
+        </li>
+        <li>
+          Literatur, Film, Medienkunst<br />
+          <a class="ml-mini" href="mailto:literatur.film@ratfuerkunst-ma.de"
+            >literatur.film@ratfuerkunst-ma.de</a
+          >
+        </li>
+        <li>
+          Kreativwirtschaft, Veranstalter und Veranstaltungsorte, Clubkultur<br />
+          <a class="ml-mini" href="mailto:kreativwirtschaft@ratfuerkunst-ma.de"
+            >kreativwirtschaft@ratfuerkunst-ma.de</a
+          >
+        </li>
+        <li>
+          Kulturelle Bildung, Soziokultur<br />
+          <a class="ml-mini" href="mailto:kulturellebildung@ratfuerkunst-ma.de"
+            >kulturellebildung@ratfuerkunst-ma.de</a
+          >
+        </li>
+        <li>
+          Design, Mode, Architektur, Baukunst<br />
+          <a class="ml-mini" href="mailto:design.architektur@ratfuerkunst-ma.de"
+            >design.architektur@ratfuerkunst-ma.de</a
+          >
+        </li>
+      </TextSection>
     </ContentSection>
   </div>
 </template>
 
 <script>
-import Arguments from '~/components/sections/ArgumentSection.vue';
+import Arguments from "~/components/sections/ArgumentSection.vue";
 import ProductCard from "~/components/elements/ProductCard.vue";
-import contact from "~/static/flows/contact.json";
 
 export default {
   components: { ProductCard, Arguments },
@@ -172,21 +82,6 @@ export default {
       objects: [],
     };
   },
-  async asyncData({ $axios }) {
-    const res = await $axios.$get("/.netlify/functions/apitest");
-    return { res, contact };
-  },
-  methods: {
-    async fetchObjects() {
-      this.objects = await this.$axios.$get("/.netlify/functions/apitest");
-    },
-  },
-  async fetch() {
-    this.objects = await this.$axios.$get("/.netlify/functions/apitest");
-    console.log(this.objects);
-    console.log(contact);
-  },
-  fetchOnServer: false,
   head() {
     return {
       title: this.title,

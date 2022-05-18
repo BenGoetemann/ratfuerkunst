@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-import {
-  createClient
-} from "./plugins/contentful";
-const contentfulClient = createClient();
+// import {
+//   createClient
+// } from "./plugins/contentful";
+// const contentfulClient = createClient();
 
 dotenv.config();
 let development = process.env.NODE_ENV !== 'production'
@@ -11,13 +11,13 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  env: {
-    CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
-    CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
-  },
+  // env: {
+  //   CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
+  //   CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
+  // },
 
   loading: {
-    color: '#fab716',
+    color: '#ffffff',
     height: '3px'
   },
 
@@ -27,14 +27,14 @@ export default {
     htmlAttrs: {
       lang: 'de'
     },
-    script: [{
-        src: '/heyflow.js',
-        body: true
-      },
-      {
-        src: "https://storage.googleapis.com/heyflow-eu-static/widget/v1-6-3/index.min.js"
-      },
-    ],
+    // script: [{
+    //     src: '/heyflow.js',
+    //     body: true
+    //   },
+    //   {
+    //     src: "https://storage.googleapis.com/heyflow-eu-static/widget/v1-6-3/index.min.js"
+    //   },
+    // ],
     meta: [{
         charset: 'utf-8'
       },
@@ -65,7 +65,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [ "~assets/css/global.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -85,7 +85,8 @@ export default {
       '~/components/elements',
       '~/components/selections',
       '~/components/contentful',
-      '~/components/flow'
+      '~/components/flow',
+      '~/components/branding'
     ]
   },
 
@@ -105,22 +106,22 @@ export default {
   },
 
   axios: {
-    baseURL: development ? 'http://localhost:8888' : 'https://bg-template.netlify.app', // Used as fallback if no runtime config is provided
+    baseURL: development ? 'http://localhost:8888' : 'https://ratfuerkunst.netlify.app', // Used as fallback if no runtime config is provided
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', 'nuxt-cookie-control', 'nuxt-facebook-pixel-module'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'], //, 'nuxt-cookie-control', 'nuxt-facebook-pixel-module'],
 
-  facebook: {
-    track: 'PageView',
-    pixelId: 'FACEBOOK_PIXEL_ID',
-    autoPageView: true,
-    disabled: false
-  },
+  // facebook: {
+  //   track: 'PageView',
+  //   pixelId: 'FACEBOOK_PIXEL_ID',
+  //   autoPageView: true,
+  //   disabled: false
+  // },
 
-  googleAnalytics: {
-    id: 'GOOGLE_ANALYTICS_ID' // https://google-analytics.nuxtjs.org/setup
-  },
+  // googleAnalytics: {
+  //   id: 'GOOGLE_ANALYTICS_ID' // https://google-analytics.nuxtjs.org/setup
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -142,24 +143,24 @@ export default {
     }
   },
 
-  generate: {
-    routes: function () {
-      return Promise.all([
-          contentfulClient.getEntries({
-            content_type: "blogPost",
-            include: 10,
-          }),
-          contentfulClient.getEntries({
-            content_type: "event",
-            include: 10,
-          })
-        ])
-        .then(([blogEntries, eventEntries]) => {
-          return [
-            ...blogEntries.items.map(entry => `/post/${entry.fields.slug}`),
-            ...eventEntries.items.map(entry => `/event/${entry.fields.slug}`),
-          ]
-        })
-    }
-  }
+  // generate: {
+  //   routes: function () {
+  //     return Promise.all([
+  //         contentfulClient.getEntries({
+  //           content_type: "blogPost",
+  //           include: 10,
+  //         }),
+  //         contentfulClient.getEntries({
+  //           content_type: "event",
+  //           include: 10,
+  //         })
+  //       ])
+  //       .then(([blogEntries, eventEntries]) => {
+  //         return [
+  //           ...blogEntries.items.map(entry => `/post/${entry.fields.slug}`),
+  //           ...eventEntries.items.map(entry => `/event/${entry.fields.slug}`),
+  //         ]
+  //       })
+  //   }
+  // }
 }

@@ -12,9 +12,6 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      backgroundImage: {
-        'hero': "url('~assets/images/heroes/hero.jpg')",
-      },
       borderRadius: {
         'default': "0.25rem"
       },
@@ -39,12 +36,12 @@ module.exports = {
         'medium': '#292929',
         'light': '#9f9f9f',
         'subliminal': '#f5f5f5',
-        'primary': '#FAB716',
-        'primary-hover': '#FAA000',
-        'secondary': '#FAB716',
-        'secondary-hover': '#FAB716',
-        'tertiary': '#FAB716',
-        'tertiary-hover': '#FAB716',
+        'primary': '#77F9A9',
+        'primary-hover': '#77F9A9',
+        'secondary': '#77F9A9',
+        'secondary-hover': '#77F9A9',
+        'tertiary': '#77F9A9',
+        'tertiary-hover': '#77F9A9',
       },
       animation: {
         'bounce-x': 'bounceX .5s linear infinite'
