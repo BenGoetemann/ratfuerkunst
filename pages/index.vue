@@ -1,6 +1,5 @@
 <template>
   <div>
-    <ContentSection> <Logo /></ContentSection>
     <ContentSection class="mt-medium">
       <Headline value="Über uns" />
       <TextSection>

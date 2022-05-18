@@ -10,7 +10,12 @@
       youtube="leaf"
     /> -->
     <!-- <Divider /> -->
+    <ContentSection> <Logo /></ContentSection>
     <Nuxt />
+    <ContentSection>
+      <NuxtLink to="impressum">Impressum</NuxtLink>
+      <NuxtLink to="datenschutz">Datenschutz</NuxtLink>
+    </ContentSection>
     <!-- <Footer
       company="Benedikt Götemann"
       facebook="leaf"
@@ -34,7 +39,7 @@
 html {
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
-  @apply bg-primary
+  @apply bg-primary;
 }
 
 h1 {
@@ -64,10 +69,10 @@ li {
 }
 
 li {
-  @apply list-decimal
+  @apply list-decimal;
 }
 
 a {
-  @apply font-bold
+  @apply font-bold;
 }
 </style>
