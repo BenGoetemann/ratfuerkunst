@@ -78,7 +78,7 @@ export default {
   components: { ProductCard, Arguments },
   data() {
     return {
-      title: "Beautiful Landscapes brought to you by the Universe! 🚀",
+      title: "RAT für Kunst Mannheim",
       objects: [],
     };
   },
@@ -91,12 +91,12 @@ export default {
           hid: "description",
           name: "description",
           content:
-            "Why metaverse when the universe has so much to offer that you haven't seen yet! We bring you to the craziest places in the galaxy!",
+            "Der 2020 gegründete RAT für Kunst und Kultur Mannheim setzt sich unter anderem zum Ziel, die Interessen der Kunst- und Kulturschaffenden Mannheims zu bündeln.",
         },
         {
           hid: "keywords",
           name: "keywords",
-          content: "Travel, Flight, Adventure",
+          content: "Music, Art, Musik, Kunst, Mannheim, Rat",
         },
         {
           hid: "author",

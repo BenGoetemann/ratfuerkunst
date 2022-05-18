@@ -23,7 +23,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'TEMPLATE',
+    title: 'Rat für Kunst und Kultur Mannheim',
     htmlAttrs: {
       lang: 'de'
     },
